@@ -180,6 +180,7 @@ UpgradeLog*.XML
 *.exe
 *.o
 *.so
+*.pyc
 
 # Packages #
 ############
