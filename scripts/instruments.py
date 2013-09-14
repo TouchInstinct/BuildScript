@@ -1,5 +1,7 @@
+from subprocess import call
 import shutil
 import os
+import re
 
 def MapToBackupName(origin_path):
 
@@ -50,3 +52,35 @@ def ResetDirectory(base_dir, relative_path_to_files):
 	DeleteBackups(base_dir, relative_path_to_files)
 
 	return None
+
+def RemoveProjectFromSolution(abs_path_to_sln, project_names):
+
+	sln_file = open(abs_path_to_sln, 'r+')
+	content = sln_file.read()
+
+	for pn in project_names:
+		reg_pattern = r'\n*Project.*?"{0}".*?\n*EndProject'.format(pn)
+		content = re.sub(reg_pattern, "", content)
+
+	sln_file.seek(0)
+	sln_file.write(content)
+	sln_file.truncate()
+	sln_file.close()
+
+def CleanSolution(mdtool, abs_path_to_sln):
+
+	clean_cmd_pattern = '{0} -v build "--target:Clean" {1}'
+	clean_cmd_text = clean_cmd_pattern.format(mdtool, abs_path_to_sln)
+
+	print(clean_cmd_text)
+	ret_code = call(clean_cmd_text, shell=True)
+	print('finished with return code: {0}'.format(ret_code))
+
+def BuildSolution(mdtool, abs_path_to_sln, config):
+
+	build_cmd_pattern = '{0} -v build "--configuration:{1}" "--target:Build" {2}'
+	build_cmd_text = build_cmd_pattern.format(mdtool, config, abs_path_to_sln)
+
+	print(build_cmd_text)
+	ret_code = call(build_cmd_text, shell=True)
+	print('finished with return code: {0}'.format(ret_code))
