@@ -3,6 +3,7 @@ import os
 import re
 
 import settings
+import instruments
 
 # print("all projects:")
 # print(settings.all_projects)
