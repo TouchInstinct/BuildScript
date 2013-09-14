@@ -18,7 +18,7 @@ import settings
 # print("projects to build:")
 # print(projects_to_build)
 
-sln_config = "Debug|iPhone Simulator 6.0"
+sln_config = "Debug|iPhone Simulator"
 build_cmd_pattern = '{0} -v build "--configuration:{1}" "--target:Build" {2}'
 # build_cmd_text = build_cmd_pattern.format(settings.mdtool, sln_config, settings.sln_path)
 

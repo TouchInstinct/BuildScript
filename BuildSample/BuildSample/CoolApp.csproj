@@ -93,4 +93,10 @@
     <Compile Include="MainController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

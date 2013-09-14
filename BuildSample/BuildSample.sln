@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoolApp", "BuildSample\Cool
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotCompileApp", "NotCompileApp\NotCompileApp.csproj", "{3DE4FDFA-1502-44CF-9B73-78B6D730C59F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -27,6 +29,18 @@ Global
 		{3DE4FDFA-1502-44CF-9B73-78B6D730C59F}.Release|iPhone.Build.0 = Release|iPhone
 		{3DE4FDFA-1502-44CF-9B73-78B6D730C59F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{3DE4FDFA-1502-44CF-9B73-78B6D730C59F}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}.Release|iPhone.Build.0 = Release|Any CPU
+		{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{E7393DD4-5E5F-456A-89AB-000EC63BD901}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
 		{E7393DD4-5E5F-456A-89AB-000EC63BD901}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
 		{E7393DD4-5E5F-456A-89AB-000EC63BD901}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
