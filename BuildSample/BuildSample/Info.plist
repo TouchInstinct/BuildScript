@@ -11,7 +11,7 @@
 	<key>MinimumOSVersion</key>
 	<string>6.0</string>
 	<key>CFBundleVersion</key>
-	<string>0.0.0</string>
+	<string>1.2.3</string>
 	<key>CFBundleDisplayName</key>
 	<string>BuidScript</string>
 	<key>CFBundleIdentifier</key>
