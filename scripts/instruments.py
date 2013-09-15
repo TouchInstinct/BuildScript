@@ -68,10 +68,10 @@ def RemoveProjectFromSolution(abs_path_to_sln, project_names):
 	sln_file.truncate()
 	sln_file.close()
 
-def CleanSolution(mdtool, abs_path_to_sln):
+def CleanSolution(mdtool, abs_path_to_sln, config):
 
-	clean_cmd_pattern = '{0} -v build "--target:Clean" {1}'
-	clean_cmd_text = clean_cmd_pattern.format(mdtool, abs_path_to_sln)
+	clean_cmd_pattern = '{0} -v build "--configuration:{1}" "--target:Clean" {2}'
+	clean_cmd_text = clean_cmd_pattern.format(mdtool, config, abs_path_to_sln)
 
 	print(clean_cmd_text)
 	ret_code = call(clean_cmd_text, shell=True)

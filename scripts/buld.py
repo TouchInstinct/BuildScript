@@ -3,11 +3,13 @@ import os
 import settings
 import instruments
 
-cmd_args = {'version' : '1.2.3', 'some_field' : 'some_value', 'action' : 'setup'}
+cmd_args = {'version' : '1.2.3', 'some_field' : 'some_value', 'action' : 'build'}
 
 instruments.CompileConfigs(settings.build_ready_configs, cmd_args)
 
 for bc in settings.build_ready_configs:
+	print bc['name']
+
 	sln_path = bc['sln_path']
 	sln_dir = os.path.dirname(sln_path)
 
@@ -20,8 +22,8 @@ for bc in settings.build_ready_configs:
 		path_function(bc)
 
 	if bc['action'] == 'build':
-		instruments.CleanSolution(bc['mdtool'], sln_path)
+		instruments.CleanSolution(bc['mdtool'], sln_path, bc['sln_config'])
 		instruments.BuildSolution(bc['mdtool'], sln_path, bc['sln_config'])
 
-		instruments.CreateOrRestoreFromBackup(sln_dir, settings.files_for_backup)
-		instruments.DeleteBackups(sln_dir, settings.files_for_backup)
+		instruments.CreateOrRestoreFromBackup(sln_dir, bc['files_for_backup'])
+		instruments.DeleteBackups(sln_dir, bc['files_for_backup'])
