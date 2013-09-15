@@ -48,6 +48,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <IpaPackageName />
     <CodesignProvision>F82B1481-F3D0-4CB5-AA6E-8B8D8E3A9DC1</CodesignProvision>
+    <BuildIpa>true</BuildIpa>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -61,6 +62,7 @@
     <IpaPackageName />
     <MtouchI18n />
     <MtouchArch>ARMv7</MtouchArch>
+    <BuildIpa>true</BuildIpa>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
