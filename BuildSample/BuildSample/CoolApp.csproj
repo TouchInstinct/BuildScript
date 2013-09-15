@@ -45,9 +45,9 @@
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>true</MtouchDebug>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer: Рустам Заитов (CTL85FZX6K)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <IpaPackageName />
-    <CodesignProvision>8F606DAE-F9C9-4A19-8EFF-34B990D76C28</CodesignProvision>
+    <CodesignProvision>F82B1481-F3D0-4CB5-AA6E-8B8D8E3A9DC1</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
