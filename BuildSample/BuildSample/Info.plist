@@ -10,5 +10,11 @@
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>6.0</string>
+	<key>CFBundleVersion</key>
+	<string>0.0.0</string>
+	<key>CFBundleDisplayName</key>
+	<string>BuidScript</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.touchin.buildscript</string>
 </dict>
 </plist>
