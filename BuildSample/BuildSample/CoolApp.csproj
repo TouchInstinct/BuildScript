@@ -55,8 +55,9 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Рустам Заитов (CTL85FZX6K)</CodesignKey>
     <ConsolePause>false</ConsolePause>
+    <CodesignProvision>8F606DAE-F9C9-4A19-8EFF-34B990D76C28</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
