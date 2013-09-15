@@ -62,6 +62,7 @@ def RemoveProjectFromSolution(abs_path_to_sln, project_names):
 		reg_pattern = r'\n*Project.*?"{0}".*?\n*EndProject'.format(pn)
 		content = re.sub(reg_pattern, "", content)
 
+	# override file
 	sln_file.seek(0)
 	sln_file.write(content)
 	sln_file.truncate()
@@ -84,3 +85,29 @@ def BuildSolution(mdtool, abs_path_to_sln, config):
 	print(build_cmd_text)
 	ret_code = call(build_cmd_text, shell=True)
 	print('finished with return code: {0}'.format(ret_code))
+
+def CompileConfigs(configs_lst, cmd_args):
+
+	for c_dict in configs_lst:
+
+		ancestors = GetAncestorsFromRootTo(c_dict)
+		ancestors.append(cmd_args)
+
+		union_config = {}
+		for a in ancestors:
+			union_config.update(a)
+
+		c_dict.clear()
+		c_dict.update(union_config)
+
+def GetAncestorsFromRootTo(config):
+
+	ancestors = []
+	c = config
+
+	while c is not None:
+		ancestors.append(c)
+		c = c['parent']
+
+	ancestors.reverse()
+	return ancestors
