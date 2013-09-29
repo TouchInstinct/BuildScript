@@ -1,5 +1,6 @@
 import re
 import os
+import plist_patch as plist
 
 def RewriteFile(file_to_rewrite, content):
 	file_to_rewrite.seek(0)
@@ -24,14 +25,8 @@ def PatchInfoPlist(build_config):
 	sln_dir = os.path.dirname(build_config['sln_path'])
 	abs_info_plist_path = os.path.join(sln_dir, build_config['info_plist_rel_path'])
 
-	info_plist_file = open(abs_info_plist_path, 'r+')
-	content = info_plist_file.read()
-
-	version_patt = r'\s*<key>CFBundleVersion</key>\s+<string>[\d\.]+</string>'
-	version_node = r'\n\t<key>CFBundleVersion</key>\n\t<string>{0}</string>'.format(build_config['version'])
-	content = re.sub(version_patt, version_node, content)
-
-	RewriteFile(info_plist_file, content)
+	key_values = {'CFBundleVersion' : build_config['version']}
+	plist.AppendOrReplace(key_values, abs_info_plist_path)
 
 def PathcIos(build_config):
 
