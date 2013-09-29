@@ -17,6 +17,10 @@ ios_development_root = {
 	'files_for_backup': ['BuildSample.sln', 'BuildSample/CoolApp.csproj', 'BuildSample/Info.plist'],
 	'projects_to_exclude': ['NotCompileApp'],
 	'info_plist_rel_path': 'BuildSample/Info.plist',
+
+	'post_build_file': 'post_build.py',
+	'post_build_actions' : ['PublishToTestFlight', 'PrintToConsole'],
+
 	'patch': patch.PathcIos,
 	'parent': ios_root
 }
