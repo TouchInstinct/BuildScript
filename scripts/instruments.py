@@ -86,19 +86,35 @@ def BuildSolution(mdtool, abs_path_to_sln, config):
 	ret_code = call(build_cmd_text, shell=True)
 	print('finished with return code: {0}'.format(ret_code))
 
-def CompileConfigs(configs_lst, cmd_args):
+def GetUnionConfigs(configs_lst, cmd_args=None):
 
+	union_configs = []
 	for c_dict in configs_lst:
 
 		ancestors = GetAncestorsFromRootTo(c_dict)
-		ancestors.append(cmd_args)
+		if cmd_args is not None:
+			ancestors.append(cmd_args)
 
 		union_config = {}
 		for a in ancestors:
 			union_config.update(a)
 
-		c_dict.clear()
-		c_dict.update(union_config)
+		union_configs.append(union_config)
+
+	return union_configs
+
+def GetConfigKeys(configs_lst):
+	union_configs = GetUnionConfigs(configs_lst)
+
+	keys = [];
+	for config in union_configs:
+		for key in config.keys():
+			keys.append(key)
+
+	# remove duplicates
+	keys = list(set(keys))
+
+	return keys
 
 def GetAncestorsFromRootTo(config):
 

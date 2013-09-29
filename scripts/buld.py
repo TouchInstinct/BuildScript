@@ -2,12 +2,22 @@ import os
 
 import settings
 import instruments
+import argparse
 
 cmd_args = {'version' : '1.2.3', 'some_field' : 'some_value', 'action' : 'build'}
+keys = instruments.GetConfigKeys(settings.build_ready_configs)
 
-instruments.CompileConfigs(settings.build_ready_configs, cmd_args)
+parser = argparse.ArgumentParser()
+for key in keys:
+	arg = "--{0}".format(key)
+	parser.add_argument(arg)
 
-for bc in settings.build_ready_configs:
+args = parser.parse_args()
+print vars(args)
+
+build_ready_configs = instruments.GetUnionConfigs(settings.build_ready_configs, cmd_args)
+
+for bc in build_ready_configs:
 	print bc['name']
 
 	sln_path = bc['sln_path']
