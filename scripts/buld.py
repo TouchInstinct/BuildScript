@@ -4,7 +4,6 @@ import settings
 import instruments
 import argparse
 
-cmd_args = {'version' : '1.2.3', 'some_field' : 'some_value', 'action' : 'build'}
 keys = instruments.GetConfigKeys(settings.build_ready_configs)
 
 parser = argparse.ArgumentParser()
@@ -13,7 +12,14 @@ for key in keys:
 	parser.add_argument(arg)
 
 args = parser.parse_args()
-print vars(args)
+cmd_args = vars(args)
+
+# remove unset key-values pairs
+for k in cmd_args.keys():
+	if cmd_args[k] is None:
+		del cmd_args[k]
+
+print cmd_args
 
 build_ready_configs = instruments.GetUnionConfigs(settings.build_ready_configs, cmd_args)
 
