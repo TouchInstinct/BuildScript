@@ -10,8 +10,11 @@ build_root = {
 
 ios_root = {
 	'sln_path' : '/Users/rzaitov/Documents/Apps/BuildScript/BuildSample/BuildSample.sln',
-	'api_token': '0e6925075d4fc10fed0e7bbf43fa6894_NjQ0OTI2MjAxMi0wOS0yNSAxMTo0MDozNi40OTY5MjU',
-	'team_token': 'c5c3cf7a6dae2bea4382dfbd181a2075_Mjc4ODkwMjAxMy0wOS0yOSAxNDowOTo1OC40Mzg5MTY',
+
+	'tf_api_token': '0e6925075d4fc10fed0e7bbf43fa6894_NjQ0OTI2MjAxMi0wOS0yNSAxMTo0MDozNi40OTY5MjU',
+	'tf_team_token': 'c5c3cf7a6dae2bea4382dfbd181a2075_Mjc4ODkwMjAxMy0wOS0yOSAxNDowOTo1OC40Mzg5MTY',
+	'ft_notes': 'This build was uploaded via the upload API',
+
 	'parent' : build_root
 }
 

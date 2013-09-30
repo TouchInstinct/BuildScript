@@ -17,14 +17,20 @@ class TestFlightPublisherBase:
 		return ret_code
 
 class TestFlightPublisher(TestFlightPublisherBase):
-	def __init__(self, api_token, team_token, notes=TestFlightPublisherBase.DefaultNotes):
+	def __init__(self, config):
+		self._config = config
+
+		api_token = config['tf_api_token']
+		team_token = config['tf_team_token']
+		notes = config.get('ft_notes', None)
+
 		TestFlightPublisherBase.__init__(self, api_token, team_token, notes)
 
-	def Publish(self, config):
-		sln_path = config['sln_path']
+	def Publish(self):
+		sln_path = self._config['sln_path']
 		sln_dir = os.path.dirname(sln_path)
 
-		ipa_rel_path = 'BuildSample/bin/iPhone/Release/BuildSample-{0}.ipa'.format(config['version'])
+		ipa_rel_path = 'BuildSample/bin/iPhone/Release/BuildSample-{0}.ipa'.format(self._config['version'])
 		ipa_abs_path = os.path.join(sln_dir, ipa_rel_path)
 
 		return TestFlightPublisherBase.Publish(self, ipa_abs_path)
