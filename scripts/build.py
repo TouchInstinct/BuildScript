@@ -1,4 +1,5 @@
 import os
+import imp
 
 import settings
 import instruments
@@ -43,3 +44,12 @@ for bc in build_ready_configs:
 
 		instruments.CreateOrRestoreFromBackup(sln_dir, bc['files_for_backup'])
 		instruments.DeleteBackups(sln_dir, bc['files_for_backup'])
+
+		if 'post_build_file' in bc and 'post_build_actions' in bc:
+			path_to_script = bc['post_build_file']
+			module_name = os.path.splitext(os.path.basename(path_to_script))[0]
+			post_build = imp.load_source(module_name, path_to_script)
+
+			for func_name in bc['post_build_actions']:
+				func = getattr(post_build, func_name)
+				func(bc)
