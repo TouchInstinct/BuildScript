@@ -2,6 +2,7 @@ from subprocess import call
 import shutil
 import os
 import re
+import sln_toolkit as sln
 
 def MapToBackupName(origin_path):
 
@@ -54,19 +55,8 @@ def ResetDirectory(base_dir, relative_path_to_files):
 	return None
 
 def RemoveProjectFromSolution(abs_path_to_sln, project_names):
-
-	sln_file = open(abs_path_to_sln, 'r+')
-	content = sln_file.read()
-
-	for pn in project_names:
-		reg_pattern = r'\n*Project.*?"{0}".*?\n*EndProject'.format(pn)
-		content = re.sub(reg_pattern, "", content)
-
-	# override file
-	sln_file.seek(0)
-	sln_file.write(content)
-	sln_file.truncate()
-	sln_file.close()
+	toolkit = sln.SolutionToolkit(abs_path_to_sln)
+	toolkit.RemoveProjects(project_names)
 
 def CleanSolution(mdtool, abs_path_to_sln, config):
 
