@@ -4,27 +4,51 @@ import patch
 build_root = {
 	'mdtool': '/Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool',
 	'version': '0.0.0',
-	'action': 'build', # 'build'|'setup'
+	'action': 'build', # 'build'|'setup'|'reset'
 	'parent': None
 }
 
 ios_root = {
+	# relative to script ???
 	'sln_path' : '/Users/rzaitov/Documents/Apps/BuildScript/BuildSample/BuildSample.sln',
 
+	# test flight command section
+	'tf_publish': True,
 	'tf_api_token': '0e6925075d4fc10fed0e7bbf43fa6894_NjQ0OTI2MjAxMi0wOS0yNSAxMTo0MDozNi40OTY5MjU',
 	'tf_team_token': 'c5c3cf7a6dae2bea4382dfbd181a2075_Mjc4ODkwMjAxMy0wOS0yOSAxNDowOTo1OC40Mzg5MTY',
 	'ft_notes': 'This build was uploaded via the upload API',
+	# end section
 
 	'parent' : build_root
 }
 
 ios_development_root = {
+	# backup command
 	'files_for_backup': ['BuildSample.sln', 'BuildSample/CoolApp.csproj', 'BuildSample/Info.plist'],
-	'projects_to_exclude': ['NotCompileApp'],
-	'info_plist_rel_path': 'BuildSample/Info.plist',
 
-	#'post_build_file': 'post_build.py',
-	#'post_build_actions' : ['PrintToConsole', 'PublishToTestFlight'],
+	# remove_projects
+	'projects_to_exclude': ['NotCompileApp'],
+
+	# patch_info_plist
+	'info_plist_rel_path': 'BuildSample/Info.plist',
+	'info_plist_CFBundleVersion': '@version',		# set CFBundleVersion
+	'info_plist_CFBundleDisplayName': '@app_name',	# set CFBundleDisplayName
+
+	'build_steps':[
+		# before build
+		'std_cmd.py backup',
+		'std_cmd.py remove_projects',
+		'std_cmd.py copy_provisioning',
+		'std_cmd.py patch_info_plist',
+
+		# build
+		'std_cmd.py clean',
+		'std_cmd.py build'
+
+		# after build
+		'std_cmd.py copy_artifacts'
+		'std_cmd.py testflight',
+	],
 
 	'patch': patch.PathcIos,
 	'parent': ios_root
@@ -32,6 +56,9 @@ ios_development_root = {
 
 ios_development_production = {
 	'name': 'ios_development_production',
+
+	# patch_info_plist
+	'app_name': 'CoolApp',
 
 	'sln_config': 'Release|iPhone',
 	'codesign_key': 'iPhone Developer: Рустам Заитов (CTL85FZX6K)',
@@ -42,6 +69,10 @@ ios_development_production = {
 
 ios_development_staging = {
 	'name': 'ios_development_staging',
+
+	# patch_info_plist
+	'app_name': 'CoolApp staging',
+
 
 	'sln_config': 'Debug|iPhone',
 	'codesign_key': 'iPhone Developer',
