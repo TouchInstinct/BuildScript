@@ -34,20 +34,3 @@ class TestFlightPublisher(TestFlightPublisherBase):
 		ipa_abs_path = os.path.join(sln_dir, ipa_rel_path)
 
 		return TestFlightPublisherBase.Publish(self, ipa_abs_path)
-
-if __name__ == '__main__':
-	import argparse
-
-	parser = argparse.ArgumentParser()
-	parser.add_argument('path')
-	parser.add_argument('-at', '--api_token', required=True, help='api token')
-	parser.add_argument('-tt', '--team_token', required=True, help='team token')
-	parser.add_argument('-n', '--notes', default=TestFlightPublisherBase.DefaultNotes, help='upload notes')
-
-	args = parser.parse_args()
-
-	publisher = TestFlightPublisherBase(args.api_token, args.team_token, args.notes)
-	publisher.Publish(args.path)
-
-
-

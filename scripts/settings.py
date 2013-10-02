@@ -23,8 +23,8 @@ ios_development_root = {
 	'projects_to_exclude': ['NotCompileApp'],
 	'info_plist_rel_path': 'BuildSample/Info.plist',
 
-	'post_build_file': 'post_build.py',
-	'post_build_actions' : ['PrintToConsole', 'PublishToTestFlight'],
+	#'post_build_file': 'post_build.py',
+	#'post_build_actions' : ['PrintToConsole', 'PublishToTestFlight'],
 
 	'patch': patch.PathcIos,
 	'parent': ios_root
