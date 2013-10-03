@@ -7,7 +7,10 @@ class CsprojParser:
 		self._token_buffer = None
 		self._token_index = 0
 		self._current_project = None
-		self.projects = {}
+		self._projects = {}
+
+	def getProjects(self):
+		return self._projects.values()
 
 	def initTokenBuffer(self, string_to_parse, value_token):
 		self._token_buffer = string_to_parse.split(' ')
@@ -24,6 +27,7 @@ class CsprojParser:
 
 	def ProcessToken(self):
 		token = self.getCurrentToken()
+		print token
 
 		if self.isCsprojStatement(token):
 			self._token_index += 1
@@ -34,7 +38,7 @@ class CsprojParser:
 			key_name = self.processKeyToken(token)
 			self._token_index += 1
 			token = self.getCurrentToken()
-			value = self.processValueToken()
+			value = self.processValueToken(token)
 			self._token_index += 1
 			self._current_project.settings[key_name] = value
 		elif self.isAttributeToken(token):
@@ -43,7 +47,9 @@ class CsprojParser:
 			token = self.getCurrentToken()
 			attribute_value = self.processValueToken(token)
 			self._token_index += 1
-			setattr(self.project, attribute_name, attribute_value)
+			setattr(self._current_project, attribute_name, attribute_value)
+		else:
+			raise Exception('unrecognized token', token)
 
 	def isCsprojStatement(self, token):
 		return token == 'csproj'
@@ -58,17 +64,19 @@ class CsprojParser:
 		return ':' not in token
 
 	def processAppToken(self, appToken):
-		appName = appToken[len('app:')]
+		appName = appToken[len('app:'):]
+		print appName
 		self.setCurrentProject(appName)
 
 	def setCurrentProject(self, appName):
-		exists = appName in self.projects
+		exists = appName in self._projects
 
-		self._current_project = self.projects[appName] if exists else Csproj(appName)
-		self.projects[appName] = self._current_project
+		self._current_project = self._projects[appName] if exists else Csproj(appName)
+		self._projects[appName] = self._current_project
 
 	def processKeyToken(self, token):
-		key_name = token[len('key:')]
+		key_name = token[len('key:'):]
+		print key_name
 		return key_name
 
 	def processAttributeNameToken(self, token):
@@ -93,3 +101,6 @@ class Csproj:
 	def __init__(self, appName):
 		self.appName = appName
 		self.settings = {}
+
+	def __str__(self):
+		return 'app Name: {0} settings: {1}'.format(self.appName, self.settings)

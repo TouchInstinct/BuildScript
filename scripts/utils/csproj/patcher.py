@@ -1,21 +1,26 @@
 import xml.etree.ElementTree as eT
-
+eT.register_namespace('', "http://schemas.microsoft.com/developer/msbuild/2003")
 
 class Patcher:
 	def __init__(self, csproj_abs_path):
 		self._csproj_abs_path = csproj_abs_path
+		self._tree = None
+		self._namespaces = {'ns': 'http://schemas.microsoft.com/developer/msbuild/2003'}
+
 
 	def FetchPropertyGroup(self, sln_config_name):
-		tree = eT.parse(self._csproj_abs_path)
-		project_element = tree.getroot()
+		self._tree = eT.parse(self._csproj_abs_path)
+		project_element = self._tree.getroot()
 
 		property_group = self.GetPropertyGroupBy(project_element, sln_config_name)
 		return  property_group
 
+	def WriteTree(self):
+		self._tree.write(self._csproj_abs_path, xml_declaration=True, encoding='utf-8', method="xml")
+
 
 	def GetPropertyGroupBy(self, project_element, config_name):
-		namespaces = {'xmlns': 'http://schemas.microsoft.com/developer/msbuild/2003'}
-		property_groups = project_element.findall('xmlns:PropertyGroup', namespaces)
+		property_groups = project_element.findall('ns:PropertyGroup', self._namespaces)
 
 		prop_group = None
 
@@ -37,11 +42,13 @@ class Patcher:
 	def Remove(self, tag_names, sln_config_name):
 		property_group = self.FetchPropertyGroup(sln_config_name)
 		self.RemoveTagsFor(property_group, tag_names)
+		self.WriteTree()
 
 
 	def AddOrReplace(self, key_value_dict, sln_config_name):
 		property_group = self.FetchPropertyGroup(sln_config_name)
 		self.AddOrReplaceTagsFor(property_group, key_value_dict)
+		self.WriteTree()
 
 
 	def IsValueFitFor(self, config_name, condition_attr_value):
@@ -64,7 +71,7 @@ class Patcher:
 
 
 	def AppendOrReplaceValueByKey(self, tag_name, value, property_group_element):
-		tag = property_group_element.find(tag_name)
+		tag = property_group_element.find('ns:{0}'.format(tag_name), self._namespaces)
 
 		if tag is None:
 			tag = eT.Element(tag_name)
