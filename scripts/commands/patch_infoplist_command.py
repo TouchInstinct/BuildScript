@@ -4,11 +4,8 @@ import utils.infoplist.patcher as plist
 
 
 class PatchInfoPlist(bcmd.BuildCommand):
-	_command_prefix = 'info_plist_'
-	_cmd_prefix_len = len(_command_prefix)
-
 	def __init__(self, config):
-		self._config = config
+		bcmd.BuildCommand.__init__(self, config, 'plist-')
 		self._info_plist_rel_path = None
 		self._plist_dict = {}
 
@@ -37,19 +34,11 @@ class PatchInfoPlist(bcmd.BuildCommand):
 
 	def AddValueFor(self, conf_key):
 		value_token = self._config[conf_key]
-		value = self.ParseValueToken(value_token)
+		value = self.ParseValueFromToken(value_token)
 
 		k = self.ParsePlistKeyFrom(conf_key)
 		self._plist_dict[k] = value
 
-	def ParseValueToken(self, value_token):
-		value = value_token
-
-		if value_token.startswith('@'):
-			key = value_token[1:]
-			value = self._config[key]
-
-		return value
 
 	def ParsePlistKeyFrom(self, config_key):
 		return config_key[PatchInfoPlist._cmd_prefix_len:]

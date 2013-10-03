@@ -30,9 +30,17 @@ ios_development_root = {
 	'projects_to_exclude': ['NotCompileApp'],
 
 	# patch_info_plist
-	'info_plist_rel_path': 'BuildSample/Info.plist',
-	'info_plist_CFBundleVersion': '@version',		# set CFBundleVersion
-	'info_plist_CFBundleDisplayName': '@app_name',	# set CFBundleDisplayName
+	'plist-CoolApp_rel_path': 'BuildSample/Info.plist',
+	'plist-CoolApp_CFBundleVersion': '@version',		# set CFBundleVersion
+	'plist-CoolApp_CFBundleDisplayName': '@app_name',	# set CFBundleDisplayName
+
+	# test flight command section
+	'tf_CoolApp_output': 'ipa',
+
+	# patch_csproj
+	'csproj-CoolApp-rel_path': 'BuildSample/CoolApp.csproj',
+	'csproj-CoolApp-CodesignProvision': '@codesign_provision',
+	'csproj-CoolApp-CodesignKey': '@codesign_key',
 
 	'build_steps':[
 		# before build
