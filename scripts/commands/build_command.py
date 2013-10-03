@@ -6,10 +6,10 @@ class BuildCommand:
 		self._cmd_prefix_len = len(self._command_prefix)
 
 		self._prefix_name= 'prefix'
-		self._group_name= 'group'
+		self._app_name= 'app'
 		self._key_name = 'key'
 
-	def __init__(self, config, cmd_prefix, separator='-'):
+	def __init__(self, config, cmd_prefix, separator=' '):
 		self._separator = separator
 		self._config = config
 		self.SetCommandPrefix(cmd_prefix)
@@ -35,7 +35,7 @@ class BuildCommand:
 
 		result = {
 			self._prefix_name: identifiers[0],
-			self._group_name: identifiers[1],
+			self._app_name: identifiers[1],
 			self._key_name: identifiers[2]
 		}
 

@@ -16,7 +16,7 @@ class PatchCsproj(bcmd.BuildCommand):
 		for key_token in key_tokens:
 			key_info = self.ParseKeyToken(key_token)
 
-			project_name = key_info[self._group_name]
+			project_name = key_info[self._app_name]
 			key = key_info[self._key_name]
 			value = self.ParseValueFromToken(self._config[key_token])
 

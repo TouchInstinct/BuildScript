@@ -4,9 +4,10 @@ import utils.infoplist.patcher as plist
 
 
 class PatchInfoPlist(bcmd.BuildCommand):
-	def __init__(self, config):
-		bcmd.BuildCommand.__init__(self, config, 'plist-')
+	def __init__(self, config, path_provider):
+		bcmd.BuildCommand.__init__(self, config, 'plist')
 		self._info_plist_rel_path = None
+		self._path_provider = path_provider
 		self._plist_dict = {}
 
 		self.ParseConfig()
@@ -44,10 +45,7 @@ class PatchInfoPlist(bcmd.BuildCommand):
 		return config_key[PatchInfoPlist._cmd_prefix_len:]
 
 	def Execute(self):
-		sln_path = self._config['sln_path']
-		pConverter = pc.PathConverter(sln_path)
-
-		info_plist_abs_path = pConverter.Convert(self._info_plist_rel_path)
+		info_plist_abs_path = self._path_provider.ResolveAbsPath(self._info_plist_rel_path)
 		patcher = plist.Patcher(info_plist_abs_path)
 
 		patcher.AddOrReplace(self._plist_dict)
