@@ -1,8 +1,8 @@
 from subprocess import call
 import shutil
 import os
-import re
-import sln_toolkit as sln
+from utils.sln import sln_toolkit as sln
+
 
 def MapToBackupName(origin_path):
 

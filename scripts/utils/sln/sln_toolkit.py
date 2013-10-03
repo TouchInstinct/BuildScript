@@ -1,14 +1,7 @@
-import re
+import utils.sln.sln_toolkit_base as sln
 
-class SolutionToolkitBase:
-	def RemoveProjectSectionsFrom(self, sln_file_content, project_names):
-		for pn in project_names:
-			reg_pattern = r'\n*Project.*?"{0}".*?\n*EndProject'.format(pn)
-			sln_file_content = re.sub(reg_pattern, "", sln_file_content)
 
-		return sln_file_content
-
-class SolutionToolkit(SolutionToolkitBase):
+class SolutionToolkit(sln.SolutionToolkitBase):
 	def __init__(self, pathToSlnFile):
 		self._sln_path = pathToSlnFile
 		self._sln_file = None

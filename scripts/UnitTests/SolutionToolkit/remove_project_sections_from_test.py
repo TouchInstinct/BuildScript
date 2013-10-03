@@ -1,7 +1,6 @@
 import unittest
-import sys
-sys.path.append('../../')
-import sln_toolkit as sln
+from utils.sln import sln_toolkit_base as sln
+
 
 class TestRemoveProjectSections(unittest.TestCase):
 
@@ -43,6 +42,3 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 """
-
-if __name__ == '__main__':
-	unittest.main()
