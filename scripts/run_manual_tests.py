@@ -1,0 +1,1 @@
+import ManualTests.csproj_test

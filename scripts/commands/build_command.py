@@ -23,9 +23,10 @@ class BuildCommand:
 		all_keys = []
 
 		for k in self._config:
-			k.startswith(self._command_prefix)
-			all_keys.append(k)
+			if k.startswith(self._command_prefix):
+				all_keys.append(k)
 
+		print all_keys
 		return all_keys
 
 

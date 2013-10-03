@@ -8,17 +8,23 @@ class Patcher:
 	def FetchPropertyGroup(self, sln_config_name):
 		tree = eT.parse(self._csproj_abs_path)
 		project_element = tree.getroot()
-		property_group = self.GetPropertyGroupBy(project_element, sln_config_name)
 
+		property_group = self.GetPropertyGroupBy(project_element, sln_config_name)
 		return  property_group
 
 
 	def GetPropertyGroupBy(self, project_element, config_name):
-		property_groups = project_element.findall('PropertyGroup')
+		namespaces = {'xmlns': 'http://schemas.microsoft.com/developer/msbuild/2003'}
+		property_groups = project_element.findall('xmlns:PropertyGroup', namespaces)
+
 		prop_group = None
 
 		for pg_elem in property_groups:
 			atr_value = pg_elem.get('Condition')
+
+			if atr_value is None:
+				continue
+
 			is_fit = self.IsValueFitFor(config_name, atr_value)
 
 			if is_fit:

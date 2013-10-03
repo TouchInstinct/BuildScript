@@ -8,6 +8,8 @@ class PatchCsproj(bcmd.BuildCommand):
 		self._path_provider = path_provider
 		self._parser = None
 
+		self.ParseConfig()
+
 	def ParseConfig(self):
 		csproj_keys = self.FetchAllKeysFromConfig()
 		self.FillPatchSettings(csproj_keys)
@@ -21,13 +23,13 @@ class PatchCsproj(bcmd.BuildCommand):
 
 
 	def Execute(self):
-		projects_list = self._parser.projects
+		projects_list = self._parser.getProjects()
 
 		for project in projects_list:
 			self.PatchProject(project)
 
 	def PatchProject(self, project):
-			csproj_abs_path = self._path_provider.fetchAbsPath(project.rel_path)
+			csproj_abs_path = self._path_provider.resolveAbsPath(project.rel_path)
 
 			patcher = csproj.Patcher(csproj_abs_path)
 			patcher.AddOrReplace(project.settings, self._config['sln_config'])

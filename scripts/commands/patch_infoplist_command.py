@@ -45,7 +45,7 @@ class PatchInfoPlist(bcmd.BuildCommand):
 		return config_key[PatchInfoPlist._cmd_prefix_len:]
 
 	def Execute(self):
-		info_plist_abs_path = self._path_provider.ResolveAbsPath(self._info_plist_rel_path)
+		info_plist_abs_path = self._path_provider.resolveAbsPath(self._info_plist_rel_path)
 		patcher = plist.Patcher(info_plist_abs_path)
 
 		patcher.AddOrReplace(self._plist_dict)
