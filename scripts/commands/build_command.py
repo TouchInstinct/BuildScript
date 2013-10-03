@@ -29,19 +29,6 @@ class BuildCommand:
 		return all_keys
 
 
-	def ParseKeyToken(self, key_token):
-		# csproj-AppName-Key
-		identifiers = key_token.split(self._separator)
-
-		result = {
-			self._prefix_name: identifiers[0],
-			self._app_name: identifiers[1],
-			self._key_name: identifiers[2]
-		}
-
-		return result
-
-
 	def ParseValueFromToken(self, value_token):
 		value = value_token
 
