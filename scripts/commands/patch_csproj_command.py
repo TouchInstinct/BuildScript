@@ -1,6 +1,6 @@
 import commands.build_command as bcmd
 import utils.csproj.patcher as csproj
-import parser.CsprojParser.CsprojParser as parser
+import parser.CsprojParser.CsprojLineParser as parser
 
 class PatchCsproj(bcmd.BuildCommand):
 	def __init__(self, config, path_provider):
@@ -16,7 +16,7 @@ class PatchCsproj(bcmd.BuildCommand):
 
 
 	def FillPatchSettings(self, key_tokens):
-		self._parser = parser.CsprojParser(self._config)
+		self._parser = parser.CsprojLineParser(self._config)
 
 		for key_token in key_tokens:
 			self._parser.parse(key_token, self._config[key_token])

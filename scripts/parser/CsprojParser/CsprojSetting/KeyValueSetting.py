@@ -3,8 +3,8 @@ from parser.CsprojParser.CsprojSetting.CsprojSettingBase import CsprojSettingBas
 
 class KeyValueSetting(CsprojSettingBase):
 	def __init__(self, key, value):
-		assert key is not None and key != ''
-		assert value is not None and value != ''
+		self._notNoneOrEmpty(key)
+		self._notNoneOrEmpty(value)
 
 		self.key = key
 		self.value = value
