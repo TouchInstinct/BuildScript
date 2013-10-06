@@ -1,3 +1,4 @@
+from commands.ValueProvider import ValueProvider
 import path_provider
 import commands.patch_csproj_command as csproj
 
@@ -12,7 +13,8 @@ config = {
 }
 
 base_dir = '/Users/rzaitov/Documents/Apps/BuildScript'
-provider = path_provider.PathProvider(base_dir)
+path_provider = path_provider.PathProvider(base_dir)
+value_provider = ValueProvider(config)
 
-patcher = csproj.PatchCsproj(config, provider)
+patcher = csproj.PatchCsproj(config, path_provider, value_provider)
 patcher.execute()
