@@ -15,4 +15,4 @@ base_dir = '/Users/rzaitov/Documents/Apps/BuildScript',
 provider = path_provider.PathProvider(base_dir)
 
 patcher = plist.PatchInfoPlist(config, provider)
-patcher.Execute()
+patcher.execute()

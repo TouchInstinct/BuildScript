@@ -15,7 +15,7 @@ class BuildCommand:
 		self.SetCommandPrefix(cmd_prefix)
 
 
-	def ParseConfig(self):
+	def _parseConfig(self):
 		return None
 
 
@@ -40,5 +40,5 @@ class BuildCommand:
 		return value
 
 
-	def Execute(self):
+	def execute(self):
 		return None

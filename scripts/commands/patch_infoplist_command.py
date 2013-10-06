@@ -10,9 +10,9 @@ class PatchInfoPlist(bcmd.BuildCommand):
 		self._path_provider = path_provider
 		self._plist_dict = {}
 
-		self.ParseConfig()
+		self._parseConfig()
 
-	def ParseConfig(self):
+	def _parseConfig(self):
 		self.FetchInfoPlistPath()
 		self.FetchAllParams()
 
@@ -44,7 +44,7 @@ class PatchInfoPlist(bcmd.BuildCommand):
 	def ParsePlistKeyFrom(self, config_key):
 		return config_key[PatchInfoPlist._cmd_prefix_len:]
 
-	def Execute(self):
+	def execute(self):
 		info_plist_abs_path = self._path_provider.resolveAbsPath(self._info_plist_rel_path)
 		patcher = plist.Patcher(info_plist_abs_path)
 

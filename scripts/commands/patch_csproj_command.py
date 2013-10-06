@@ -1,34 +1,44 @@
 import commands.build_command as bcmd
+from parser.CsprojParser.CsprojParser import CsprojParser
 import utils.csproj.patcher as csproj
-import parser.CsprojParser.CsprojLineParser as parser
 
 class PatchCsproj(bcmd.BuildCommand):
-	def __init__(self, config, path_provider):
+	def __init__(self, config, path_provider, value_provider):
+		assert path_provider is not None
+		assert value_provider is not None
+
 		bcmd.BuildCommand.__init__(self, config, 'csproj')
 		self._path_provider = path_provider
+		self._value_provider = value_provider
 		self._parser = None
 
-		self.ParseConfig()
+		self._parseConfig()
 
-	def ParseConfig(self):
+	def _parseConfig(self):
 		csproj_keys = self.FetchAllKeysFromConfig()
-		self.FillPatchSettings(csproj_keys)
+		line_collection = self.__fetchLineCollection(csproj_keys)
 
+		self.__fillPatchSettings(line_collection)
 
-	def FillPatchSettings(self, key_tokens):
-		self._parser = parser.CsprojLineParser(self._config)
+	def __fetchLineCollection(self, keys):
+		assert keys is not None
 
-		for key_token in key_tokens:
-			self._parser.parse(key_token, self._config[key_token])
+		line_collection = ["{0} '{1}'".format(k, self._config[k]) for k in keys]
+		return line_collection
 
+	def __fillPatchSettings(self, line_collection):
+		assert line_collection is not None
 
-	def Execute(self):
-		projects_list = self._parser.getProjects()
+		self._parser = CsprojParser(line_collection, self._value_provider)
+		self._parser.parse()
 
-		for project in projects_list:
-			self.PatchProject(project)
+	def execute(self):
+		projects = self._parser.projects_dict.values()
 
-	def PatchProject(self, project):
+		for project in projects:
+			self.__patchProject(project)
+
+	def __patchProject(self, project):
 			csproj_abs_path = self._path_provider.resolveAbsPath(project.rel_path)
 
 			patcher = csproj.Patcher(csproj_abs_path)

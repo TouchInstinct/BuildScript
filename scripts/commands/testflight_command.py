@@ -6,5 +6,5 @@ class PublishToTestFlightCommand(bcmd.BuildCommand):
 	def __init__(self, api_token, team_token, notes):
 		self._publisher = tf.TestFlightPublisherBase(api_token, team_token, notes)
 
-	def Execute(self):
+	def execute(self):
 		self._publisher.Publish()
