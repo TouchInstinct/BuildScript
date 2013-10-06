@@ -1,6 +1,6 @@
 import commands.build_command as bcmd
 import utils.csproj.patcher as csproj
-import parser.CsprojParser as parser
+import parser.CsprojParser.CsprojParser as parser
 
 class PatchCsproj(bcmd.BuildCommand):
 	def __init__(self, config, path_provider):

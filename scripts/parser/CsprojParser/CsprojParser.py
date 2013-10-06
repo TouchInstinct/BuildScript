@@ -1,3 +1,4 @@
+from parser.CsprojParser.Csproj import Csproj
 from parser.StringValueParser import *
 from parser.AttributeNameParser import *
 from parser.token import Token
@@ -123,12 +124,3 @@ class CsprojParser:
 	def getCurrentStatement(self):
 		token = self._statement_buffer[self._token_index]
 		return token
-
-
-class Csproj:
-	def __init__(self, appName):
-		self.appName = appName
-		self.settings = {}
-
-	def __str__(self):
-		return 'app Name: {0} settings: {1}'.format(self.appName, self.settings)

@@ -1,5 +1,5 @@
 import unittest
-from parser.CsprojParser import CsprojParser
+from parser.CsprojParser.CsprojParser import CsprojParser
 from parser.token import Token
 
 
