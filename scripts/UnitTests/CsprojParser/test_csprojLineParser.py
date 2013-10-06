@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 import unittest
+from UnitTests.CsprojParser.ValueProvider import ValueProvider
 from parser.CsprojParser.CsprojLineParser import CsprojLineParser
 
 
 class TestCsprojParser(unittest.TestCase):
 
 	def setUp(self):
-		self.parser = CsprojLineParser()
+		value_provider = ValueProvider()
+		self.parser = CsprojLineParser(value_provider)
 
 	def test_parseAppStatement(self):
 		statement = "app:SomeAppName"

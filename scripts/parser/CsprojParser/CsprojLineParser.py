@@ -3,6 +3,11 @@ from parser.CsprojParser.CsprojSetting.KeyValueSetting import KeyValueSetting
 import re
 
 class CsprojLineParser:
+	def __init__(self, value_provider):
+		assert value_provider is not None
+
+		self._value_provider = value_provider
+
 	def parse(self, line):
 		ws = ' '
 		csproj_regexp = "^(?P<cmd_name>csproj)"
@@ -56,7 +61,8 @@ class CsprojLineParser:
 		self.__guardMatch(match, statement)
 
 		key = match.group('key')
-		value = match.group('value')
+		value_link = match.group('value')
+		value = self._value_provider.getValueFor(value_link)
 		setting = KeyValueSetting(key, value)
 
 		return setting
@@ -69,7 +75,8 @@ class CsprojLineParser:
 		self.__guardMatch(match, statement)
 
 		attribute_name = match.group('attribute_name')
-		attribute_value = match.group('attribute_value')
+		value_link = match.group('attribute_value')
+		attribute_value = self._value_provider.getValueFor(value_link)
 
 		setting = AttributeSetting(attribute_name, attribute_value)
 		return setting

@@ -1,4 +1,5 @@
 import unittest
+from UnitTests.CsprojParser.ValueProvider import ValueProvider
 from parser.CsprojParser.CsprojParser import CsprojParser
 
 
@@ -15,9 +16,10 @@ class TestCase(unittest.TestCase):
 			"csproj app:second attr1 'attr_val1'",
 			"csproj app:second attr2 'attr_val2'"]
 		self.__parser = None
+		self.__value_provider = ValueProvider()
 
 	def __do_parse(self):
-		self.__parser = CsprojParser(self.__lineCollection)
+		self.__parser = CsprojParser(self.__lineCollection, self.__value_provider)
 		self.__parser.parse()
 
 	def test_projectCount(self):
