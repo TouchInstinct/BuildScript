@@ -1,10 +1,12 @@
 from parser.StringValueParser import *
 from parser.AttributeNameParser import *
+from parser.token import Token
+
 
 class CsprojParser:
 	def __init__(self, config):
 		self._config = config
-		self._token_buffer = None
+		self._statement_buffer = None
 		self._token_index = 0
 		self._current_project = None
 		self._projects = {}
@@ -12,61 +14,85 @@ class CsprojParser:
 	def getProjects(self):
 		return self._projects.values()
 
-	def initTokenBuffer(self, string_to_parse, value_token):
-		self._token_buffer = string_to_parse.split(' ')
-		self._token_buffer.append(value_token)
+	def initStatementBuffer(self, string_to_parse, value_statement):
+		self._statement_buffer = string_to_parse.split(' ')
+		self._statement_buffer.append(value_statement)
 		self._token_index = 0
 
-
 	def parse(self, string_to_parse, value_token):
-		self.initTokenBuffer(string_to_parse, value_token)
+		self.initStatementBuffer(string_to_parse, value_token)
 
-		while self._token_index < len(self._token_buffer):
-			self.ProcessToken()
+		while self._token_index < len(self._statement_buffer):
+			self.ProcessStatement()
 
 
-	def ProcessToken(self):
-		token = self.getCurrentToken()
-		print token
+	def ProcessStatement(self):
+		text = self.getCurrentStatement()
 
-		if self.isCsprojStatement(token):
-			self._token_index += 1
-		elif self.isAppToken(token):
-			self.processAppToken(token)
-			self._token_index += 1
-		elif self.isKeyToken(token):
-			key_name = self.processKeyToken(token)
-			self._token_index += 1
-			token = self.getCurrentToken()
-			value = self.processValueToken(token)
-			self._token_index += 1
-			self._current_project.settings[key_name] = value
-		elif self.isAttributeToken(token):
-			attribute_name = self.processAttributeNameToken(token)
-			self._token_index += 1
-			token = self.getCurrentToken()
-			attribute_value = self.processValueToken(token)
-			self._token_index += 1
-			setattr(self._current_project, attribute_name, attribute_value)
+		if self.isCsprojStatement(text):
+			self.procCspojStatement(text)
+
+		elif self.isAppStatement(text):
+			self.procAppStatement(text)
+
+		elif self.isKeyStatement(text):
+			self.procKeyStatement(text)
+
+		elif self.isAttributeToken(text):
+			self.procAttributeToken(text)
+
 		else:
-			raise Exception('unrecognized token', token)
+			raise Exception('unrecognized token', text)
 
-	def isCsprojStatement(self, token):
-		return token == 'csproj'
+	def isCsprojStatement(self, text):
+		return text == 'csproj'
 
-	def isAppToken(self, token):
+	def procCspojStatement(self, text):
+		self._token_index += 1
+
+	def isAppStatement(self, token):
 		return token.startswith('app:')
 
-	def isKeyToken(self, token):
-		return token.startswith('key:')
+	def procAppStatement(self, text):
+		self.processAppToken(text)
+		self._token_index += 1
+
+	def isKeyStatement(self, text):
+		return text.startswith('key:')
+
+	def procKeyStatement(self, text):
+		key_token = self.parseKeyToken(text)
+
+		self._token_index += 1
+		text = self.getCurrentStatement()
+		value_token = self.parseValueToken(text)
+		value = self.fetchValueFromValueToken(value_token)
+
+		self._current_project.settings[key_token.content] = value
+		self._token_index += 1
 
 	def isAttributeToken(self, token):
 		return ':' not in token
 
-	def processAppToken(self, appToken):
-		appName = appToken[len('app:'):]
-		print appName
-		self.setCurrentProject(appName)
+	def procAttributeToken(self, text):
+		attribute_token = self.parseValueToken(text)
+
+		self._token_index += 1
+		text = self.getCurrentStatement()
+		value_token = self.parseValueToken(text)
+		setattr(self._current_project, attribute_token.content, value_token.content)
+
+		self._token_index += 1
+
+	def parseAppToken(self, text):
+		appName = text[len('app:'):]
+		token = Token(appName, 'appToken')
+
+		return token
+
+	def processAppToken(self, text):
+		appToken = self.parseAppToken(text)
+		self.setCurrentProject(appToken.content)
 
 	def setCurrentProject(self, appName):
 		exists = appName in self._projects
@@ -74,26 +100,28 @@ class CsprojParser:
 		self._current_project = self._projects[appName] if exists else Csproj(appName)
 		self._projects[appName] = self._current_project
 
-	def processKeyToken(self, token):
-		key_name = token[len('key:'):]
-		print key_name
-		return key_name
+	def parseKeyToken(self, text):
+		key_name = text[len('key:'):]
+		token = Token(key_name, 'keyToken')
 
-	def processAttributeNameToken(self, token):
-		attribute_name = token
-		return attribute_name
+		return token
 
-	def processValueToken(self, token):
-		value = token
+	def parseValueToken(self, text):
+		token = Token(text, 'valueToken')
 
-		if token.startswith('@'):
-			key = token[1:]
+		return token
+
+	def fetchValueFromValueToken(self, token):
+		value = token.content
+
+		if value.startswith('@'):
+			key = value[1:]
 			value = self._config[key]
 
 		return value
 
-	def getCurrentToken(self):
-		token = self._token_buffer[self._token_index]
+	def getCurrentStatement(self):
+		token = self._statement_buffer[self._token_index]
 		return token
 
 
