@@ -1,38 +1,39 @@
-from parser.CsprojParser.CsprojSetting.AttribureSetting import AttributeSetting
-from parser.CsprojParser.CsprojSetting.KeyValueSetting import KeyValueSetting
+from parser.ProjectParser.ProjectSetting.AttribureSetting import AttributeSetting
+from parser.ProjectParser.ProjectSetting.KeyValueSetting import KeyValueSetting
 import re
 
-class CsprojLineParser:
-	def __init__(self, value_provider):
+class ProjectLineParser:
+	def __init__(self, value_provider, command_token):
 		assert value_provider is not None
 
 		self._value_provider = value_provider
+		self._command_token = command_token
 
 	def parse(self, line):
 		ws = ' '
-		csproj_regexp = "^(?P<cmd_name>csproj)"
+		cmd_name_regexp = "^(?P<cmd_name>{0})".format(self._command_token)
 		app_regexp = r"(?P<app>app:\S+)"
 		setting_regexp = r"(?P<setting>\S+ '[^']+')$"
 
-		source = csproj_regexp + ws + app_regexp + ws + setting_regexp
+		source = cmd_name_regexp + ws + app_regexp + ws + setting_regexp
 		regexp = re.compile(source, re.UNICODE)
 
 		match = regexp.search(line)
 		self.__guardMatch(match, line)
 
 		cmd_name = match.group('cmd_name')
-		self.__parseCsprojStatement(cmd_name)
+		self.__parseProjectStatement(cmd_name)
 
 		app_statement = match.group('app')
-		appName = self.__parseAppStatement(app_statement)
+		project_name = self.__parseAppStatement(app_statement)
 
 		setting_statement = match.group('setting')
 		setting = self.__parseSettingStatement(setting_statement)
 
-		setting.appName = appName
+		setting.projectName = project_name
 		return setting
 
-	def __parseCsprojStatement(self, statement):
+	def __parseProjectStatement(self, statement):
 		pass
 
 	def __parseAppStatement(self, statement):

@@ -1,5 +1,5 @@
 import commands.build_command as bcmd
-from parser.CsprojParser.CsprojParser import CsprojParser
+from parser.ProjectParser.ProjectParser import ProjectParser
 import utils.csproj.patcher as csproj
 
 class PatchCsproj(bcmd.BuildCommand):
@@ -29,7 +29,7 @@ class PatchCsproj(bcmd.BuildCommand):
 	def __fillPatchSettings(self, line_collection):
 		assert line_collection is not None
 
-		self._parser = CsprojParser(line_collection, self._value_provider)
+		self._parser = ProjectParser(line_collection, self._value_provider)
 		self._parser.parse()
 
 	def execute(self):

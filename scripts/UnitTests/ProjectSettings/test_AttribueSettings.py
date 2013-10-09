@@ -1,11 +1,11 @@
 import unittest
-from parser.CsprojParser.Csproj import Csproj
-from parser.CsprojParser.CsprojSetting.AttribureSetting import AttributeSetting
+from parser.ProjectParser.Project import Project
+from parser.ProjectParser.ProjectSetting.AttribureSetting import AttributeSetting
 
 
 class TestCase(unittest.TestCase):
 	def setUp(self):
-		self.csproj = Csproj('appName')
+		self.csproj = Project('appName')
 
 	def test_apply(self):
 		attr_value = 'parent_dir/child_dir'

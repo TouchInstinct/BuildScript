@@ -1,4 +1,4 @@
-from parser.CsprojParser.CsprojSetting.CsprojSettingBase import CsprojSettingBase
+from parser.ProjectParser.ProjectSetting.CsprojSettingBase import CsprojSettingBase
 
 
 class KeyValueSetting(CsprojSettingBase):

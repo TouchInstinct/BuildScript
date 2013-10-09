@@ -1,6 +1,6 @@
 import unittest
-from UnitTests.CsprojParser.ValueProvider import ValueProvider
-from parser.CsprojParser.CsprojParser import CsprojParser
+from UnitTests.ProjectParser.ValueProvider import ValueProvider
+from parser.ProjectParser.ProjectParser import ProjectParser
 
 
 class TestCase(unittest.TestCase):
@@ -19,7 +19,7 @@ class TestCase(unittest.TestCase):
 		self.__value_provider = ValueProvider()
 
 	def __do_parse(self):
-		self.__parser = CsprojParser(self.__lineCollection, self.__value_provider)
+		self.__parser = ProjectParser(self.__lineCollection, self.__value_provider)
 		self.__parser.parse()
 
 	def test_projectCount(self):
@@ -35,8 +35,8 @@ class TestCase(unittest.TestCase):
 		first = self.__parser.projects_dict['first']
 		second = self.__parser.projects_dict['second']
 
-		self.assertEqual(first.appName, 'first')
-		self.assertEqual(second.appName, 'second')
+		self.assertEqual(first.projectName, 'first')
+		self.assertEqual(second.projectName, 'second')
 
 		setting_dict = {
 			'key1': 'value1',

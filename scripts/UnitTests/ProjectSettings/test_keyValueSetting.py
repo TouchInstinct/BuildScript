@@ -1,11 +1,11 @@
 import unittest
-from parser.CsprojParser.Csproj import Csproj
-from parser.CsprojParser.CsprojSetting.KeyValueSetting import KeyValueSetting
+from parser.ProjectParser.Project import Project
+from parser.ProjectParser.ProjectSetting.KeyValueSetting import KeyValueSetting
 
 
 class TestCase(unittest.TestCase):
 	def setUp(self):
-		self.csproj = Csproj('appName')
+		self.csproj = Project('appName')
 
 	def test_apply(self):
 

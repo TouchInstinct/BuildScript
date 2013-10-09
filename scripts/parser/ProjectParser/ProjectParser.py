@@ -1,8 +1,8 @@
-from parser.CsprojParser.Csproj import Csproj
-from parser.CsprojParser.CsprojLineParser import CsprojLineParser
+from parser.ProjectParser.Project import Project
+from parser.ProjectParser.ProjectLineParser import ProjectLineParser
 
 
-class CsprojParser:
+class ProjectParser:
 	def __init__(self, line_collection, value_provider):
 		assert line_collection is not None
 		assert value_provider is not None
@@ -18,19 +18,19 @@ class CsprojParser:
 			settings.append(self.__parse_line(line))
 
 		for s in settings:
-			csproj = self.__fetchProject(s.appName)
-			s.apply(csproj)
+			project = self.__fetchProject(s.projectName)
+			s.apply(project)
 
 	def __fetchProject(self, project_name):
 		assert project_name is not None
 
-		csproj = self.projects_dict.get(project_name, Csproj(project_name))
-		self.projects_dict[project_name] = csproj
+		project = self.projects_dict.get(project_name, Project(project_name))
+		self.projects_dict[project_name] = project
 
-		return csproj
+		return project
 
 	def __parse_line(self, line):
-		line_parser = CsprojLineParser(self._value_provider)
+		line_parser = ProjectLineParser(self._value_provider, 'csproj')
 		setting = line_parser.parse(line)
 
 		return setting
