@@ -3,12 +3,14 @@ from parser.ProjectParser.ProjectLineParser import ProjectLineParser
 
 
 class ProjectParser:
-	def __init__(self, line_collection, value_provider):
+	def __init__(self, line_collection, value_provider, command_token):
 		assert line_collection is not None
 		assert value_provider is not None
+		assert command_token is not None
 
 		self._line_collection = line_collection
 		self._value_provider = value_provider
+		self._command_token = command_token
 		self.projects_dict = {}
 
 	def parse(self):
@@ -30,7 +32,7 @@ class ProjectParser:
 		return project
 
 	def __parse_line(self, line):
-		line_parser = ProjectLineParser(self._value_provider, 'csproj')
+		line_parser = ProjectLineParser(self._value_provider, self._command_token)
 		setting = line_parser.parse(line)
 
 		return setting

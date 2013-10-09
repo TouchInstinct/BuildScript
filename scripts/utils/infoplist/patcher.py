@@ -12,7 +12,7 @@ class Patcher():
 		for key_name in key_value_dict:
 			self.AppendOrReplaceValueByKey(key_name, key_value_dict[key_name], plist_dict)
 
-		tree.write(self._abs_plist_path)
+		tree.write(self._abs_plist_path, xml_declaration=True, encoding='UTF-8', method="xml")
 
 	def AppendOrReplaceValueByKey(self, key_name, value, dict_element):
 		key_index = self.FindIndexByKey(key_name, dict_element)
