@@ -33,6 +33,6 @@ class ProjectParser:
 
 	def __parse_line(self, line):
 		line_parser = ProjectLineParser(self._value_provider, self._command_token)
-		setting = line_parser.parse(line)
+		setting = line_parser.parseLine(line)
 
 		return setting
