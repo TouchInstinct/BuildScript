@@ -2,7 +2,7 @@ from CommandBuilders.CopyCommandBuilder import CopyCommandBuilder
 from ManualTests.path_provider import PathProvider
 
 line1 = "copy 'BuildSample/BuildSample.sln' to 'BuildSample/BuildSample.txt'"
-line2 = "copy 'BuildSample/BuildSample.sln' to '~/tmp/BuildSample.sln'"
+line2 = "copy 'BuildSample/BuildSample.sln' to '~/Downloads/BuildSample.sln'"
 
 baseDir = '../'
 path_provider = PathProvider(baseDir)
