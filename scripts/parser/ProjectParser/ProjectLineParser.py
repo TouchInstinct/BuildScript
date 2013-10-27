@@ -9,7 +9,7 @@ class ProjectLineParser:
 		self._value_provider = value_provider
 		self._command_token = command_token
 
-	def parse(self, line):
+	def parseLine(self, line):
 		ws = ' '
 		cmd_name_regexp = "^(?P<cmd_name>{0})".format(self._command_token)
 		app_regexp = r"(?P<app>app:\S+)"

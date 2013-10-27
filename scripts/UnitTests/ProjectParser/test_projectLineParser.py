@@ -32,7 +32,7 @@ class TestCsprojParser(unittest.TestCase):
 
 	def test_parse_keyedCsprojLine(self):
 		statement = r"csproj app:coolApp key:CodesignKey 'iPhone Developer: Рустам Заитов (CTL85FZX6K)'"
-		setting = self.parser.parse(statement)
+		setting = self.parser.parseLine(statement)
 
 		self.assertEqual(setting.projectName, 'coolApp')
 		self.assertEqual(setting.key, 'CodesignKey')
@@ -40,7 +40,7 @@ class TestCsprojParser(unittest.TestCase):
 
 	def test_parse_attributedCsprojLine(self):
 		statement = r"csproj app:coolApp rel_path '../parent_dir/some_file.extension'"
-		setting = self.parser.parse(statement)
+		setting = self.parser.parseLine(statement)
 
 		self.assertEqual(setting.projectName, 'coolApp')
 		self.assertEqual(setting.attribute_name, 'rel_path')
