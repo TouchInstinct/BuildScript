@@ -24,14 +24,6 @@ class CopyLineParser(LineParser):
 		self.__copyArguments.setArguments(src, dst)
 		return self.__copyArguments
 
-	def keywordToken(self, keyword):
-		assert keyword is not None
-		return r'\s+' + keyword + r'\s+'
-
-	def startsWithKeywordToken(self, keyword):
-		assert keyword is not None
-		return r'^' + keyword + r'\s+'
-
 	def isValidLine(self, line):
 		assert line is not None
 
