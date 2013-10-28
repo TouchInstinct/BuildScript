@@ -10,6 +10,6 @@ class DeleteBackupCommand:
 	def execute(self):
 		baseDir = self.__pathProvider.resolveAbsPath('.')
 
-		dirs = [name for name in os.listdir(baseDir) if os.path.isdir(os.path.join(baseDir, name))]
+		dirs = [self.__pathProvider.resolveAbsPath(name) for name in os.listdir(baseDir) if os.path.isdir(os.path.join(baseDir, name)) & name.startswith('backup.')]
 		for dir in dirs:
 			shutil.rmtree(dir)
