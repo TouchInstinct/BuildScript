@@ -14,8 +14,9 @@ class RestoreBackupCommand:
 		dirPairs = [(name, "backup.{0}".format(name)) for name in os.listdir(baseDir) if os.path.isdir(self.__pathProvider.resolveAbsPath(name)) and not name.startswith('backup.')]
 
 		for pair in dirPairs:
-			if not os.path.exists(pair[1]):
+			absPair = (self.__pathProvider.resolveAbsPath(pair[0]), self.__pathProvider.resolveAbsPath(pair[1]))
+			if not os.path.exists(absPair[1]):
 				continue
 
-			shutil.rmtree(pair[0])				# delete src
-			shutil.copytree(pair[1], pair[0])	# restore from backup
+			shutil.rmtree(absPair[0])				# delete src
+			shutil.copytree(absPair[1], absPair[0])	# restore from backup
