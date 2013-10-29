@@ -1,38 +1,39 @@
-from parser.ProjectParser.Project import Project
-from parser.ProjectParser.ProjectLineParser import ProjectLineParser
+from parser.LineParser import LineParser
+from parser.ProjectParser.ProjectSetting.KeyValueSetting import KeyValueSetting
+import re
 
-
-class ProjectParser:
-	def __init__(self, line_collection, value_provider, command_token):
-		assert line_collection is not None
+class ProjectParser(LineParser):
+	def __init__(self, value_provider, command_token):
 		assert value_provider is not None
-		assert command_token is not None
 
-		self._line_collection = line_collection
 		self._value_provider = value_provider
 		self._command_token = command_token
-		self.projects_dict = {}
 
-	def parse(self):
+	def parseLine(self, line):
+		assert line is not None
 
-		settings = []
-		for line in self._line_collection:
-			settings.append(self.__parse_line(line))
+		projectNameRegexp = r"(?P<name>[a-Z0-9.]+)"
+		keyRegexp = r'(?P<key>[a-Z]+)'
+		valueRegexp = r"'(?P<value>[^']+)'"
 
-		for s in settings:
-			project = self.__fetchProject(s.projectName)
-			s.apply(project)
+		regexpSource = self.startsWithKeywordToken('for') + projectNameRegexp + self.keywordToken(r'project\s+set') + keyRegexp + self.keywordToken('to') + valueRegexp
+		regexp = re.compile(regexpSource, re.UNICODE)
 
-	def __fetchProject(self, project_name):
-		assert project_name is not None
+		match = regexp.match(line)
+		self._guardMatch(match, line)
 
-		project = self.projects_dict.get(project_name, Project(project_name))
-		self.projects_dict[project_name] = project
+		projectName = match.group('name')
+		key = match.group('key')
+		value = match.group('value')
 
-		return project
+		settings = KeyValueSetting(key, value)
+		settings.projectName = projectName
 
-	def __parse_line(self, line):
-		line_parser = ProjectLineParser(self._value_provider, self._command_token)
-		setting = line_parser.parseLine(line)
+		return settings
 
-		return setting
+	def isValidLine(self, line):
+		regexpSrc = r'for\s+.*project\s+set'
+		regexp = re.compile(regexpSrc, re.UNICODE)
+
+		match = regexp.match(line)
+		return match is not None
