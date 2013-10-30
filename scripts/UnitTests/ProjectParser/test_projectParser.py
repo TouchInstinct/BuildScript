@@ -1,32 +1,32 @@
 # -*- coding: utf-8 -*-
 import unittest
 from UnitTests.ProjectParser.ValueProvider import ValueProvider
-from parser.ProjectParser.ProjectParser import ProjectParser
+from parser.ProjectParser.InsideParser import InsideParser
 
 
 class TestCsprojParser(unittest.TestCase):
 
 	def setUp(self):
 		value_provider = ValueProvider()
-		self.parser = ProjectParser(value_provider, 'csproj')
+		self.parser = InsideParser(value_provider, 'csproj')
 
 
 	def test_isValid(self):
-		line = "for CoolApp csproj set KEY to 'VALUE'"
+		line = "inside 'CoolApp.csproj' set KEY to 'VALUE'"
 		isValid = self.parser.isValidLine(line)
 
 		self.assertEqual(True, isValid)
 
 	def test_isNotValid(self):
-		line = "for CoolApp InvalidCmdToken set KEY to 'VALUE'"
+		line = "inside 'CoolApp.txt' set KEY to 'VALUE'"
 		isValid = self.parser.isValidLine(line)
 
 		self.assertEqual(False, isValid)
 
 	def test_parse(self):
-		line = "for CoolApp.Touch csproj set OutputPath to 'Output'"
-		settings = self.parser.parseLine(line)
+		line = "inside 'Dir/../Some Folder/CoolApp.csproj' set OutputPath to 'Output'"
+		tuple = self.parser.parseLine(line)
 
-		self.assertEqual('CoolApp.Touch', settings.projectName)
-		self.assertEqual('OutputPath', settings.key)
-		self.assertEqual('Output', settings.value)
+		self.assertEqual('Dir/../Some Folder/CoolApp.csproj', tuple[0])
+		self.assertEqual('OutputPath', tuple[1])
+		self.assertEqual('Output', tuple[2])
