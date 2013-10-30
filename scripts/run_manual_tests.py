@@ -1,7 +1,10 @@
 import os
 scriptFilePath = os.path.abspath(__file__)
+
 scriptDir = os.path.dirname(scriptFilePath)
-os.chdir(scriptDir)
+baseDir = os.path.join(scriptDir, os.pardir)
+
+os.chdir(baseDir)
 
 #import ManualTests.csproj_test
 #import ManualTests.info_plist_test
@@ -11,5 +14,6 @@ os.chdir(scriptDir)
 #import ManualTests.restore_backup_test
 #import ManualTests.csproj_test
 #import ManualTests.run_sh_command
+#import ManualTests.make_dirs
 
-import ManualTests.make_dirs
+import ManualTests.remove_project

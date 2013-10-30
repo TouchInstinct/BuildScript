@@ -1,7 +1,7 @@
 from subprocess import call
 import shutil
 import os
-from utils.sln import sln_toolkit as sln
+from utils.sln import patcher as sln
 
 
 def MapToBackupName(origin_path):
@@ -55,8 +55,8 @@ def ResetDirectory(base_dir, relative_path_to_files):
 	return None
 
 def RemoveProjectFromSolution(abs_path_to_sln, project_names):
-	toolkit = sln.SolutionToolkit(abs_path_to_sln)
-	toolkit.RemoveProjects(project_names)
+	toolkit = sln.Patcher(abs_path_to_sln)
+	toolkit.removeProjects(project_names)
 
 def CleanSolution(mdtool, abs_path_to_sln, config):
 

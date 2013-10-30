@@ -1,5 +1,5 @@
 from commands.PatchCsprojCommand import PatchCsprojCommand
-from parser.InsideParser.InsideParser import InsideParser
+from parser.InsideParser.InsideSetParser import InsideSetParser
 
 
 class PatchCsprojCommandBuilder:
@@ -15,7 +15,7 @@ class PatchCsprojCommandBuilder:
 	def getCommandFor(self, line):
 		assert line is not None
 
-		parser = InsideParser(self.__valueProvider, 'csproj')
+		parser = InsideSetParser(self.__valueProvider, 'csproj')
 		result = parser.parseLine(line)
 
 		relPath = result[0]

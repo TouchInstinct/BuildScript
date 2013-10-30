@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 import unittest
 from UnitTests.ProjectParser.ValueProvider import ValueProvider
-from parser.InsideParser.InsideParser import InsideParser
+from parser.InsideParser.InsideSetParser import InsideSetParser
 
 
 class TestCsprojParser(unittest.TestCase):
 
 	def setUp(self):
 		value_provider = ValueProvider()
-		self.parser = InsideParser(value_provider, 'csproj')
+		self.parser = InsideSetParser(value_provider, 'csproj')
 
 
 	def test_isValid(self):
