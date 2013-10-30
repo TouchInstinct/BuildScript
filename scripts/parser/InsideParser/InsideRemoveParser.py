@@ -14,7 +14,7 @@ class InsideRemoveParser(LineParser):
 		filePathRegexp = r"'(?P<file>[./ a-zA-Z]+\.{0})'".format(self.__extension)
 		projectNameRegexp = r'(?P<project>[.a-zA-Z]+)'
 
-		regexpSource = self.startsWithKeywordToken('inside') + filePathRegexp + self.keywordToken('remove') + projectNameRegexp + self.keywordToken('project')
+		regexpSource = self.startsWithKeywordToken('inside') + filePathRegexp + self.keywordToken('remove') + projectNameRegexp + self.endsWithKeywordToken('project')
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)
