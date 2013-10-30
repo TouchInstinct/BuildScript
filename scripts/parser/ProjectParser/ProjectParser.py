@@ -12,11 +12,11 @@ class ProjectParser(LineParser):
 	def parseLine(self, line):
 		assert line is not None
 
-		projectNameRegexp = r"(?P<name>[a-Z0-9.]+)"
-		keyRegexp = r'(?P<key>[a-Z]+)'
+		projectNameRegexp = r"(?P<name>[.a-zA-Z]+)"
+		keyRegexp = r'(?P<key>[a-zA-Z]+)'
 		valueRegexp = r"'(?P<value>[^']+)'"
 
-		regexpSource = self.startsWithKeywordToken('for') + projectNameRegexp + self.keywordToken(r'project\s+set') + keyRegexp + self.keywordToken('to') + valueRegexp
+		regexpSource = self.startsWithKeywordToken('for') + projectNameRegexp + self.keywordToken(self._command_token + r'\s+set') + keyRegexp + self.keywordToken('to') + valueRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)
@@ -32,7 +32,7 @@ class ProjectParser(LineParser):
 		return settings
 
 	def isValidLine(self, line):
-		regexpSrc = r'for\s+.*project\s+set'
+		regexpSrc = r'for\s+.*'+ self._command_token +r'\s+set'
 		regexp = re.compile(regexpSrc, re.UNICODE)
 
 		match = regexp.match(line)
