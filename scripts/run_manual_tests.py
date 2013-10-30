@@ -9,7 +9,7 @@ os.chdir(scriptDir)
 #import ManualTests.create_backup_test
 #import ManualTests.delete_backup_test
 #import ManualTests.restore_backup_test
-
 #import ManualTests.csproj_test
+#import ManualTests.run_sh_command
 
-import ManualTests.run_sh_command
+import ManualTests.make_dirs
