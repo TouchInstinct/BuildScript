@@ -199,3 +199,5 @@ UpgradeLog*.XML
 *.log
 *.sql
 *.sqlite
+
+.idea/
