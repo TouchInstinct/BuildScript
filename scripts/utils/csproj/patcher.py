@@ -52,7 +52,7 @@ class Patcher:
 
 
 	def IsValueFitFor(self, config_name, condition_attr_value):
-		result = config_name in condition_attr_value
+		result = "'{0}'".format(config_name) in condition_attr_value
 		return result
 
 
