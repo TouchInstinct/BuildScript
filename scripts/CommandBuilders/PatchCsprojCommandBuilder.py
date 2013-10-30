@@ -22,7 +22,7 @@ class PatchCsprojCommandBuilder:
 		key = result[1]
 		value = self.__valueProvider.getValueFor(result[2])
 
-		csprojAbsPath = self.__valueProvider.resolveAbsPath(relPath)
+		csprojAbsPath = self.__pathProvider.resolveAbsPath(relPath)
 		slnConfig = self.__config['sln_config']
 
 		command = PatchCsprojCommand(csprojAbsPath, key, value, slnConfig)
