@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 from UnitTests.ProjectParser.ValueProvider import ValueProvider
-from parser.ProjectParser.InsideParser import InsideParser
+from parser.InsideParser.InsideParser import InsideParser
 
 
 class TestCsprojParser(unittest.TestCase):

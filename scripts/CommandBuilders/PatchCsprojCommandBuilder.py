@@ -1,5 +1,5 @@
 from commands.PatchCsprojCommand import PatchCsprojCommand
-from parser.ProjectParser.InsideParser import InsideParser
+from parser.InsideParser.InsideParser import InsideParser
 
 
 class PatchCsprojCommandBuilder:
