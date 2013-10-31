@@ -1,16 +1,48 @@
 class BuildConfigProvider:
-	def getBuildReadyConfigs(self, settingsDict, buildReadyList):
-		assert settingsDict is not None
-		assert buildReadyList is not None
+	def getConfigs(self, rootConfig):
+		leafs = []
+		self.traverseDict(None, rootConfig, leafs)
 
-		for key in settingsDict:
-			value = settingsDict[key]
+		configs = []
+		for l in leafs:
+			config = self.fetchConfigFromLeafWrapper(l)
+			configs.append(config)
+
+		return configs
+
+	def traverseDict(self, parent, dictForTraverse, leafs):
+		wrapper = {
+			'parent' : parent,
+			'dict' : dictForTraverse
+		}
+
+		isLeaf = True
+		for key in dictForTraverse:
+			value = dictForTraverse[key]
 
 			if type(value) is dict:
-				self.getBuildReadyConfigs(value, buildReadyList)
+				isLeaf = False
+				self.traverseDict(wrapper, value, leafs)
 
-			elif key == 'build_ready' and value == 'true':
-				buildReadyList.append(settingsDict)
-				break
+		if isLeaf:
+			leafs.append(wrapper)
 
+	def fetchConfigFromLeafWrapper(self, leafWrapper):
+		ancestors = self.getAncestorsFor(leafWrapper)
 
+		unionConf = {}
+		for a in ancestors:
+			unionConf.update(a['dict'])
+
+		return unionConf
+
+	def getAncestorsFor(self, leaf):
+		ancestors = [leaf]
+		parent = leaf['parent']
+
+		while parent is not None:
+			ancestors.append(parent)
+			parent = parent['parent']
+
+		ancestors.reverse()
+		return ancestors
