@@ -3,10 +3,10 @@ build_tool = '/Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool'
 version = '0.0.0'
 
 # ios platform settings
-ios.steps = 'IosSteps.txt'
+ios.steps = 'scripts/IosSteps.txt'
 
 # android platform settings
-android.steps = 'AndroidSteps.txt'
+# android.steps = 'AndroidSteps.txt'
 
 # config settings
 ios.appstore.build_ready = 'true'
