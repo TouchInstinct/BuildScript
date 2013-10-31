@@ -15,5 +15,6 @@ os.chdir(baseDir)
 #import ManualTests.csproj_test
 #import ManualTests.run_sh_command
 #import ManualTests.make_dirs
+#import ManualTests.remove_project
 
-import ManualTests.remove_project
+import ManualTests.infoplist_test
