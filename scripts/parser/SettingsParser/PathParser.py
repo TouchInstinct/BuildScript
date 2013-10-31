@@ -1,5 +1,5 @@
 class PathParser:
-	def parsePath(self, line):
+	def parse(self, line):
 		assert line is not None
 
 		pathSegments = line.split('.')

@@ -8,7 +8,7 @@ class TestPathParser(unittest.TestCase):
 
 	def test_parseValidInput(self):
 		propertyPath = '123.abc.some_name'
-		segments = self.parser.parsePath(propertyPath)
+		segments = self.parser.parse(propertyPath)
 
 		self.assertEqual(3, len(segments))
 		self.assertEqual('123', segments[0])
