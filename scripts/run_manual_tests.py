@@ -17,5 +17,6 @@ os.chdir(baseDir)
 #import ManualTests.make_dirs
 #import ManualTests.remove_project
 #import ManualTests.infoplist_test
+#import ManualTests.clean_test
 
-import ManualTests.clean_test
+import ManualTests.build_test

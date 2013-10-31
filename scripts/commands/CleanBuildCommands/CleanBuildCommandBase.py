@@ -14,5 +14,5 @@ class CleanBuildCommandBase:
 		self.__slnConfig = slnConfig
 
 	def execute(self):
-		cleanCmdText = self.__commandPattern.format(self.__pathToBuildUtil, self.__slnConfig, self.__slnPath)
-		returnCode = call(cleanCmdText, shell=True)
+		cmdText = self.__commandPattern.format(self.__pathToBuildUtil, self.__slnConfig, self.__slnPath)
+		returnCode = call(cmdText, shell=True)
