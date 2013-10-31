@@ -9,5 +9,8 @@ ios.steps = 'IosSteps.txt'
 android.steps = 'AndroidSteps.txt'
 
 # config settings
+ios.appstore.build_ready = 'true'
 ios.appstore.app_name = 'CoolApp'
+
+ios.staging.build_ready = 'true'
 ios.staging.app_name = 'CoolApp staging'
