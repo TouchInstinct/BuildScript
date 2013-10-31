@@ -7,7 +7,7 @@ class CopyCommand:
 		assert copyArguments is not None
 
 		self.__pathProvider = pathProvider
-		self.__copyArguments =  copyArguments
+		self.__copyArguments = copyArguments
 
 	def execute(self):
 		source = self.__expandPath(self.__copyArguments.source)
