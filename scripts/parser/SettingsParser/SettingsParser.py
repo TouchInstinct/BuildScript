@@ -10,12 +10,22 @@ class SettingsParser:
 
 		lines = content.splitlines()
 		for line in lines:
-			self.processLine(line)
+			stripped = line.strip(' \t\n\r')
+			print (line, stripped)
+
+			if len(stripped) == 0:
+				continue
+			if stripped.startswith("#"):
+				continue
+
+			self.processLine(stripped)
 
 	def processLine(self, line):
 
 		parser = SettingsLineParser()
-		result = parser.parseLine(line)
+		setting = parser.parseLine(line)
+
+		self.mergeSetting(setting)
 
 	def mergeSetting(self, setting):
 		value = setting['value']
