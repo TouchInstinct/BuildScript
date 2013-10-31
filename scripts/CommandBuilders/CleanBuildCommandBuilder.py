@@ -37,7 +37,7 @@ class CleanBuildCommandBuilder:
 		if self.__commandToken == 'clean':
 			command = CleanCommand(self.__pathToBuildUtil, slnPath, slnConfig)
 		elif self.__commandToken == 'build':
-			command = BuildCommand(self.__pathToBuildUtil, slnConfig, slnConfig)
+			command = BuildCommand(self.__pathToBuildUtil, slnPath, slnConfig)
 		else:
 			raise Exception('unrecognised command token {0}'.format(self.__commandToken))
 
