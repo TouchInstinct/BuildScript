@@ -2,17 +2,17 @@ import xml.etree.ElementTree as eT
 
 
 class Patcher():
-	def __init__(self, abs_plist_path):
-		self._abs_plist_path = abs_plist_path
+	def __init__(self, infoPlistPath):
+		self.__infoPlistPath = infoPlistPath
 
 	def AddOrReplace(self, key_value_dict):
-		tree = eT.parse(self._abs_plist_path)
+		tree = eT.parse(self.__infoPlistPath)
 		plist_dict = tree.getroot().find('dict')
 
 		for key_name in key_value_dict:
 			self.AppendOrReplaceValueByKey(key_name, key_value_dict[key_name], plist_dict)
 
-		tree.write(self._abs_plist_path, xml_declaration=True, encoding='UTF-8', method="xml")
+		tree.write(self.__infoPlistPath, xml_declaration=True, encoding='UTF-8', method="xml")
 
 	def AppendOrReplaceValueByKey(self, key_name, value, dict_element):
 		key_index = self.FindIndexByKey(key_name, dict_element)
