@@ -1,0 +1,13 @@
+# global settings
+build_tool = '/Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool'
+version = '0.0.0'
+
+# ios platform settings
+ios.steps = 'IosSteps.txt'
+
+# android platform settings
+android.steps = 'AndroidSteps.txt'
+
+# config settings
+ios.appstore.app_name = 'CoolApp'
+ios.staging.app_name = 'CoolApp staging'
