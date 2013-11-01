@@ -1,5 +1,6 @@
 create backup for 'BuildSample'
 inside 'BuildSample/BuildSample.sln' remove NotCompileApp project
+inside 'BuildSample/BuildSample/CoolApp.csproj' set OutputPath to 'Output'
 clean 'BuildSample/BuildSample.sln' for 'Release|iPhone'
 build 'BuildSample/BuildSample.sln' for 'Release|iPhone'
 create dirs 'Output/Appstore/Artifacts'
