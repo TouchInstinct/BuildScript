@@ -16,7 +16,7 @@ class CleanBuildParser(LineParser):
 		filePathRegexp = r"'(?P<path>[./ a-zA-Z]+\.sln)'"
 		slnConfigRegexp = r"'(?P<config>[a-zA-Z|]+)'$"
 
-		regexpSource = self.startsWithKeywordToken(self.__commandToken) + filePathRegexp + self.keywordToken('for') + slnConfigRegexp
+		regexpSource = self.startsWith(self.__commandToken) + filePathRegexp + self.keywordToken('for') + slnConfigRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)

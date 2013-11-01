@@ -15,7 +15,7 @@ class CopyLineParser(LineParser):
 		srcFileNameRegexp = r"'(?P<src>[^']+)'"
 		dstFileNameRegexp = r"'(?P<dst>[^']+)'$"
 
-		regexpSource = self.startsWithKeywordToken('copy') + srcFileNameRegexp + self.keywordToken('to') + dstFileNameRegexp
+		regexpSource = self.startsWith('copy') + srcFileNameRegexp + self.keywordToken('to') + dstFileNameRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)

@@ -12,7 +12,7 @@ class ShParser(LineParser):
 
 		cmdTextRegexp = r'(?P<text>.*)'
 
-		regexpSource = self.startsWithKeywordToken('sh') + cmdTextRegexp
+		regexpSource = self.startsWith('sh') + cmdTextRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)

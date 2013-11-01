@@ -14,7 +14,7 @@ class CreateBackupParser(LineParser):
 
 		folderNameRegexp = r"'(?P<folder>[^']+)'$"
 
-		regexpSource = self.startsWithKeywordToken('create backup for') + folderNameRegexp
+		regexpSource = self.startsWith('create backup for') + folderNameRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)

@@ -14,13 +14,17 @@ class LineParser:
 		assert keyword is not None
 		return r'\s+' + keyword + r'\s+'
 
-	def startsWithKeywordToken(self, keyword):
+	def startsWith(self, keyword):
 		assert keyword is not None
 		return r'^' + keyword + r'\s+'
 
-	def endsWithKeywordToken(self, keyword):
+	def endsWith(self, keyword):
 		assert keyword is not None
 		return r'\s+' + keyword + '$'
+
+	def than(self, keyword):
+		assert keyword is not None
+		return keyword + r'\s+'
 
 	def _guardMatch(self, match_object, source, regexpSource = None):
 		if match_object is None:
