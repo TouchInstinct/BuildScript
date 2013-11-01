@@ -1,5 +1,5 @@
 from CommandBuilders.RestoreBackupCommandBuilder import RestoreBackupCommandBuilder
-from ManualTests.path_provider import PathProvider
+from Tests.ManualTests.path_provider import PathProvider
 
 line = "restore from backup"
 

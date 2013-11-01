@@ -1,5 +1,5 @@
 from CommandBuilders.PatchCsprojCommandBuilder import PatchCsprojCommandBuilder
-from ManualTests.path_provider import PathProvider
+from Tests.ManualTests.path_provider import PathProvider
 from commands.ValueProvider import ValueProvider
 
 config = {'sln_config' : 'Release|iPhone'}

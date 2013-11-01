@@ -1,5 +1,5 @@
 from CommandBuilders.CreateBackupCommandBuilder import CreateBackupCommandBuilder
-from ManualTests.path_provider import PathProvider
+from Tests.ManualTests.path_provider import PathProvider
 
 line = "create backup for 'BuildSample'"
 

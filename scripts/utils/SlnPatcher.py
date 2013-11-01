@@ -1,7 +1,7 @@
 import re
 
 
-class Patcher:
+class SlnPatcher:
 	def __init__(self, pathToSlnFile):
 		self._sln_path = pathToSlnFile
 		self._sln_file = None

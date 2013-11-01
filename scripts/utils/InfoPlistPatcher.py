@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as eT
 
 
-class Patcher():
+class InfoPlistPatcher():
 	def __init__(self, infoPlistPath):
 		self.__infoPlistPath = infoPlistPath
 

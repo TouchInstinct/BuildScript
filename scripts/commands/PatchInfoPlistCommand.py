@@ -1,4 +1,4 @@
-from utils.infoplist.Patcher import Patcher
+from utils import InfoPlistPatcher
 
 
 class PatchInfoPlistCommand():
@@ -12,7 +12,7 @@ class PatchInfoPlistCommand():
 		self.__value = value
 
 	def execute(self):
-		patcher = Patcher(self.__pathToPlist)
+		patcher = InfoPlistPatcher(self.__pathToPlist)
 
 		dictionary = { self.__key : self.__value }
 		patcher.AddOrReplace(dictionary)

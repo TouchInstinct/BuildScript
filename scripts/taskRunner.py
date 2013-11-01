@@ -1,4 +1,6 @@
 import os
+from utils import BuildConfigProvider, FromFileSettingsProvider
+
 scriptFilePath = os.path.abspath(__file__)
 
 scriptDir = os.path.dirname(scriptFilePath)
@@ -6,9 +8,8 @@ baseDir = os.path.join(scriptDir, os.pardir)
 
 os.chdir(baseDir)
 
-from SettingsProvider.FromFileSettingsProvider import FromFileSettingsProvider
 from StepRunner.StepsRunner import StepsRunner
-from utils.configs.BuildConfigProvider import BuildConfigProvider
+
 
 class TaskRunner:
 	def run(self):

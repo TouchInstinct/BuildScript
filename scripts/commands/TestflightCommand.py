@@ -1,4 +1,4 @@
-from utils.testflight.TestflightPublisher import TestFlightPublisher
+from utils.TestflightPublisher import TestFlightPublisher
 
 
 class PublishToTestFlightCommand:

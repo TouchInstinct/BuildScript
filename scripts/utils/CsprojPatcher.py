@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as eT
 eT.register_namespace('', "http://schemas.microsoft.com/developer/msbuild/2003")
 
-class Patcher:
+class CsprojPatcher:
 	def __init__(self, csproj_abs_path):
 		self._csproj_abs_path = csproj_abs_path
 		self._tree = None
