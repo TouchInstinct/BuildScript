@@ -29,4 +29,5 @@ class StepsRunner:
 			cmd = self.removeProjectBuilder.getCommandFor(line)
 			cmd.execute()
 		else:
-			raise Exception('unrecognised step')
+			msg = "unrecognised step. Line: '{0}'".format(line)
+			raise Exception(msg)
