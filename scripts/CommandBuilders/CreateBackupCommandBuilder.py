@@ -3,6 +3,9 @@ from parser.BackupParser.CreateBackupParser import CreateBackupParser
 
 
 class CreateBackupCommandBuilder:
+	def __init__(self):
+		pass
+
 	def isCreateBackup(self, line):
 		assert line is not None
 

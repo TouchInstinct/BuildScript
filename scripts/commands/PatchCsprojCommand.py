@@ -1,4 +1,4 @@
-import utils.csproj.patcher as csproj
+import utils.CsprojPatcher as csproj
 
 class PatchCsprojCommand():
 	def __init__(self, csprojAbsPath, key, value, slnConfig):
@@ -13,7 +13,7 @@ class PatchCsprojCommand():
 		self.__slnConfig = slnConfig
 
 	def execute(self):
-		patcher = csproj.Patcher(self.__csprojAbsPath)
+		patcher = csproj.CsprojPatcher(self.__csprojAbsPath)
 
-		dict = { self.__key : self.__value }
-		patcher.AddOrReplace(dict, self.__slnConfig)
+		dictionary = { self.__key : self.__value }
+		patcher.AddOrReplace(dictionary, self.__slnConfig)

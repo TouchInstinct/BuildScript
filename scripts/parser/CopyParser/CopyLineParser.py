@@ -1,9 +1,12 @@
+import re
+
 from parser.CopyParser.CopyArguments import CopyArguments
 from parser.LineParser import LineParser
-import re
+
 
 class CopyLineParser(LineParser):
 	def __init__(self):
+		LineParser.__init__(self)
 		self.__copyArguments = CopyArguments()
 
 	def parseLine(self, line):
@@ -27,5 +30,5 @@ class CopyLineParser(LineParser):
 	def isValidLine(self, line):
 		assert line is not None
 
-		isValid = line.startswith("copy");
+		isValid = line.startswith("copy")
 		return isValid

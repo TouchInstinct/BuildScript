@@ -3,6 +3,9 @@ from parser.InsideParser.InsideRemoveParser import InsideRemoveParser
 
 
 class RemoveProjectCommandBuilder:
+	def __init__(self):
+		pass
+
 	def isRemoveProject(self, line):
 		assert line is not None
 

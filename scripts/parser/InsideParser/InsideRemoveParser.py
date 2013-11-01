@@ -1,9 +1,11 @@
-from parser.LineParser import LineParser
 import re
+
+from parser.LineParser import LineParser
 
 
 class InsideRemoveParser(LineParser):
 	def __init__(self, fileExt):
+		LineParser.__init__(self)
 		assert fileExt is not None
 
 		self.__extension = fileExt
@@ -23,7 +25,7 @@ class InsideRemoveParser(LineParser):
 		filePath = match.group('file')
 		projectName = match.group('project')
 
-		return (filePath, projectName)
+		return filePath, projectName
 
 	def isValidLine(self, line):
 		regexpSrc = r"inside\s+'[./ a-zA-Z]+\.{0}'\s+remove".format(self.__extension)

@@ -1,4 +1,4 @@
-from utils.sln.patcher import Patcher
+from utils.SlnPatcher import SlnPatcher
 
 
 class RemoveProjectCommand:
@@ -10,5 +10,5 @@ class RemoveProjectCommand:
 		self.__projectName = projectName
 
 	def execute(self):
-		patcher = Patcher(self.__slnPath)
+		patcher = SlnPatcher(self.__slnPath)
 		patcher.removeProjects([self.__projectName])

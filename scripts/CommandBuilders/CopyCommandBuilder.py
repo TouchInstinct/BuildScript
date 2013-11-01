@@ -3,6 +3,9 @@ from parser.CopyParser.CopyLineParser import CopyLineParser
 
 
 class CopyCommandBuilder:
+	def __init__(self):
+		pass
+
 	def isCopy(self, line):
 		assert line is not None
 

@@ -1,6 +1,6 @@
 from commands.CleanBuildCommands.BuildCommand import BuildCommand
 from commands.CleanBuildCommands.CleanCommand import CleanCommand
-from parser.CleanBuildParser.CleanBuildParser import CleanBuildParser
+from parser.CleanBuildParser import CleanBuildParser
 
 
 class CleanBuildCommandBuilder:
@@ -32,8 +32,6 @@ class CleanBuildCommandBuilder:
 		return command
 
 	def __getCommandByToken(self, slnPath, slnConfig):
-		command = None
-
 		if self.__commandToken == 'clean':
 			command = CleanCommand(self.__pathToBuildUtil, slnPath, slnConfig)
 		elif self.__commandToken == 'build':

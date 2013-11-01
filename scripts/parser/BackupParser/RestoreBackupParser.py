@@ -1,8 +1,12 @@
-from parser.LineParser import LineParser
 import re
+
+from parser.LineParser import LineParser
 
 
 class RestoreBackupParser(LineParser):
+	def __init__(self):
+		LineParser.__init__(self)
+
 	def parseLine(self, line):
 		assert line is not None
 
