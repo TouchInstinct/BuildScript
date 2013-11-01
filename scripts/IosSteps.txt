@@ -1,3 +1,4 @@
+create backup for 'BuildSample'
 inside 'BuildSample/BuildSample.sln' remove NotCompileApp project
 clean 'BuildSample/BuildSample.sln' for 'Release|iPhone'
 build 'BuildSample/BuildSample.sln' for 'Release|iPhone'
