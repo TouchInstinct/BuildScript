@@ -12,5 +12,5 @@ ios.steps = 'scripts/IosSteps.txt'
 ios.appstore.build_ready = 'true'
 ios.appstore.app_name = 'CoolApp'
 
-ios.staging.build_ready = 'true'
+#ios.staging.build_ready = 'true'
 ios.staging.app_name = 'CoolApp staging'

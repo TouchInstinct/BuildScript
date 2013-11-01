@@ -1,11 +1,18 @@
+from CommandBuilders.CleanBuildCommandBuilder import CleanBuildCommandBuilder
 from CommandBuilders.RemoveProjectCommandBuilder import RemoveProjectCommandBuilder
 from CommandBuilders.ShCommandBuilder import ShCommandBuilder
 
 
 class StepsRunner:
-	def __init__(self):
+	def __init__(self, config):
+		assert config is not None
+
 		self.shCommandBuilder = ShCommandBuilder()
 		self.removeProjectBuilder = RemoveProjectCommandBuilder()
+
+		buildUtilPath = config['build_tool']
+		self.cleanBuilder = CleanBuildCommandBuilder(buildUtilPath, 'clean')
+		self.buildBuilder = CleanBuildCommandBuilder(buildUtilPath, 'build')
 
 	def run(self, content):
 		assert content is not None
@@ -27,6 +34,12 @@ class StepsRunner:
 			cmd.execute()
 		elif self.removeProjectBuilder.isRemoveProject(line):
 			cmd = self.removeProjectBuilder.getCommandFor(line)
+			cmd.execute()
+		elif self.cleanBuilder.isCleanBuild(line):
+			cmd = self.cleanBuilder.getCommandFor(line)
+			cmd.execute()
+		elif self.buildBuilder.isCleanBuild(line):
+			cmd = self.buildBuilder.getCommandFor(line)
 			cmd.execute()
 		else:
 			msg = "unrecognised step. Line: '{0}'".format(line)
