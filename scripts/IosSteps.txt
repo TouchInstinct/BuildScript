@@ -1,7 +1,14 @@
 create backup for 'BuildSample'
+
 inside 'BuildSample/BuildSample.sln' remove NotCompileApp project
+
 inside 'BuildSample/BuildSample/CoolApp.csproj' set OutputPath to 'Output'
+inside 'BuildSample/BuildSample/Info.plist' set CFBundleVersion to '1.2.3'
+inside 'BuildSample/BuildSample/Info.plist' set CFBundleDisplayName to 'CoolApp'
+
 clean 'BuildSample/BuildSample.sln' for 'Release|iPhone'
 build 'BuildSample/BuildSample.sln' for 'Release|iPhone'
+
 create dirs 'Output/Appstore/Artifacts'
+
 sh echo hello from Rustam
