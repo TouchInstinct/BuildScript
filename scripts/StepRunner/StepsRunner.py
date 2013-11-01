@@ -16,8 +16,8 @@ class StepsRunner:
 				continue
 			if stripped.startswith("#"):
 				continue
-
-			self.processLine(stripped)
+			else:
+				self.processLine(stripped)
 
 	def processLine(self, line):
 		if self.shCommandBuilder.isShCommand(line):

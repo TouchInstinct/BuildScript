@@ -6,7 +6,8 @@ class BuildConfigProvider:
 		configs = []
 		for l in leafs:
 			config = self.fetchConfigFromLeafWrapper(l)
-			configs.append(config)
+			if config.get('build_ready', 'false') == 'true':
+				configs.append(config)
 
 		return configs
 
@@ -32,7 +33,11 @@ class BuildConfigProvider:
 
 		unionConf = {}
 		for a in ancestors:
-			unionConf.update(a['dict'])
+			dictionary = a['dict']
+			for k in dictionary:
+				value = dictionary[k]
+				if type(value) is str:
+					unionConf[k] = value
 
 		return unionConf
 
