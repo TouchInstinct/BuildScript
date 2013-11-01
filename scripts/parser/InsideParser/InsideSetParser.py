@@ -18,7 +18,7 @@ class InsideSetParser(LineParser):
 		keyRegexp = r'(?P<key>[a-zA-Z]+)'
 		valueRegexp = r"'(?P<value>[^']+)'"
 
-		regexpSource = self.startsWithKeywordToken('inside') + filePathRegexp + self.keywordToken('set') + keyRegexp + self.keywordToken('to') + valueRegexp
+		regexpSource = self.startsWith('inside') + filePathRegexp + self.keywordToken('set') + keyRegexp + self.keywordToken('to') + valueRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)

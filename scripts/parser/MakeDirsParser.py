@@ -10,7 +10,7 @@ class MakeDirsParser(LineParser):
 	def parseLine(self, line):
 		pathRegexp = r"'(?P<path>[^']+)'$"
 
-		regexpSource = self.startsWithKeywordToken('create dirs') + pathRegexp
+		regexpSource = self.startsWith('create dirs') + pathRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)
