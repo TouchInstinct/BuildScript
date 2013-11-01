@@ -3,13 +3,11 @@ from parser.InsideParser.InsideSetParser import InsideSetParser
 
 
 class PatchCsprojCommandBuilder:
-	def __init__(self, config,  pathProvider, valueProvider):
+	def __init__(self, config, valueProvider):
 		assert config is not None
-		assert pathProvider is not None
 		assert valueProvider is not None
 
 		self.__config = config
-		self.__pathProvider = pathProvider
 		self.__valueProvider = valueProvider
 
 	def getCommandFor(self, line):
@@ -18,12 +16,20 @@ class PatchCsprojCommandBuilder:
 		parser = InsideSetParser(self.__valueProvider, 'csproj')
 		result = parser.parseLine(line)
 
-		relPath = result[0]
+		csprojPath = result[0]
 		key = result[1]
 		value = self.__valueProvider.getValueFor(result[2])
 
-		csprojAbsPath = self.__pathProvider.resolveAbsPath(relPath)
 		slnConfig = self.__config['sln_config']
 
-		command = PatchCsprojCommand(csprojAbsPath, key, value, slnConfig)
+		command = PatchCsprojCommand(csprojPath, key, value, slnConfig)
 		return command
+
+	def isPatchCsproj(self, line):
+		assert line is not None
+
+		parser = InsideSetParser(self.__valueProvider, 'csproj')
+		isValid = parser.isValidLine(line)
+
+		return isValid
+

@@ -3,18 +3,11 @@ import shutil
 
 
 class RestoreBackupCommand:
-	def __init__(self, pathProvider):
-		assert pathProvider is not None
-
-		self.__pathProvider = pathProvider
-
 	def execute(self):
-		baseDir = self.__pathProvider.resolveAbsPath('.')
-
-		dirPairs = [(name, "backup.{0}".format(name)) for name in os.listdir(baseDir) if os.path.isdir(self.__pathProvider.resolveAbsPath(name)) and not name.startswith('backup.')]
+		dirPairs = [(name, "backup.{0}".format(name)) for name in os.listdir('.') if os.path.isdir(name) and not name.startswith('backup.')]
 
 		for pair in dirPairs:
-			absPair = (self.__pathProvider.resolveAbsPath(pair[0]), self.__pathProvider.resolveAbsPath(pair[1]))
+			absPair = (pair[0], pair[1])
 			if not os.path.exists(absPair[1]):
 				continue
 

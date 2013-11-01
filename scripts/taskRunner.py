@@ -24,7 +24,7 @@ class TaskRunner:
 	def runConfig(self, config):
 		content = self.getStepsContent(config)
 
-		stepsRunner = StepsRunner()
+		stepsRunner = StepsRunner(config)
 		stepsRunner.run(content)
 
 	def getStepsContent(self, config):
