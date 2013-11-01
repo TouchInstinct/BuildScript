@@ -27,7 +27,6 @@ class InsideRemoveParser(LineParser):
 
 	def isValidLine(self, line):
 		regexpSrc = r"inside\s+'[./ a-zA-Z]+\.{0}'\s+remove".format(self.__extension)
-		print regexpSrc
 		regexp = re.compile(regexpSrc, re.UNICODE)
 
 		match = regexp.match(line)
