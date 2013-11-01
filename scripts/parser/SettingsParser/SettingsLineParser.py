@@ -5,6 +5,9 @@ from parser.SettingsParser.PathParser import PathParser
 
 
 class SettingsLineParser(LineParser):
+	def __init__(self):
+		LineParser.__init__(self)
+
 	def parseLine(self, line):
 		assert line is not None
 
@@ -37,4 +40,4 @@ class SettingsLineParser(LineParser):
 		propPath = match.group('prop_path')
 		value = match.group('value')
 
-		return (propPath, value)
+		return propPath, value

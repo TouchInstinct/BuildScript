@@ -4,6 +4,9 @@ from parser.LineParser import LineParser
 
 
 class MakeDirsParser(LineParser):
+	def __init__(self):
+		LineParser.__init__(self)
+
 	def parseLine(self, line):
 		pathRegexp = r"'(?P<path>[^']+)'$"
 

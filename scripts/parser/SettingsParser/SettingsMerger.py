@@ -1,4 +1,7 @@
 class SettingsMerger:
+	def __init__(self):
+		pass
+
 	def merge(self, globalSettings, settingDescription):
 		value = settingDescription['value']
 		segments = settingDescription['segments']
@@ -25,7 +28,7 @@ class SettingsMerger:
 
 	def overrideGuard(self, dictionary, key, path):
 		if key in dictionary:
-			pathStr = '.'.joun(path)
+			pathStr = '.'.join(path)
 			msg = 'settings with name {0} by path {1} already exists with value {3}'.format(key, dictionary[key], pathStr)
 			raise Exception(msg)
 

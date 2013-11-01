@@ -6,6 +6,7 @@ from parser.LineParser import LineParser
 
 class CreateBackupParser(LineParser):
 	def __init__(self):
+		LineParser.__init__(self)
 		self.__createBackupArguments = CreateBackupArguments()
 
 	def parseLine(self, line):

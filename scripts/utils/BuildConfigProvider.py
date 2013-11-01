@@ -1,4 +1,7 @@
 class BuildConfigProvider:
+	def __init__(self):
+		pass
+
 	def getConfigs(self, rootConfig):
 		leafs = []
 		self.traverseDict(None, rootConfig, leafs)

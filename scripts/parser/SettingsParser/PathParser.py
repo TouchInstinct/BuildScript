@@ -1,4 +1,7 @@
 class PathParser:
+	def __init__(self):
+		pass
+
 	def parse(self, line):
 		assert line is not None
 

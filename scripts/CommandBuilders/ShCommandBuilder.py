@@ -3,6 +3,9 @@ from parser.ShParser import ShParser
 
 
 class ShCommandBuilder:
+	def __init__(self):
+		pass
+
 	def isShCommand(self, line):
 		assert line is not None
 

@@ -3,6 +3,9 @@ import shutil
 
 
 class RestoreBackupCommand:
+	def __init__(self):
+		pass
+
 	def execute(self):
 		dirPairs = [(name, "backup.{0}".format(name)) for name in os.listdir('.') if os.path.isdir(name) and not name.startswith('backup.')]
 

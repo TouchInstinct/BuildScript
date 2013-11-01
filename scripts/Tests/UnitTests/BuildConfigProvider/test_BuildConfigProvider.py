@@ -1,5 +1,4 @@
 import unittest
-from utils import BuildConfigProvider
 from utils.BuildConfigProvider import BuildConfigProvider
 
 

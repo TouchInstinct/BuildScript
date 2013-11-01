@@ -15,4 +15,4 @@ class CleanBuildCommandBase:
 
 	def execute(self):
 		cmdText = self.__commandPattern.format(self.__pathToBuildUtil, self.__slnConfig, self.__slnPath)
-		returnCode = call(cmdText, shell=True)
+		call(cmdText, shell=True)

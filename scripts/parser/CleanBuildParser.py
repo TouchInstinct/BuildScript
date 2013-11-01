@@ -5,6 +5,7 @@ from parser.LineParser import LineParser
 
 class CleanBuildParser(LineParser):
 	def __init__(self, commandToken):
+		LineParser.__init__(self)
 		assert commandToken is not None
 
 		self.__commandToken = commandToken
@@ -24,7 +25,7 @@ class CleanBuildParser(LineParser):
 		path = match.group('path')
 		slnConfig = match.group('config')
 
-		return (path, slnConfig)
+		return path, slnConfig
 
 	def isValidLine(self, line):
 		assert line is not None

@@ -1,5 +1,6 @@
 import os
-from utils import BuildConfigProvider, FromFileSettingsProvider
+from utils.BuildConfigProvider import BuildConfigProvider
+from utils.FromFileSettingsProvider import FromFileSettingsProvider
 
 scriptFilePath = os.path.abspath(__file__)
 
@@ -12,6 +13,9 @@ from StepRunner.StepsRunner import StepsRunner
 
 
 class TaskRunner:
+	def __init__(self):
+		pass
+
 	def run(self):
 		settingsProvider = FromFileSettingsProvider()
 		settings = settingsProvider.fetchSettings()

@@ -3,6 +3,9 @@ from parser.BackupParser.DeleteBackupParser import DeleteBackupParser
 
 
 class DeleteBackupCommandBuilder:
+	def __init__(self):
+		pass
+
 	def isDeleteBackup(self, line):
 		assert line is not None
 

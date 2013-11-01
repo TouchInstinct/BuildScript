@@ -3,6 +3,9 @@ from parser.MakeDirsParser import MakeDirsParser
 
 
 class MakeDirsCommandBuilder:
+	def __init__(self):
+		pass
+
 	def isMakeDirsCommand(self, line):
 		assert line is not None
 

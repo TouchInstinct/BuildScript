@@ -1,6 +1,6 @@
 from commands.CleanBuildCommands.BuildCommand import BuildCommand
 from commands.CleanBuildCommands.CleanCommand import CleanCommand
-from parser import CleanBuildParser
+from parser.CleanBuildParser import CleanBuildParser
 
 
 class CleanBuildCommandBuilder:

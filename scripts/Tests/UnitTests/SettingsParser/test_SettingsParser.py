@@ -40,6 +40,7 @@ class TestSettingsParser(unittest.TestCase):
 	def test_emptyLinesAndComments(self):
 		class PartialSettingsParser(SettingsParser):
 			def __init__(self):
+				SettingsParser.__init__(self)
 				self.processLineCall = 0
 
 			def processLine(self, line):

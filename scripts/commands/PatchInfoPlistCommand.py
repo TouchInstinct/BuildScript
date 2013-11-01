@@ -1,4 +1,4 @@
-from utils import InfoPlistPatcher
+from utils.InfoPlistPatcher import InfoPlistPatcher
 
 
 class PatchInfoPlistCommand():
