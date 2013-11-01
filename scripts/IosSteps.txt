@@ -12,5 +12,7 @@ clean 'BuildSample/BuildSample.sln' for 'Release|iPhone'
 build 'BuildSample/BuildSample.sln' for 'Release|iPhone'
 
 create dirs 'Output/Appstore/Artifacts'
+copy 'BuildSample/BuildSample/Output/BuildSample-1.2.3.ipa' to 'Output/Appstore/Artifacts'
+
 
 sh echo hello from Rustam
