@@ -1,6 +1,7 @@
 from CommandBuilders.CleanBuildCommandBuilder import CleanBuildCommandBuilder
 from CommandBuilders.CopyCommandBuilder import CopyCommandBuilder
 from CommandBuilders.CreateBackupCommandBuilder import CreateBackupCommandBuilder
+from CommandBuilders.DeleteBackupCommandBuilder import DeleteBackupCommandBuilder
 from CommandBuilders.MakeDirsCommandBuilder import MakeDirsCommandBuilder
 from CommandBuilders.PatchCsprojCommandBuilder import PatchCsprojCommandBuilder
 from CommandBuilders.PatchInfoplistCommandBuilder import PatchInfoplistCommandBuilder
@@ -20,6 +21,7 @@ class StepsRunner:
 		self.removeProjectBuilder = RemoveProjectCommandBuilder()
 		self.createBackupBuilder = CreateBackupCommandBuilder()
 		self.restoreFromBackupBuilder = RestoreBackupCommandBuilder()
+		self.deleteBackupBuilder = DeleteBackupCommandBuilder()
 		self.createDirs = MakeDirsCommandBuilder()
 		self.patchCsproj = PatchCsprojCommandBuilder(config, self.valueProvider)
 		self.patchInfoPlist = PatchInfoplistCommandBuilder(self.valueProvider)
@@ -73,6 +75,9 @@ class StepsRunner:
 			cmd.execute()
 		elif self.restoreFromBackupBuilder.isRestoreBackup(line):
 			cmd = self.restoreFromBackupBuilder.getCommandFor(line)
+			cmd.execute()
+		elif self.deleteBackupBuilder.isDeleteBackup(line):
+			cmd =self.deleteBackupBuilder.getCommandFor(line)
 			cmd.execute()
 		else:
 			msg = "unrecognised step. Line: '{0}'".format(line)

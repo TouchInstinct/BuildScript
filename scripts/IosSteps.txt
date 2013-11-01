@@ -16,5 +16,6 @@ copy 'BuildSample/BuildSample/Output/BuildSample-1.2.3.ipa' to 'Output/Appstore/
 sh cp -a BuildSample/BuildSample/Output/ Output/Appstore/
 
 restore from backup
+delete backup
 
 sh echo hello from Rustam
