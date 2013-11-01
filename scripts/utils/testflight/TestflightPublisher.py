@@ -1,7 +1,7 @@
 from subprocess import call
 
 
-class TestFlightPublisherBase:
+class TestFlightPublisher:
 	DefaultNotes = 'This build was uploaded via the upload API'
 
 	def __init__(self, api_token, team_token, notes=DefaultNotes):
