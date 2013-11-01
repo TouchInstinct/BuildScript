@@ -1,5 +1,6 @@
 from CommandBuilders.CleanBuildCommandBuilder import CleanBuildCommandBuilder
 from CommandBuilders.CreateBackupCommandBuilder import CreateBackupCommandBuilder
+from CommandBuilders.MakeDirsCommandBuilder import MakeDirsCommandBuilder
 from CommandBuilders.RemoveProjectCommandBuilder import RemoveProjectCommandBuilder
 from CommandBuilders.ShCommandBuilder import ShCommandBuilder
 
@@ -11,6 +12,7 @@ class StepsRunner:
 		self.shCommandBuilder = ShCommandBuilder()
 		self.removeProjectBuilder = RemoveProjectCommandBuilder()
 		self.createBackupBuilder = CreateBackupCommandBuilder()
+		self.createDirs = MakeDirsCommandBuilder()
 
 		buildUtilPath = config['build_tool']
 		self.cleanBuilder = CleanBuildCommandBuilder(buildUtilPath, 'clean')
@@ -45,6 +47,9 @@ class StepsRunner:
 			cmd.execute()
 		elif self.createBackupBuilder.isCreateBackup(line):
 			cmd = self.createBackupBuilder.getCommandFor(line)
+			cmd.execute()
+		elif self.createDirs.isMakeDirsCommand(line):
+			cmd = self.createDirs.getCommandFor(line)
 			cmd.execute()
 		else:
 			msg = "unrecognised step. Line: '{0}'".format(line)
