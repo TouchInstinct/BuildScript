@@ -1,9 +1,11 @@
+from CommandBuilders.RemoveProjectCommandBuilder import RemoveProjectCommandBuilder
 from CommandBuilders.ShCommandBuilder import ShCommandBuilder
 
 
 class StepsRunner:
 	def __init__(self):
 		self.shCommandBuilder = ShCommandBuilder()
+		self.removeProjectBuilder = RemoveProjectCommandBuilder()
 
 	def run(self, content):
 		assert content is not None
@@ -22,6 +24,9 @@ class StepsRunner:
 	def processLine(self, line):
 		if self.shCommandBuilder.isShCommand(line):
 			cmd = self.shCommandBuilder.getCommandFor(line)
+			cmd.execute()
+		elif self.removeProjectBuilder.isRemoveProject(line):
+			cmd = self.removeProjectBuilder.getCommandFor(line)
 			cmd.execute()
 		else:
 			raise Exception('unrecognised step')

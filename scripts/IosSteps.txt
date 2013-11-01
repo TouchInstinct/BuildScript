@@ -1,1 +1,2 @@
+inside 'BuildSample/BuildSample.sln' remove NotCompileApp project
 sh echo hello from Rustam
