@@ -1,5 +1,6 @@
-from parser.LineParser import LineParser
 import re
+
+from parser.LineParser import LineParser
 
 
 class RestoreBackupParser(LineParser):

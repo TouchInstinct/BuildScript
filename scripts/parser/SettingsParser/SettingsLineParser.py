@@ -1,5 +1,6 @@
-from parser.LineParser import LineParser
 import re
+
+from parser.LineParser import LineParser
 from parser.SettingsParser.PathParser import PathParser
 
 

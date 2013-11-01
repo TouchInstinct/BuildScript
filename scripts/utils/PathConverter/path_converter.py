@@ -1,5 +1,6 @@
-import utils.PathConverter.converter_base as cB
 import os
+
+import utils.PathConverter.converter_base as cB
 
 
 class PathConverter(cB.ConverterBase):

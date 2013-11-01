@@ -1,5 +1,7 @@
-from parser.LineParser import LineParser
 import re
+
+from parser.LineParser import LineParser
+
 
 class DeleteBackupParser(LineParser):
 	def parseLine(self, line):

@@ -1,6 +1,8 @@
+import re
+
 from parser.BackupParser.CreateBackupArguments import CreateBackupArguments
 from parser.LineParser import LineParser
-import re
+
 
 class CreateBackupParser(LineParser):
 	def __init__(self):

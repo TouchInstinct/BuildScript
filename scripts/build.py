@@ -1,9 +1,10 @@
 import os
 import imp
+import argparse
 
 import settings
 import instruments
-import argparse
+
 
 keys = instruments.GetConfigKeys(settings.build_ready_configs)
 

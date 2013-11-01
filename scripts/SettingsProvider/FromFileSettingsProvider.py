@@ -1,4 +1,3 @@
-import os
 from parser.SettingsParser.SettingsParser import SettingsParser
 
 

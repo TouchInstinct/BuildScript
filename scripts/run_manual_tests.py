@@ -19,4 +19,3 @@ os.chdir(baseDir)
 #import ManualTests.infoplist_test
 #import ManualTests.clean_test
 
-import ManualTests.build_test

@@ -1,6 +1,8 @@
+import re
+
 from parser.CopyParser.CopyArguments import CopyArguments
 from parser.LineParser import LineParser
-import re
+
 
 class CopyLineParser(LineParser):
 	def __init__(self):
