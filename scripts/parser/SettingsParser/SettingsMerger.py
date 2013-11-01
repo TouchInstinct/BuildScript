@@ -23,10 +23,10 @@ class SettingsMerger:
 
 		return settingsDict
 
-	def overrideGuard(self, dict, key, path):
-		if key in dict:
+	def overrideGuard(self, dictionary, key, path):
+		if key in dictionary:
 			pathStr = '.'.joun(path)
-			msg = 'settings with name {0} by path {1} already exists with value {3}'.format(key, dict[key], pathStr)
+			msg = 'settings with name {0} by path {1} already exists with value {3}'.format(key, dictionary[key], pathStr)
 			raise Exception(msg)
 
 

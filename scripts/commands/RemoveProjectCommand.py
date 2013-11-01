@@ -1,4 +1,4 @@
-from utils.sln.patcher import Patcher
+from utils.sln.Patcher import Patcher
 
 
 class RemoveProjectCommand:

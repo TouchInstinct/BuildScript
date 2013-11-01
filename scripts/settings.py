@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import patch
-
 build_root = {
 	'mdtool': '/Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool',
 	'version': '0.0.0',
@@ -58,7 +56,6 @@ ios_development_root = {
 		'std_cmd.py testflight',
 	],
 
-	'patch': patch.PathcIos,
 	'parent': ios_root
 }
 

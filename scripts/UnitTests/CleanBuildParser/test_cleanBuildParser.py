@@ -1,5 +1,5 @@
 import unittest
-from parser import CleanBuildParser
+from parser.CleanBuildParser import CleanBuildParser
 
 
 class TestCleanBuildParser(unittest.TestCase):

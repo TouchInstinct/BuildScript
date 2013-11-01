@@ -32,8 +32,6 @@ class CleanBuildCommandBuilder:
 		return command
 
 	def __getCommandByToken(self, slnPath, slnConfig):
-		command = None
-
 		if self.__commandToken == 'clean':
 			command = CleanCommand(self.__pathToBuildUtil, slnPath, slnConfig)
 		elif self.__commandToken == 'build':

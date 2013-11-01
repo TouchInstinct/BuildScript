@@ -25,8 +25,8 @@ class TestCsprojParser(unittest.TestCase):
 
 	def test_parse(self):
 		line = "inside 'Dir/../Some Folder/CoolApp.csproj' set OutputPath to 'Output'"
-		tuple = self.parser.parseLine(line)
+		result = self.parser.parseLine(line)
 
-		self.assertEqual('Dir/../Some Folder/CoolApp.csproj', tuple[0])
-		self.assertEqual('OutputPath', tuple[1])
-		self.assertEqual('Output', tuple[2])
+		self.assertEqual('Dir/../Some Folder/CoolApp.csproj', result[0])
+		self.assertEqual('OutputPath', result[1])
+		self.assertEqual('Output', result[2])
