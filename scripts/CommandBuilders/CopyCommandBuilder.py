@@ -3,11 +3,6 @@ from parser.CopyParser.CopyLineParser import CopyLineParser
 
 
 class CopyCommandBuilder:
-	def __init__(self, pathProvider):
-		assert pathProvider is not None
-
-		self.__pathProvider = pathProvider
-
 	def isCopy(self, line):
 		assert line is not None
 
@@ -19,5 +14,5 @@ class CopyCommandBuilder:
 		parser = CopyLineParser()
 		cpArg = parser.parseLine(line)
 
-		command = CopyCommand(self.__pathProvider, cpArg)
+		command = CopyCommand(cpArg)
 		return command
