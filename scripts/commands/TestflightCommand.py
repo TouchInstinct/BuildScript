@@ -1,7 +1,7 @@
 from utils.TestflightPublisher import TestFlightPublisher
 
 
-class PublishToTestFlightCommand:
+class TestflightCommand:
 	def __init__(self, pathToFile,  api_token, team_token, notes):
 		assert pathToFile is not None
 
