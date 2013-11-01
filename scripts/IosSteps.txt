@@ -1,3 +1,4 @@
+restore from backup
 create backup for 'BuildSample'
 
 inside 'BuildSample/BuildSample.sln' remove NotCompileApp project
