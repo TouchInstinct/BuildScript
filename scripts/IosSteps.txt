@@ -15,6 +15,6 @@ create dirs 'Output/Appstore/Artifacts'
 copy 'BuildSample/BuildSample/Output/BuildSample-1.2.3.ipa' to 'Output/Appstore/Artifacts'
 sh cp -a BuildSample/BuildSample/Output/ Output/Appstore/
 
-
+restore from backup
 
 sh echo hello from Rustam

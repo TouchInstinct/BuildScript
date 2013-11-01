@@ -16,4 +16,5 @@ class RestoreBackupParser(LineParser):
 		assert line is not None
 
 		isValid = line.startswith('restore from backup')
+		return isValid
 
