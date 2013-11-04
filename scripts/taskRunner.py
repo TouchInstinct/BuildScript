@@ -9,7 +9,7 @@ baseDir = os.path.join(scriptDir, os.pardir)
 
 os.chdir(baseDir)
 
-from StepRunner.StepsRunner import StepsRunner
+from Core.StepsRunner import StepsRunner
 
 
 class TaskRunner:
