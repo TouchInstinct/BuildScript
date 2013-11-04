@@ -1,4 +1,7 @@
 import os
+from Core.LineConveyor.CommentRemover import CommentRemover
+from Core.LineConveyor.LineConveyor import LineConveyor
+from Core.LineConveyor.Stripper import Stripper
 from utils.BuildConfigProvider import BuildConfigProvider
 from utils.FromFileSettingsProvider import FromFileSettingsProvider
 
@@ -14,14 +17,18 @@ from Core.StepsRunner import StepsRunner
 
 class TaskRunner:
 	def __init__(self):
-		pass
+		self.configsProvider = BuildConfigProvider()
+		self.settingsProvider = FromFileSettingsProvider()
+
+		lineStripper = Stripper()
+		commentRemover = CommentRemover()
+		self.lineConveyor = LineConveyor()
+		self.lineConveyor.addProcessor(lineStripper)
+		self.lineConveyor.addProcessor(commentRemover)
 
 	def run(self):
-		settingsProvider = FromFileSettingsProvider()
-		settings = settingsProvider.fetchSettings()
-
-		configsProvider = BuildConfigProvider()
-		buildReadyConfigs = configsProvider.getConfigs(settings)
+		settings = self.settingsProvider.fetchSettings()
+		buildReadyConfigs = self.configsProvider.getConfigs(settings)
 
 		for bc in buildReadyConfigs:
 			self.runConfig(bc)
@@ -29,7 +36,7 @@ class TaskRunner:
 	def runConfig(self, config):
 		content = self.getStepsContent(config)
 
-		stepsRunner = StepsRunner(config)
+		stepsRunner = StepsRunner(config, self.lineConveyor)
 		stepsRunner.run(content)
 
 	def getStepsContent(self, config):
