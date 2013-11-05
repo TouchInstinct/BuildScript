@@ -3,8 +3,11 @@ from parser.SettingsParser.SettingsMerger import SettingsMerger
 
 
 class SettingsParser:
-	def __init__(self):
-		self.settings = {}
+	def __init__(self, settings=None):
+		self.settings = settings
+
+		if not self.settings:
+			self.settings = {}
 
 	def parse(self, content):
 		assert content is not None
@@ -21,6 +24,7 @@ class SettingsParser:
 			self.processLine(stripped)
 
 	def processLine(self, line):
+		assert line is not None
 
 		parser = SettingsLineParser()
 		setting = parser.parseLine(line)

@@ -1,12 +1,15 @@
+# -*- coding: utf-8 -*-
 import os
+import argparse
 from Core.LineConveyor.CommentRemover import CommentRemover
 from Core.LineConveyor.LineConveyor import LineConveyor
 from Core.LineConveyor.MacroResolver import MacroResolver
 from Core.LineConveyor.Stripper import Stripper
 from commands.ValueProvider import ValueProvider
 from utils.BuildConfigProvider import BuildConfigProvider
-from utils.FromFileSettingsProvider import FromFileSettingsProvider
 from utils.MacroProcessor import MacroProcessor
+from utils.SettingsProvider.CmdArgsOverriderSettingsProvider import CmdArgsOverriderSettingsProvider
+from utils.SettingsProvider.FromFileSettingsProvider import FromFileSettingsProvider
 
 scriptFilePath = os.path.abspath(__file__)
 
@@ -19,9 +22,11 @@ from Core.StepsRunner import StepsRunner
 
 
 class TaskRunner:
-	def __init__(self):
+	def __init__(self, settingsProvider):
+		assert settingsProvider is not None
+
+		self.settingsProvider = settingsProvider
 		self.configsProvider = BuildConfigProvider()
-		self.settingsProvider = FromFileSettingsProvider()
 
 		lineStripper = Stripper()
 		commentRemover = CommentRemover()
@@ -56,5 +61,12 @@ class TaskRunner:
 		content = stepsFile.read()
 		return content
 
-runner = TaskRunner()
+parser = argparse.ArgumentParser()
+overrideArgs = parser.parse_known_args()[1]
+
+# TODO:  перенести в корень комапановки
+fromFileSettingsProvider = FromFileSettingsProvider()
+settingsProvider = CmdArgsOverriderSettingsProvider(fromFileSettingsProvider, overrideArgs)
+
+runner = TaskRunner(settingsProvider)
 runner.run()
