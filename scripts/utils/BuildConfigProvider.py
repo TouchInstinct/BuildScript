@@ -3,21 +3,34 @@ class BuildConfigProvider:
 		pass
 
 	def getConfigs(self, rootConfig):
+		buildReadyConfigNames = self.fetchBuildReadyConfigNames(rootConfig)
+
 		leafs = []
-		self.traverseDict(None, rootConfig, leafs)
+		self.traverseDict(None, None, rootConfig, leafs)
 
 		configs = []
 		for l in leafs:
-			config = self.fetchConfigFromLeafWrapper(l)
-			if config.get('build_ready', 'false') == 'true':
+			configInfo = self.fetchConfigInfoFromLeafWrapper(l)
+			name = configInfo[0]
+			config = configInfo[1]
+
+			if name in buildReadyConfigNames:
 				configs.append(config)
 
 		return configs
 
-	def traverseDict(self, parent, dictForTraverse, leafs):
+	def fetchBuildReadyConfigNames(self, rootConfig):
+		value = rootConfig['configs']
+		names = value.split(',')
+		names = [name.strip(' ') for name in names]
+
+		return names
+
+	def traverseDict(self, parent, key, dictForTraverse, leafs):
 		wrapper = {
-			'parent' : parent,
-			'dict' : dictForTraverse
+			'parent': parent,
+			'dict': dictForTraverse,
+			'name': key
 		}
 
 		isLeaf = True
@@ -26,12 +39,12 @@ class BuildConfigProvider:
 
 			if type(value) is dict:
 				isLeaf = False
-				self.traverseDict(wrapper, value, leafs)
+				self.traverseDict(wrapper, key, value, leafs)
 
 		if isLeaf:
 			leafs.append(wrapper)
 
-	def fetchConfigFromLeafWrapper(self, leafWrapper):
+	def fetchConfigInfoFromLeafWrapper(self, leafWrapper):
 		ancestors = self.getAncestorsFor(leafWrapper)
 
 		unionConf = {}
@@ -42,7 +55,7 @@ class BuildConfigProvider:
 				if type(value) is str:
 					unionConf[k] = value
 
-		return unionConf
+		return leafWrapper['name'], unionConf
 
 	def getAncestorsFor(self, leaf):
 		ancestors = [leaf]
