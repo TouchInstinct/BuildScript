@@ -11,9 +11,9 @@ class TestMacro(unittest.TestCase):
 		symbols = self.macroParser.getSymbols(line)
 
 		self.assertEqual(3, len(symbols))
-		self.assertTrue('this' in symbols)
-		self.assertTrue('my_macro' in symbols)
-		self.assertTrue('macro_with_numbers123' in symbols)
+		self.assertTrue('@this' in symbols)
+		self.assertTrue('@my_macro' in symbols)
+		self.assertTrue('@macro_with_numbers123' in symbols)
 
 	def test_getName(self):
 		line = '{@macro_name}'

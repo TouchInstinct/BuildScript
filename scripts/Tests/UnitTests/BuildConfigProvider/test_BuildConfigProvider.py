@@ -20,6 +20,7 @@ class TestBuildConfigProvider(unittest.TestCase):
 	def test_unionConfig(self):
 		wr0 = {
 			'parent': None,
+			'name': None,
 			'dict': {
 				'key1': 'a',
 				'key2': 'b',
@@ -29,6 +30,7 @@ class TestBuildConfigProvider(unittest.TestCase):
 		}
 		wr1 = {
 			'parent': wr0,
+			'name' : 'name0',
 			'dict':{
 				'key2': 'bb',
 				'key3': 'cc',
@@ -39,6 +41,7 @@ class TestBuildConfigProvider(unittest.TestCase):
 		}
 		wr2 = {
 		'parent': wr1,
+		'name': 'name1',
 		'dict':{
 			'key3': 'ccc',
 			'key4': 'ddd',
@@ -47,7 +50,8 @@ class TestBuildConfigProvider(unittest.TestCase):
 			}
 		}
 
-		config = self.provider.fetchConfigFromLeafWrapper(wr2)
+		configInfo = self.provider.fetchConfigInfoFromLeafWrapper(wr2)
+		config = configInfo[1]
 		expected = {
 			'key1': 'a',
 			'key2': 'bb',
@@ -57,3 +61,36 @@ class TestBuildConfigProvider(unittest.TestCase):
 			'key6': 'fff'
 		}
 		self.assertDictEqual(expected, config)
+
+	def test_buildReadyNames(self):
+		config = {
+			'configs': 'ios, android, wp7'
+		}
+
+		names = self.provider.fetchBuildReadyConfigNames(config)
+
+		self.assertEqual(3, len(names))
+		self.assertTrue('ios' in names)
+		self.assertTrue('android' in names)
+		self.assertTrue('wp7' in names)
+
+	def test_getConfig(self):
+		rootConfig = {
+			'configs': 'ios, android',
+
+			'ios': {
+
+			},
+
+			'android': {
+
+			},
+
+			'wp7': {
+
+			}
+		}
+
+		configs = self.provider.getConfigs(rootConfig)
+
+		self.assertEqual(2, len(configs))

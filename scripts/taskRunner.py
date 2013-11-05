@@ -41,8 +41,8 @@ class TaskRunner:
 		self.lineConveyor.addProcessor(macroResolver)
 
 	def run(self):
-		settings = self.settingsProvider.fetchSettings()
-		buildReadyConfigs = self.configsProvider.getConfigs(settings)
+		rawSettings = self.settingsProvider.fetchSettings()
+		buildReadyConfigs = self.configsProvider.getConfigs(rawSettings)
 
 		for bc in buildReadyConfigs:
 			self.valueProvider.setConfig(bc)

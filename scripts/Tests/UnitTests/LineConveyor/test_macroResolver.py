@@ -13,7 +13,10 @@ class TestMacroResolver(unittest.TestCase):
 		}
 
 		macroProcessor = MacroProcessor()
-		valueProvider = ValueProvider(config)
+
+		valueProvider = ValueProvider()
+		valueProvider.setConfig(config)
+
 		self.macroResolver = MacroResolver(macroProcessor, valueProvider)
 
 	def test_resolveLine(self):

@@ -7,7 +7,7 @@ from parser.InsideParser.InsideSetParser import InsideSetParser
 class TestCsprojParser(unittest.TestCase):
 
 	def setUp(self):
-		value_provider = ValueProvider({})
+		value_provider = ValueProvider()
 		self.parser = InsideSetParser(value_provider, 'csproj')
 
 
