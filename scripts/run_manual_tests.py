@@ -18,5 +18,6 @@ os.chdir(baseDir)
 #import ManualTests.remove_project
 #import ManualTests.infoplist_test
 #import ManualTests.clean_test
-import Tests.ManualTests.testflight_test
+#import Tests.ManualTests.testflight_test
 
+import Tests.ManualTests.install_profile
