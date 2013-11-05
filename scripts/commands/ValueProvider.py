@@ -1,7 +1,6 @@
 class ValueProvider:
-	def __init__(self, config):
+	def setConfig(self, config):
 		assert config is not None
-
 		self.__config = config
 
 	def getValueFor(self, link):

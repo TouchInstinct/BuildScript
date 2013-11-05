@@ -8,14 +8,16 @@ from CommandBuilders.PatchInfoplistCommandBuilder import PatchInfoplistCommandBu
 from CommandBuilders.RemoveProjectCommandBuilder import RemoveProjectCommandBuilder
 from CommandBuilders.RestoreBackupCommandBuilder import RestoreBackupCommandBuilder
 from CommandBuilders.ShCommandBuilder import ShCommandBuilder
-from commands.ValueProvider import ValueProvider
 
 
 class StepsRunner:
-	def __init__(self, config):
+	def __init__(self, config, compositeLineProcessor, valueProvider):
 		assert config is not None
+		assert compositeLineProcessor is not None
+		assert valueProvider is not None
 
-		self.valueProvider = ValueProvider(config)
+		self.lineConveyor = compositeLineProcessor
+		self.valueProvider = valueProvider
 
 		self.shCommandBuilder = ShCommandBuilder()
 		self.removeProjectBuilder = RemoveProjectCommandBuilder()
@@ -36,14 +38,12 @@ class StepsRunner:
 
 		lines = content.splitlines()
 		for line in lines:
-			stripped = line.strip(' \t\n\r')
+			processedLine = self.lineConveyor.processLine(line)
 
-			if len(stripped) == 0:
-				continue
-			if stripped.startswith("#"):
+			if len(processedLine) == 0:
 				continue
 			else:
-				self.processLine(stripped)
+				self.processLine(processedLine)
 
 	def processLine(self, line):
 		if self.shCommandBuilder.isShCommand(line):
