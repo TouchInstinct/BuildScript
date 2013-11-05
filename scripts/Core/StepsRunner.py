@@ -8,6 +8,7 @@ from CommandBuilders.PatchInfoplistCommandBuilder import PatchInfoplistCommandBu
 from CommandBuilders.RemoveProjectCommandBuilder import RemoveProjectCommandBuilder
 from CommandBuilders.RestoreBackupCommandBuilder import RestoreBackupCommandBuilder
 from CommandBuilders.ShCommandBuilder import ShCommandBuilder
+from CommandBuilders.TestflightCommandBuilder import TestflightCommandBuilder
 
 
 class StepsRunner:
@@ -28,6 +29,7 @@ class StepsRunner:
 		self.patchCsproj = PatchCsprojCommandBuilder(config, self.valueProvider)
 		self.patchInfoPlist = PatchInfoplistCommandBuilder(self.valueProvider)
 		self.copyBuilder = CopyCommandBuilder()
+		self.testflightBuilder = TestflightCommandBuilder()
 
 		buildUtilPath = config['build_tool']
 		self.cleanBuilder = CleanBuildCommandBuilder(buildUtilPath, 'clean')
@@ -48,37 +50,30 @@ class StepsRunner:
 	def processLine(self, line):
 		if self.shCommandBuilder.isShCommand(line):
 			cmd = self.shCommandBuilder.getCommandFor(line)
-			cmd.execute()
 		elif self.removeProjectBuilder.isRemoveProject(line):
 			cmd = self.removeProjectBuilder.getCommandFor(line)
-			cmd.execute()
 		elif self.cleanBuilder.isCleanBuild(line):
 			cmd = self.cleanBuilder.getCommandFor(line)
-			cmd.execute()
 		elif self.buildBuilder.isCleanBuild(line):
 			cmd = self.buildBuilder.getCommandFor(line)
-			cmd.execute()
 		elif self.createBackupBuilder.isCreateBackup(line):
 			cmd = self.createBackupBuilder.getCommandFor(line)
-			cmd.execute()
 		elif self.createDirs.isMakeDirsCommand(line):
 			cmd = self.createDirs.getCommandFor(line)
-			cmd.execute()
 		elif self.patchCsproj.isPatchCsproj(line):
 			cmd = self.patchCsproj.getCommandFor(line)
-			cmd.execute()
 		elif self.patchInfoPlist.isPatchInfoPlist(line):
 			cmd = self.patchInfoPlist.getCommandFor(line)
-			cmd.execute()
 		elif self.copyBuilder.isCopy(line):
 			cmd =self.copyBuilder.getCommandFor(line)
-			cmd.execute()
 		elif self.restoreFromBackupBuilder.isRestoreBackup(line):
 			cmd = self.restoreFromBackupBuilder.getCommandFor(line)
-			cmd.execute()
 		elif self.deleteBackupBuilder.isDeleteBackup(line):
 			cmd =self.deleteBackupBuilder.getCommandFor(line)
-			cmd.execute()
+		elif self.testflightBuilder.isTestflight(line):
+			cmd = self.testflightBuilder.getCommandFor(line)
 		else:
 			msg = "unrecognised step. Line: '{0}'".format(line)
 			raise Exception(msg)
+
+		cmd.execute()

@@ -19,5 +19,7 @@ create dirs 'Output/Appstore/Artifacts'
 copy 'BuildSample/BuildSample/Output/BuildSample-{@version}.ipa' to 'Output/Appstore/Artifacts'
 sh cp -a BuildSample/BuildSample/Output/ Output/Appstore/
 
+publish 'Output/Appstore/Artifacts/BuildSample-{@version}.ipa' to testflight notes = 'Hello' api_token = '{@tf_api_token}' team_token = '{@tf_team_token}'
+
 restore from backup
 delete backup
