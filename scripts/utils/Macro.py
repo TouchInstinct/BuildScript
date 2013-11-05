@@ -1,15 +1,19 @@
 import re
 
 class Macro:
-	def __init__(self, valueResolver):
-		assert valueResolver is not None
+	def __init__(self):
+		pass
 
-		self.__valueResolver = valueResolver
+	def getMacroByName(self, macroName):
+		assert macroName is not None
 
-	def resolveLine(self, line):
-		assert line is not None
+		return '{@' + macroName + '}'
 
-		symbols = self.getSymbols(line)
+	def getMacroName(self, macro):
+		assert macro.startswith('{@')
+		assert macro.endswith('}')
+
+		return macro[2:-1]
 
 	def getSymbols(self, line):
 		assert line is not None
