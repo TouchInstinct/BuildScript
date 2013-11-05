@@ -2,6 +2,7 @@ from CommandBuilders.CleanBuildCommandBuilder import CleanBuildCommandBuilder
 from CommandBuilders.CopyCommandBuilder import CopyCommandBuilder
 from CommandBuilders.CreateBackupCommandBuilder import CreateBackupCommandBuilder
 from CommandBuilders.DeleteBackupCommandBuilder import DeleteBackupCommandBuilder
+from CommandBuilders.InstallProfileCommandBuilder import InstallProfileCommandBuilder
 from CommandBuilders.MakeDirsCommandBuilder import MakeDirsCommandBuilder
 from CommandBuilders.PatchCsprojCommandBuilder import PatchCsprojCommandBuilder
 from CommandBuilders.PatchInfoplistCommandBuilder import PatchInfoplistCommandBuilder
@@ -30,6 +31,7 @@ class StepsRunner:
 		self.patchInfoPlist = PatchInfoplistCommandBuilder(self.valueProvider)
 		self.copyBuilder = CopyCommandBuilder()
 		self.testflightBuilder = TestflightCommandBuilder()
+		self.installProfileBuilder = InstallProfileCommandBuilder()
 
 		buildUtilPath = config['build_tool']
 		self.cleanBuilder = CleanBuildCommandBuilder(buildUtilPath, 'clean')
@@ -72,6 +74,8 @@ class StepsRunner:
 			cmd =self.deleteBackupBuilder.getCommandFor(line)
 		elif self.testflightBuilder.isTestflight(line):
 			cmd = self.testflightBuilder.getCommandFor(line)
+		elif self.installProfileBuilder.isInstallProfile(line):
+			cmd = self.installProfileBuilder.getCommandFor(line)
 		else:
 			msg = "unrecognised step. Line: '{0}'".format(line)
 			raise Exception(msg)
