@@ -31,7 +31,7 @@ class SettingsLineParser(LineParser):
 		propPathRegexp = r"^(?P<prop_path>[\w.]+)"
 		valueRegexp = "'(?P<value>.*)'"
 
-		regexpSource = propPathRegexp + self.keywordToken('=') + valueRegexp
+		regexpSource = propPathRegexp + r'\s*=\s*' + valueRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)

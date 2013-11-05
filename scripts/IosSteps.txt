@@ -1,4 +1,5 @@
 sh echo hello from '{@author}'
+sh echo version: '{@version}'
 
 restore from backup
 create backup for 'BuildSample'
