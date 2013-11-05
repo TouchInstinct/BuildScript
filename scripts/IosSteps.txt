@@ -1,22 +1,22 @@
+sh echo hello from '{@author}'
+
 restore from backup
 create backup for 'BuildSample'
 
 inside 'BuildSample/BuildSample.sln' remove NotCompileApp project
 
 inside 'BuildSample/BuildSample/CoolApp.csproj' set OutputPath to 'Output'
-inside 'BuildSample/BuildSample/Info.plist' set CFBundleVersion to '1.2.3'
+inside 'BuildSample/BuildSample/Info.plist' set CFBundleVersion to '{@version}'
 inside 'BuildSample/BuildSample/Info.plist' set CFBundleDisplayName to 'CoolApp'
 
 copy 'BuildSample/BuildSample/Profiles/8F606DAE-F9C9-4A19-8EFF-34B990D76C28.mobileprovision' to '~/Library/MobileDevice/Provisioning Profiles/BuildScript.mobileprovision'
 
-clean 'BuildSample/BuildSample.sln' for 'Release|iPhone'
-build 'BuildSample/BuildSample.sln' for 'Release|iPhone'
+clean 'BuildSample/BuildSample.sln' for '{@sln_config}'
+build 'BuildSample/BuildSample.sln' for '{@sln_config}'
 
 create dirs 'Output/Appstore/Artifacts'
-copy 'BuildSample/BuildSample/Output/BuildSample-1.2.3.ipa' to 'Output/Appstore/Artifacts'
+copy 'BuildSample/BuildSample/Output/BuildSample-{@version}.ipa' to 'Output/Appstore/Artifacts'
 sh cp -a BuildSample/BuildSample/Output/ Output/Appstore/
 
 restore from backup
 delete backup
-
-sh echo hello from Rustam

@@ -1,9 +1,12 @@
 import os
 from Core.LineConveyor.CommentRemover import CommentRemover
 from Core.LineConveyor.LineConveyor import LineConveyor
+from Core.LineConveyor.MacroResolver import MacroResolver
 from Core.LineConveyor.Stripper import Stripper
+from commands.ValueProvider import ValueProvider
 from utils.BuildConfigProvider import BuildConfigProvider
 from utils.FromFileSettingsProvider import FromFileSettingsProvider
+from utils.MacroProcessor import MacroProcessor
 
 scriptFilePath = os.path.abspath(__file__)
 
@@ -22,21 +25,28 @@ class TaskRunner:
 
 		lineStripper = Stripper()
 		commentRemover = CommentRemover()
+
+		macroProcessor = MacroProcessor()
+		self.valueProvider = ValueProvider()
+		macroResolver = MacroResolver(macroProcessor, self.valueProvider)
+
 		self.lineConveyor = LineConveyor()
 		self.lineConveyor.addProcessor(lineStripper)
 		self.lineConveyor.addProcessor(commentRemover)
+		self.lineConveyor.addProcessor(macroResolver)
 
 	def run(self):
 		settings = self.settingsProvider.fetchSettings()
 		buildReadyConfigs = self.configsProvider.getConfigs(settings)
 
 		for bc in buildReadyConfigs:
+			self.valueProvider.setConfig(bc)
 			self.runConfig(bc)
 
 	def runConfig(self, config):
 		content = self.getStepsContent(config)
 
-		stepsRunner = StepsRunner(config, self.lineConveyor)
+		stepsRunner = StepsRunner(config, self.lineConveyor, self.valueProvider)
 		stepsRunner.run(content)
 
 	def getStepsContent(self, config):

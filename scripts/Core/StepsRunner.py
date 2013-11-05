@@ -8,17 +8,16 @@ from CommandBuilders.PatchInfoplistCommandBuilder import PatchInfoplistCommandBu
 from CommandBuilders.RemoveProjectCommandBuilder import RemoveProjectCommandBuilder
 from CommandBuilders.RestoreBackupCommandBuilder import RestoreBackupCommandBuilder
 from CommandBuilders.ShCommandBuilder import ShCommandBuilder
-from commands.ValueProvider import ValueProvider
 
 
 class StepsRunner:
-	def __init__(self, config, compositeLineProcessor):
+	def __init__(self, config, compositeLineProcessor, valueProvider):
 		assert config is not None
 		assert compositeLineProcessor is not None
+		assert valueProvider is not None
 
 		self.lineConveyor = compositeLineProcessor
-
-		self.valueProvider = ValueProvider(config)
+		self.valueProvider = valueProvider
 
 		self.shCommandBuilder = ShCommandBuilder()
 		self.removeProjectBuilder = RemoveProjectCommandBuilder()

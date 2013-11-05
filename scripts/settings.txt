@@ -12,6 +12,8 @@ ios.steps = 'scripts/IosSteps.txt'
 ios.appstore.build_ready = 'true'
 ios.appstore.app_name = 'CoolApp'
 ios.appstore.sln_config = 'Release|iPhone'
+ios.appstore.author = 'Rustam'
+ios.appstore.version = '7.7.7'
 
 #ios.staging.build_ready = 'true'
 ios.staging.app_name = 'CoolApp staging'

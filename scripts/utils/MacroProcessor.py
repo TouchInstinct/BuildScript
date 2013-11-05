@@ -1,24 +1,25 @@
 import re
 
-class Macro:
+class MacroProcessor:
 	def __init__(self):
 		pass
 
 	def getMacroByName(self, macroName):
 		assert macroName is not None
+		assert macroName.startswith('@')
 
-		return '{@' + macroName + '}'
+		return '{' + macroName + '}'
 
 	def getMacroName(self, macro):
 		assert macro.startswith('{@')
 		assert macro.endswith('}')
 
-		return macro[2:-1]
+		return macro[1:-1]
 
 	def getSymbols(self, line):
 		assert line is not None
 
-		symRegexp = r"{@(?P<symbol>[\w]+)}"
+		symRegexp = r"{(?P<symbol>@[\w]+)}"
 		regexp = re.compile(symRegexp)
 
 		result = regexp.findall(line)
