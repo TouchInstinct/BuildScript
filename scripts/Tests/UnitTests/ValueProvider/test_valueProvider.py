@@ -8,7 +8,8 @@ class TestCase(unittest.TestCase):
 			'key1': 'value1',
 			'key2': 'value2'
 		}
-		self.__provider = ValueProvider(self.__config)
+		self.__provider = ValueProvider()
+		self.__provider.setConfig(self.__config)
 
 	def test_provideByLink(self):
 		value1 = self.__provider.getValueFor('@key1')
