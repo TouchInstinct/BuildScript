@@ -1,5 +1,5 @@
 class CommentRemover:
-	def processLine(self, line):
+	def processText(self, line):
 		assert line is not None
 
 		newLine = line

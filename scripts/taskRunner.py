@@ -2,7 +2,7 @@
 import os
 import argparse
 from Core.LineConveyor.CommentRemover import CommentRemover
-from Core.LineConveyor.LineConveyor import LineConveyor
+from Core.LineConveyor.TextConveyorPreprocessor import TextConveyorPreprocessor
 from Core.LineConveyor.MacroResolver import MacroResolver
 from Core.LineConveyor.Stripper import Stripper
 from commands.ValueProvider import ValueProvider
@@ -35,10 +35,12 @@ class TaskRunner:
 		self.valueProvider = ValueProvider()
 		macroResolver = MacroResolver(macroProcessor, self.valueProvider)
 
-		self.lineConveyor = LineConveyor()
-		self.lineConveyor.addProcessor(lineStripper)
-		self.lineConveyor.addProcessor(commentRemover)
-		self.lineConveyor.addProcessor(macroResolver)
+		self.textPreprocessor = TextConveyorPreprocessor()
+		self.textPreprocessor.addProcessor(macroResolver)
+
+		self.linePreprocessor = TextConveyorPreprocessor()
+		self.linePreprocessor.addProcessor(lineStripper)
+		self.linePreprocessor.addProcessor(commentRemover)
 
 	def run(self):
 		rawSettings = self.settingsProvider.fetchSettings()
@@ -51,7 +53,7 @@ class TaskRunner:
 	def runConfig(self, config):
 		content = self.getStepsContent(config)
 
-		stepsRunner = StepsRunner(config, self.lineConveyor, self.valueProvider)
+		stepsRunner = StepsRunner(config, self.linePreprocessor, self.valueProvider)
 		stepsRunner.run(content)
 
 	def getStepsContent(self, config):
