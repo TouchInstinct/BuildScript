@@ -39,12 +39,12 @@ class TaskRunner:
 		macroResolver = MacroResolver(macroProcessor, self.valueProvider)
 
 		includeProcessor = IncludeProcessor()
-		fileContentProvider = FileContentProvider()
-		textInclude = TextInclude(includeProcessor, fileContentProvider)
+		self.fileContentProvider = FileContentProvider()
+		textInclude = TextInclude(includeProcessor, self.fileContentProvider)
 
 		self.textPreprocessor = TextConveyorPreprocessor()
-		self.textPreprocessor.addProcessor(macroResolver)
 		self.textPreprocessor.addProcessor(textInclude)
+		self.textPreprocessor.addProcessor(macroResolver)
 
 		self.linePreprocessor = TextConveyorPreprocessor()
 		self.linePreprocessor.addProcessor(lineStripper)
@@ -66,9 +66,10 @@ class TaskRunner:
 
 	def getStepsContent(self, config):
 		pathToSteps = config['steps']
-		stepsFile = open(pathToSteps)
 
-		content = stepsFile.read()
+		content = self.fileContentProvider.fetchContent(pathToSteps)
+		content = self.textPreprocessor.processText(content)
+
 		return content
 
 parser = argparse.ArgumentParser()
