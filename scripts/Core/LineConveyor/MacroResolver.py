@@ -6,7 +6,7 @@ class MacroResolver:
 		self.macroProcessor = macroProcessor
 		self.valueProvider = valueProvider
 
-	def processLine(self, line):
+	def processText(self, line):
 		assert line is not None
 
 		symbols = self.macroProcessor.getSymbols(line)

@@ -1,4 +1,4 @@
-class LineConveyor:
+class TextConveyorPreprocessor:
 	def __init__(self):
 		self.processors = []
 
@@ -7,10 +7,10 @@ class LineConveyor:
 
 		self.processors.append(processor)
 
-	def processLine(self, line):
-		assert line is not None
+	def processText(self, text):
+		assert text is not None
 
 		for processor in self.processors:
-			line = processor.processLine(line)
+			text = processor.processText(text)
 
-		return line
+		return text

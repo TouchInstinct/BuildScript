@@ -42,7 +42,7 @@ class StepsRunner:
 
 		lines = content.splitlines()
 		for line in lines:
-			processedLine = self.lineConveyor.processLine(line)
+			processedLine = self.lineConveyor.processText(line)
 
 			if len(processedLine) == 0:
 				continue

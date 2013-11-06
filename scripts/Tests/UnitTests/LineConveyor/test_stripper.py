@@ -8,6 +8,6 @@ class TestStripper(unittest.TestCase):
 
 	def test_stripLine(self):
 		line = '  \tSome text \t\r\n'
-		newLine = self.stripper.processLine(line)
+		newLine = self.stripper.processText(line)
 
 		self.assertEqual('Some text', newLine)

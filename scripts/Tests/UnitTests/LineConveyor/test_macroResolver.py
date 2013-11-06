@@ -21,6 +21,6 @@ class TestMacroResolver(unittest.TestCase):
 
 	def test_resolveLine(self):
 		line = '{@key1} bla {@some_name} version: {@version}'
-		newLine = self.macroResolver.processLine(line)
+		newLine = self.macroResolver.processText(line)
 
 		self.assertEqual('hello world bla another name version: 1.2.3', newLine)

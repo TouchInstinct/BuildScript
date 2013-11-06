@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 import os
 import argparse
+from Core.FileContentProvider import FileContentProvider
 from Core.LineConveyor.CommentRemover import CommentRemover
-from Core.LineConveyor.LineConveyor import LineConveyor
+from Core.LineConveyor.TextConveyorPreprocessor import TextConveyorPreprocessor
 from Core.LineConveyor.MacroResolver import MacroResolver
 from Core.LineConveyor.Stripper import Stripper
+from Core.LineConveyor.TextInclude import TextInclude
 from commands.ValueProvider import ValueProvider
 from utils.BuildConfigProvider import BuildConfigProvider
+from utils.IncludeProcessor import IncludeProcessor
 from utils.MacroProcessor import MacroProcessor
 from utils.SettingsProvider.CmdArgsOverriderSettingsProvider import CmdArgsOverriderSettingsProvider
 from utils.SettingsProvider.FromFileSettingsProvider import FromFileSettingsProvider
@@ -35,10 +38,17 @@ class TaskRunner:
 		self.valueProvider = ValueProvider()
 		macroResolver = MacroResolver(macroProcessor, self.valueProvider)
 
-		self.lineConveyor = LineConveyor()
-		self.lineConveyor.addProcessor(lineStripper)
-		self.lineConveyor.addProcessor(commentRemover)
-		self.lineConveyor.addProcessor(macroResolver)
+		includeProcessor = IncludeProcessor()
+		self.fileContentProvider = FileContentProvider()
+		textInclude = TextInclude(includeProcessor, self.fileContentProvider)
+
+		self.textPreprocessor = TextConveyorPreprocessor()
+		self.textPreprocessor.addProcessor(textInclude)
+		self.textPreprocessor.addProcessor(macroResolver)
+
+		self.linePreprocessor = TextConveyorPreprocessor()
+		self.linePreprocessor.addProcessor(lineStripper)
+		self.linePreprocessor.addProcessor(commentRemover)
 
 	def run(self):
 		rawSettings = self.settingsProvider.fetchSettings()
@@ -51,14 +61,15 @@ class TaskRunner:
 	def runConfig(self, config):
 		content = self.getStepsContent(config)
 
-		stepsRunner = StepsRunner(config, self.lineConveyor, self.valueProvider)
+		stepsRunner = StepsRunner(config, self.linePreprocessor, self.valueProvider)
 		stepsRunner.run(content)
 
 	def getStepsContent(self, config):
 		pathToSteps = config['steps']
-		stepsFile = open(pathToSteps)
 
-		content = stepsFile.read()
+		content = self.fileContentProvider.fetchContent(pathToSteps)
+		content = self.textPreprocessor.processText(content)
+
 		return content
 
 parser = argparse.ArgumentParser()
