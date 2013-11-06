@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 import os
 import argparse
+from Core.FileContentProvider import FileContentProvider
 from Core.LineConveyor.CommentRemover import CommentRemover
 from Core.LineConveyor.TextConveyorPreprocessor import TextConveyorPreprocessor
 from Core.LineConveyor.MacroResolver import MacroResolver
 from Core.LineConveyor.Stripper import Stripper
+from Core.LineConveyor.TextInclude import TextInclude
 from commands.ValueProvider import ValueProvider
 from utils.BuildConfigProvider import BuildConfigProvider
+from utils.IncludeProcessor import IncludeProcessor
 from utils.MacroProcessor import MacroProcessor
 from utils.SettingsProvider.CmdArgsOverriderSettingsProvider import CmdArgsOverriderSettingsProvider
 from utils.SettingsProvider.FromFileSettingsProvider import FromFileSettingsProvider
@@ -35,8 +38,13 @@ class TaskRunner:
 		self.valueProvider = ValueProvider()
 		macroResolver = MacroResolver(macroProcessor, self.valueProvider)
 
+		includeProcessor = IncludeProcessor()
+		fileContentProvider = FileContentProvider()
+		textInclude = TextInclude(includeProcessor, fileContentProvider)
+
 		self.textPreprocessor = TextConveyorPreprocessor()
 		self.textPreprocessor.addProcessor(macroResolver)
+		self.textPreprocessor.addProcessor(textInclude)
 
 		self.linePreprocessor = TextConveyorPreprocessor()
 		self.linePreprocessor.addProcessor(lineStripper)

@@ -15,6 +15,6 @@ class TextInclude:
 			path = info[1]
 
 			content = self.contentProvider.fetchContent(path)
-			text.replace(includeStatement, content)
+			text = text.replace(includeStatement, content)
 
 		return text
