@@ -1,28 +1,27 @@
-from distutils.command.install import install
+import sys
+import os
+import stat
+import argparse
 from distutils.core import setup
 
-#import argparse
-#parser = argparse.ArgumentParser()
-#parser.add_argument('--c', required=False)
-#parser.add_argument('--install-headers', required=False)
-#args = parser.parse_known_args()[0]
-#print args
-#print parser.parse_known_args()[1]
-#print args.c
-#import sys
-#print sys.argv
-#if args.c == 'install':
-#	path = getattr(args, 'install-headers', None)
-#	print path
+print sys.argv
+parser = argparse.ArgumentParser()
+parser.add_argument('install')
+args = parser.parse_known_args()[0]
 
-setup(name= 'TouchinBuild',
-	version= '0.0.10',
+packageName = 'TouchinBuild'
+version = '0.0.13'
+
+setup(name= packageName,
+	version= version,
+
 	py_modules=['TouchinBuild.taskRunner'],
 	packages= ['TouchinBuild.Core', 'TouchinBuild.Core.LineConveyor',
 				'TouchinBuild.utils', 'TouchinBuild.utils.SettingsProvider',
-				'TouchinBuild.parsers', 'TouchinBuild.parsers.CopyParser', 'TouchinBuild.parsers.BackupParser', 'TouchinBuild.parsers.InsideParser', 'TouchinBuild.parsers.SettingsParser',
+				'TouchinBuild.parsers', 'TouchinBuild.parsers.CopyParser', 'TouchinBuild.parsers.ParserBackup', 'TouchinBuild.parsers.InsideParser', 'TouchinBuild.parsers.SettingsParser',
 				'TouchinBuild.commands', 'TouchinBuild.commands.CleanBuildCommands',
 				'TouchinBuild.CommandBuilders'],
+
 	url = 'http://touchin.ru',
 	license = 'BSD License',
 	description = 'Build tool for Touchin',
@@ -32,16 +31,18 @@ setup(name= 'TouchinBuild',
 	maintainer_email='rustam.zaitov [at] touchin.ru',
 )
 
+if args.install == 'install':
+	libPath = os.path.join(sys.prefix, 'lib')
+	dirsNames = os.listdir(libPath)
+	pythonDir = [name for name in dirsNames if name.startswith('python')][0]
+	executable = os.path.join(libPath, pythonDir, 'site-packages', packageName, 'taskRunner.py')
 
-#scriptFilePath = os.path.abspath(__file__)
-#sites = site.getsitepackages()
-#print sites
+	symlink = '/usr/local/bin/tibuild'
+	try:
+		os.unlink(symlink)
+	except OSError:
+		print 'warning: symlink file {0} is not exist'.format(symlink)
 
-#scriptDirPath = os.path.dirname(scriptFilePath)
-#absPathToEnterPoint = os.path.join(scriptDirPath, 'TouchinBuild')
-#absPathToEnterPoint = os.path.join(absPathToEnterPoint, 'taskRunner.py')
-#print absPathToEnterPoint
-
-#symlinkPath = 'usr/local/bin/tibuild'
-#os.unlink(symlinkPath)
-#os.symlink(absPathToEnterPoint, symlinkPath)
+	st = os.stat(executable)
+	os.chmod(executable, st.st_mode | stat.S_IEXEC)
+	os.symlink(executable, symlink)
