@@ -13,15 +13,15 @@ from utils.IncludeProcessor import IncludeProcessor
 from utils.MacroProcessor import MacroProcessor
 from utils.SettingsProvider.CmdArgsOverriderSettingsProvider import CmdArgsOverriderSettingsProvider
 from utils.SettingsProvider.FromFileSettingsProvider import FromFileSettingsProvider
-
-scriptFilePath = os.path.abspath(__file__)
-
-scriptDir = os.path.dirname(scriptFilePath)
-baseDir = os.path.join(scriptDir, os.pardir)
-
-os.chdir(baseDir)
-
 from Core.StepsRunner import StepsRunner
+
+#scriptFilePath = os.path.abspath(__file__)
+#
+#scriptDir = os.path.dirname(scriptFilePath)
+#baseDir = os.path.join(scriptDir, os.pardir)
+#
+#os.chdir(baseDir)
+
 
 
 class TaskRunner:
