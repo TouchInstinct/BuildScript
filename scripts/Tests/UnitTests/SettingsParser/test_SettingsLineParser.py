@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
-from parser.SettingsParser.SettingsLineParser import SettingsLineParser
+from parsers.SettingsParser.SettingsLineParser import SettingsLineParser
 
 
 class TestSettingsLineParser(unittest.TestCase):

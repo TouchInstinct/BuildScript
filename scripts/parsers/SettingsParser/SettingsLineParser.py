@@ -1,7 +1,7 @@
 import re
 
-from parser.LineParser import LineParser
-from parser.SettingsParser.PathParser import PathParser
+from parsers.LineParser import LineParser
+from parsers.SettingsParser.PathParser import PathParser
 
 
 class SettingsLineParser(LineParser):

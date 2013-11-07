@@ -1,5 +1,5 @@
 import unittest
-from parser.CopyParser.CopyLineParser import CopyLineParser
+from parsers.CopyParser.CopyLineParser import CopyLineParser
 
 
 class TestCopyParser(unittest.TestCase):

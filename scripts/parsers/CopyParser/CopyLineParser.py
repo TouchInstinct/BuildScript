@@ -1,7 +1,7 @@
 import re
 
-from parser.CopyParser.CopyArguments import CopyArguments
-from parser.LineParser import LineParser
+from parsers.CopyParser.CopyArguments import CopyArguments
+from parsers.LineParser import LineParser
 
 
 class CopyLineParser(LineParser):

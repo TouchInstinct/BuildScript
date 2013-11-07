@@ -1,4 +1,4 @@
-from parser.LineParser import LineParser
+from parsers.LineParser import LineParser
 import re
 
 class TestflightParser(LineParser):

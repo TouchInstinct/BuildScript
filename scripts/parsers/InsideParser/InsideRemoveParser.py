@@ -1,6 +1,6 @@
 import re
 
-from parser.LineParser import LineParser
+from parsers.LineParser import LineParser
 
 
 class InsideRemoveParser(LineParser):

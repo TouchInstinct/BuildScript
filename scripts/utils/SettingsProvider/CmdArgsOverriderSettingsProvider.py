@@ -1,5 +1,5 @@
 import select
-from parser.SettingsParser.SettingsParser import SettingsParser
+from parsers.SettingsParser.SettingsParser import SettingsParser
 
 
 class CmdArgsOverriderSettingsProvider:

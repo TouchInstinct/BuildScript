@@ -1,5 +1,5 @@
 import unittest
-from parser.SettingsParser.PathParser import PathParser
+from parsers.SettingsParser.PathParser import PathParser
 
 
 class TestPathParser(unittest.TestCase):

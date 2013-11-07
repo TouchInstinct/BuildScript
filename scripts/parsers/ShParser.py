@@ -1,25 +1,27 @@
 import re
 
-from parser.LineParser import LineParser
+from parsers.LineParser import LineParser
 
 
-class MakeDirsParser(LineParser):
+class ShParser(LineParser):
 	def __init__(self):
 		LineParser.__init__(self)
 
 	def parseLine(self, line):
-		pathRegexp = r"'(?P<path>[^']+)'$"
+		assert line
 
-		regexpSource = self.startsWith('create dirs') + pathRegexp
+		cmdTextRegexp = r'(?P<text>.*)'
+
+		regexpSource = self.startsWith('sh') + cmdTextRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)
 		self._guardMatch(match, line, regexpSource)
 
-		path = match.group('path')
-		return path
+		cmdText = match.group('text')
+		return cmdText
 
 	def isValidLine(self, line):
 		assert line is not None
 
-		return line.startswith('create dirs ')
+		return line.startswith('sh ')

@@ -1,5 +1,5 @@
-from parser.SettingsParser.SettingsLineParser import SettingsLineParser
-from parser.SettingsParser.SettingsMerger import SettingsMerger
+from parsers.SettingsParser.SettingsLineParser import SettingsLineParser
+from parsers.SettingsParser.SettingsMerger import SettingsMerger
 
 
 class SettingsParser:

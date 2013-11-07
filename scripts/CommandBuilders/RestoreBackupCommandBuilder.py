@@ -1,5 +1,5 @@
 from commands.RestoreBackupCommand import RestoreBackupCommand
-from parser.BackupParser.RestoreBackupParser import RestoreBackupParser
+from parsers.BackupParser.RestoreBackupParser import RestoreBackupParser
 
 
 class RestoreBackupCommandBuilder:

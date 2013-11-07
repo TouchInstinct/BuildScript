@@ -1,5 +1,5 @@
 from commands.PatchInfoPlistCommand import PatchInfoPlistCommand
-from parser.InsideParser.InsideSetParser import InsideSetParser
+from parsers.InsideParser.InsideSetParser import InsideSetParser
 
 
 class PatchInfoplistCommandBuilder:

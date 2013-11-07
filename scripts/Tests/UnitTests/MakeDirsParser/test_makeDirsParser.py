@@ -1,5 +1,5 @@
 import unittest
-from parser.MakeDirsParser import MakeDirsParser
+from parsers.MakeDirsParser import MakeDirsParser
 
 
 class TestMakeDirsParser(unittest.TestCase):

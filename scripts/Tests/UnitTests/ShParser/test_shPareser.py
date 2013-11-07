@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
-from parser.ShParser import ShParser
+from parsers.ShParser import ShParser
 
 
 class TestShParser(unittest.TestCase):

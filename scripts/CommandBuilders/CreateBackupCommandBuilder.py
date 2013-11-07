@@ -1,5 +1,5 @@
 from commands.CreateBackupCommand import CreateBackupCommand
-from parser.BackupParser.CreateBackupParser import CreateBackupParser
+from parsers.BackupParser.CreateBackupParser import CreateBackupParser
 
 
 class CreateBackupCommandBuilder:

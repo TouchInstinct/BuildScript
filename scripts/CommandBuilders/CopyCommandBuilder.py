@@ -1,5 +1,5 @@
 from commands.CopyCommand import CopyCommand
-from parser.CopyParser.CopyLineParser import CopyLineParser
+from parsers.CopyParser.CopyLineParser import CopyLineParser
 
 
 class CopyCommandBuilder:

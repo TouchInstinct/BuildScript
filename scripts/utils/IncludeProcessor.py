@@ -1,5 +1,5 @@
 import re
-from parser.LineParser import LineParser
+from parsers.LineParser import LineParser
 
 
 class IncludeProcessor(LineParser):

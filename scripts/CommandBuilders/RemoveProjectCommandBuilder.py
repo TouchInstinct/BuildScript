@@ -1,5 +1,5 @@
 from commands.RemoveProjectCommand import RemoveProjectCommand
-from parser.InsideParser.InsideRemoveParser import InsideRemoveParser
+from parsers.InsideParser.InsideRemoveParser import InsideRemoveParser
 
 
 class RemoveProjectCommandBuilder:

@@ -1,5 +1,5 @@
 from commands.TestflightCommand import TestflightCommand
-from parser.TestflightParser import TestflightParser
+from parsers.TestflightParser import TestflightParser
 
 
 class TestflightCommandBuilder:

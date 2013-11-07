@@ -1,5 +1,5 @@
 from commands.ShCommand import ShCommand
-from parser.ShParser import ShParser
+from parsers.ShParser import ShParser
 
 
 class ShCommandBuilder:

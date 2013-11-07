@@ -1,5 +1,5 @@
 import unittest
-from parser.InstallProfileParser import InstallProfileParser
+from parsers.InstallProfileParser import InstallProfileParser
 
 
 class TestInstallProfile(unittest.TestCase):

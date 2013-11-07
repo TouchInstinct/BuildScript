@@ -1,23 +1,25 @@
 import re
 
-from parser.LineParser import LineParser
+from parsers.LineParser import LineParser
 
 
-class DeleteBackupParser(LineParser):
+class MakeDirsParser(LineParser):
 	def __init__(self):
 		LineParser.__init__(self)
 
 	def parseLine(self, line):
-		assert line is not None
+		pathRegexp = r"'(?P<path>[^']+)'$"
 
-		regexpSource = r'delete backup\s*'
+		regexpSource = self.startsWith('create dirs') + pathRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)
 		self._guardMatch(match, line, regexpSource)
 
+		path = match.group('path')
+		return path
+
 	def isValidLine(self, line):
 		assert line is not None
 
-		isValid = line.startswith('delete backup')
-		return isValid
+		return line.startswith('create dirs ')

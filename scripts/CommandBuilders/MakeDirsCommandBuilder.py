@@ -1,5 +1,5 @@
 from commands.MakeDirsCommand import MakeDirsCommand
-from parser.MakeDirsParser import MakeDirsParser
+from parsers.MakeDirsParser import MakeDirsParser
 
 
 class MakeDirsCommandBuilder:

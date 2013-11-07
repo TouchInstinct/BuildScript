@@ -1,5 +1,5 @@
 import unittest
-from parser.TestflightParser import TestflightParser
+from parsers.TestflightParser import TestflightParser
 
 
 class TesttestflightParser(unittest.TestCase):
