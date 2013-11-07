@@ -1,5 +1,5 @@
 from commands.DeleteBackupCommand import DeleteBackupCommand
-from parsers.BackupParser.DeleteBackupParser import DeleteBackupParser
+from parsers.ParserBackup.DeleteBackupParser import DeleteBackupParser
 
 
 class DeleteBackupCommandBuilder:

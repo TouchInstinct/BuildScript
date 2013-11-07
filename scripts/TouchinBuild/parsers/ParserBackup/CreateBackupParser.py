@@ -1,0 +1,32 @@
+import re
+
+from parsers.ParserBackup.CreateBackupArguments import CreateBackupArguments
+from parsers.LineParser import LineParser
+
+
+class CreateBackupParser(LineParser):
+	def __init__(self):
+		LineParser.__init__(self)
+		self.__createBackupArguments = CreateBackupArguments()
+
+	def parseLine(self, line):
+		assert line is not None
+
+		folderNameRegexp = r"'(?P<folder>[^']+)'$"
+
+		regexpSource = self.startsWith('create backup for') + folderNameRegexp
+		regexp = re.compile(regexpSource, re.UNICODE)
+
+		match = regexp.match(line)
+		self._guardMatch(match, line, regexpSource)
+
+		folderName = match.group('folder')
+		self.__createBackupArguments.folderName = folderName
+
+		return self.__createBackupArguments
+
+	def isValidLine(self, line):
+		assert line is not None
+
+		isValid = line.startswith('create backup')
+		return  isValid
