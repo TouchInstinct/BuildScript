@@ -1,3 +1,5 @@
+import os
+import site
 from distutils.core import setup
 
 setup(name= 'TouchinBuild',
@@ -16,3 +18,18 @@ setup(name= 'TouchinBuild',
 	maintainer= 'Rustam Zaitov',
 	maintainer_email='rustam.zaitov [at] touchin.ru'
 )
+
+
+scriptFilePath = os.path.abspath(__file__)
+
+sites = site.getsitepackages()
+print sites
+
+#scriptDirPath = os.path.dirname(scriptFilePath)
+#absPathToEnterPoint = os.path.join(scriptDirPath, 'TouchinBuild')
+#absPathToEnterPoint = os.path.join(absPathToEnterPoint, 'taskRunner.py')
+#print absPathToEnterPoint
+
+#symlinkPath = 'usr/local/bin/tibuild'
+#os.unlink(symlinkPath)
+#os.symlink(absPathToEnterPoint, symlinkPath)
