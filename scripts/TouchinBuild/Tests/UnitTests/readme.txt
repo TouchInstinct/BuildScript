@@ -1,3 +1,5 @@
+тесты нужно запускать из папки TouchinBuild
+
 Запуск всех тестов
 python -m unittest discover -s Tests/UnitTests/
 

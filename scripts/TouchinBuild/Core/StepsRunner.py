@@ -27,7 +27,7 @@ class StepsRunner:
 		self.restoreFromBackupBuilder = RestoreBackupCommandBuilder()
 		self.deleteBackupBuilder = DeleteBackupCommandBuilder()
 		self.createDirs = MakeDirsCommandBuilder()
-		self.patchCsproj = PatchCsprojCommandBuilder(config, self.valueProvider)
+		self.patchCsproj = PatchCsprojCommandBuilder()
 		self.patchInfoPlist = PatchInfoplistCommandBuilder(self.valueProvider)
 		self.copyBuilder = CopyCommandBuilder()
 		self.testflightBuilder = TestflightCommandBuilder()

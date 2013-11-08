@@ -1,18 +1,16 @@
 # -*- coding: utf-8 -*-
 import unittest
-from commands.ValueProvider import ValueProvider
-from parsers.InsideParser.InsideSetParser import InsideSetParser
+from parsers.InsideParser.InsideCsprojSetParser import InsideCsprojSetParser
 
 
 class TestCsprojParser(unittest.TestCase):
 
 	def setUp(self):
-		value_provider = ValueProvider()
-		self.parser = InsideSetParser(value_provider, 'csproj')
+		self.parser = InsideCsprojSetParser('csproj')
 
 
 	def test_isValid(self):
-		line = "inside 'CoolApp.csproj' set KEY to 'VALUE'"
+		line = "inside 'CoolApp.csproj' set KEY to 'VALUE' for 'Sln|Config'"
 		isValid = self.parser.isValidLine(line)
 
 		self.assertEqual(True, isValid)
@@ -24,9 +22,10 @@ class TestCsprojParser(unittest.TestCase):
 		self.assertEqual(False, isValid)
 
 	def test_parse(self):
-		line = "inside 'Dir/../Some Folder/CoolApp.csproj' set OutputPath to 'Output'"
+		line = "inside 'Dir/../Some Folder/CoolApp.csproj' set OutputPath to 'Output' for 'Release|iPhone'"
 		result = self.parser.parseLine(line)
 
 		self.assertEqual('Dir/../Some Folder/CoolApp.csproj', result[0])
 		self.assertEqual('OutputPath', result[1])
 		self.assertEqual('Output', result[2])
+		self.assertEqual('Release|iPhone', result[3])
