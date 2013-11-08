@@ -1,11 +1,8 @@
 from CommandBuilders.PatchCsprojCommandBuilder import PatchCsprojCommandBuilder
 from commands.ValueProvider import ValueProvider
 
-config = {'sln_config' : 'Release|iPhone'}
-line = "inside 'BuildSample/BuildSample/CoolApp.csproj' set OutputPath to 'Output'"
+line = "inside 'BuildSample/BuildSample/CoolApp.csproj' set OutputPath to 'Output' for 'Release|iPhone'"
 
-value_provider = ValueProvider(config)
-
-builder = PatchCsprojCommandBuilder(config, value_provider)
+builder = PatchCsprojCommandBuilder()
 command = builder.getCommandFor(line)
 command.execute()

@@ -33,7 +33,7 @@ class InsideCsprojSetParser(LineParser):
 		slnConfigRegexp = r"'(?P<config>[a-zA-Z|]+)'$"
 
 		regexpSource = self.startsWith('inside') + filePathRegexp + self.keywordToken('set') + keyRegexp + \
-					   self.keywordToken('to') + valueRegexp + self.than('for') + slnConfigRegexp
+					   self.keywordToken('to') + valueRegexp + self.keywordToken('for') + slnConfigRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)

@@ -1,26 +1,21 @@
 from commands.PatchCsprojCommand import PatchCsprojCommand
-from parsers.InsideParser.InsideSetParser import InsideSetParser
+from parsers.InsideParser.InsideCsprojSetParser import InsideCsprojSetParser
 
 
 class PatchCsprojCommandBuilder:
-	def __init__(self, config, valueProvider):
-		assert config is not None
-		assert valueProvider is not None
-
-		self.__config = config
-		self.__valueProvider = valueProvider
+	def __init__(self):
+		pass
 
 	def getCommandFor(self, line):
 		assert line is not None
 
-		parser = InsideSetParser('csproj')
+		parser = self.getParser()
 		result = parser.parseLine(line)
 
 		csprojPath = result[0]
 		key = result[1]
-		value = self.__valueProvider.getValueFor(result[2])
-
-		slnConfig = self.__config['sln_config']
+		value = result[2]
+		slnConfig = result[3]
 
 		command = PatchCsprojCommand(csprojPath, key, value, slnConfig)
 		return command
@@ -28,8 +23,10 @@ class PatchCsprojCommandBuilder:
 	def isPatchCsproj(self, line):
 		assert line is not None
 
-		parser = InsideSetParser('csproj')
+		parser = self.getParser()
 		isValid = parser.isValidLine(line)
 
 		return isValid
 
+	def getParser(self):
+		return InsideCsprojSetParser('csproj')
