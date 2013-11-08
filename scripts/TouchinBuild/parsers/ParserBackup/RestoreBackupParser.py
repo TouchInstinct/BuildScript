@@ -10,7 +10,7 @@ class RestoreBackupParser(LineParser):
 	def parseLine(self, line):
 		assert line is not None
 
-		regexpSource = r'restore from backup\s*'
+		regexpSource = self.startsWith('restore') + self.than('from') + self.endsWith('backup')
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)
