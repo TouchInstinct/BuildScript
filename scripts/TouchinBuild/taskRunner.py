@@ -47,8 +47,8 @@ class TaskRunner:
 		self.textPreprocessor.addProcessor(macroResolver)
 
 		self.linePreprocessor = TextConveyorPreprocessor()
-		self.linePreprocessor.addProcessor(lineStripper)
 		self.linePreprocessor.addProcessor(commentRemover)
+		self.linePreprocessor.addProcessor(lineStripper)
 
 	def run(self):
 		rawSettings = self.settingsProvider.fetchSettings()
