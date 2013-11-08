@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
 import argparse
 from Core.FileContentProvider import FileContentProvider
 from Core.LineConveyor.CommentRemover import CommentRemover
@@ -78,7 +77,7 @@ overrideArgs = parser.parse_known_args()[1]
 
 # TODO:  перенести в корень комапановки
 fromFileSettingsProvider = FromFileSettingsProvider()
-settingsProvider = CmdArgsOverriderSettingsProvider(fromFileSettingsProvider, overrideArgs)
+overrideWithCmdSetProvider = CmdArgsOverriderSettingsProvider(fromFileSettingsProvider, overrideArgs)
 
-runner = TaskRunner(settingsProvider)
+runner = TaskRunner(overrideWithCmdSetProvider)
 runner.run()

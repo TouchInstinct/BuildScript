@@ -1,4 +1,7 @@
 class CommentRemover:
+	def __init__(self):
+		pass
+
 	def processText(self, line):
 		assert line is not None
 

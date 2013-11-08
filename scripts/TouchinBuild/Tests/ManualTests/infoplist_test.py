@@ -12,7 +12,8 @@ config = {
 }
 line = "inside 'BuildSample/BuildSample/Info.plist' set CFBundleDisplayName to 'MyCoolApp'"
 
-value_provider = ValueProvider(config)
+value_provider = ValueProvider()
+value_provider.setConfig(config)
 builder = PatchInfoplistCommandBuilder(value_provider)
 
 command = builder.getCommandFor(line)

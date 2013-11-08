@@ -1,4 +1,7 @@
 class ValueProvider:
+	def __init__(self):
+		self.__config = None
+
 	def setConfig(self, config):
 		assert config is not None
 		self.__config = config
