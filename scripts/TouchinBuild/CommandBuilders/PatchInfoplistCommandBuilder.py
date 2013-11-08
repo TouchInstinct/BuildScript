@@ -28,6 +28,6 @@ class PatchInfoplistCommandBuilder:
 		return command
 
 	def __createParser(self):
-		parser = InsideSetParser(self.__valueProvider, 'plist')
+		parser = InsideSetParser('plist')
 		return parser
 

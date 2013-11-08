@@ -4,11 +4,8 @@ from parsers.LineParser import LineParser
 
 
 class InsideSetParser(LineParser):
-	def __init__(self, value_provider, fileExt):
+	def __init__(self, fileExt):
 		LineParser.__init__(self)
-		assert value_provider is not None
-
-		self.__value_provider = value_provider
 		self.__extension = fileExt
 
 	def parseLine(self, line):

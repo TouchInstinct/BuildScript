@@ -13,7 +13,7 @@ class PatchCsprojCommandBuilder:
 	def getCommandFor(self, line):
 		assert line is not None
 
-		parser = InsideSetParser(self.__valueProvider, 'csproj')
+		parser = InsideSetParser('csproj')
 		result = parser.parseLine(line)
 
 		csprojPath = result[0]
@@ -28,7 +28,7 @@ class PatchCsprojCommandBuilder:
 	def isPatchCsproj(self, line):
 		assert line is not None
 
-		parser = InsideSetParser(self.__valueProvider, 'csproj')
+		parser = InsideSetParser('csproj')
 		isValid = parser.isValidLine(line)
 
 		return isValid
