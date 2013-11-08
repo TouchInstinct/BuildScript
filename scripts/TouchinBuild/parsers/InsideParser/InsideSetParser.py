@@ -11,14 +11,9 @@ class InsideSetParser(LineParser):
 	def parseLine(self, line):
 		assert line is not None
 
-		filePathRegexp = r"'(?P<file>[./ a-zA-Z]+\.{0})'".format(self.__extension)
-		keyRegexp = r'(?P<key>[a-zA-Z]+)'
-		valueRegexp = r"'(?P<value>[^']+)'"
-
-		regexpSource = self.startsWith('inside') + filePathRegexp + self.keywordToken('set') + keyRegexp + self.keywordToken('to') + valueRegexp
-		regexp = re.compile(regexpSource, re.UNICODE)
-
-		match = regexp.match(line)
+		matchInfo = self.getMatchInfo(line)
+		match = matchInfo[0]
+		regexpSource = matchInfo[1]
 		self._guardMatch(match, line, regexpSource)
 
 		filePath = match.group('file')
@@ -27,9 +22,24 @@ class InsideSetParser(LineParser):
 
 		return filePath, key, value
 
-	def isValidLine(self, line):
-		regexpSrc = r"inside\s+'[./ a-zA-Z]+\.{0}'\s+set".format(self.__extension)
-		regexp = re.compile(regexpSrc, re.UNICODE)
+	def getMatchInfo(self, line):
+		assert line is not None
+
+		filePathRegexp = r"'(?P<file>[./ a-zA-Z]+\.{0})'".format(self.__extension)
+		keyRegexp = r'(?P<key>[a-zA-Z]+)'
+		valueRegexp = r"'(?P<value>[^']+)'$"
+
+		regexpSource = self.startsWith('inside') + filePathRegexp + self.keywordToken('set') + keyRegexp + \
+					   self.keywordToken('to') + valueRegexp
+		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)
+
+		return match, regexpSource
+
+	def isValidLine(self, line):
+		assert line is not None
+
+		matchInfo = self.getMatchInfo(line)
+		match = matchInfo[0]
 		return match is not None
