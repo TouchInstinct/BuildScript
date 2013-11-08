@@ -3,7 +3,7 @@ class FileContentProvider:
 		pass
 
 	def fetchContent(self, path):
-		file = open(path)
-		content = file.read()
+		f = open(path)
+		content = f.read()
 
 		return content

@@ -1,4 +1,3 @@
-import select
 from parsers.SettingsParser.SettingsParser import SettingsParser
 
 

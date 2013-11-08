@@ -4,7 +4,7 @@ from parsers.LineParser import LineParser
 
 class IncludeProcessor(LineParser):
 	def __init__(self):
-		pass
+		LineParser.__init__(self)
 
 	def getIncludesInfo(self, text):
 		assert text is not None

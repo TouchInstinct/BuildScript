@@ -3,6 +3,7 @@ from Core.LineConveyor.TextInclude import TextInclude
 from utils.IncludeProcessor import IncludeProcessor
 
 
+#noinspection PyUnusedLocal
 class MockContentProvider:
 	def __init__(self):
 		pass
