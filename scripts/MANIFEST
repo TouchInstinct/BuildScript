@@ -51,6 +51,7 @@ TouchinBuild/parsers/__init__.py
 TouchinBuild/parsers/CopyParser/CopyArguments.py
 TouchinBuild/parsers/CopyParser/CopyLineParser.py
 TouchinBuild/parsers/CopyParser/__init__.py
+TouchinBuild/parsers/InsideParser/InsideCsprojSetParser.py
 TouchinBuild/parsers/InsideParser/InsideRemoveParser.py
 TouchinBuild/parsers/InsideParser/InsideSetParser.py
 TouchinBuild/parsers/InsideParser/__init__.py
