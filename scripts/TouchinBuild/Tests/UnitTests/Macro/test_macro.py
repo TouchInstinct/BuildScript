@@ -15,6 +15,20 @@ class TestMacro(unittest.TestCase):
 		self.assertTrue('@my_macro' in symbols)
 		self.assertTrue('@macro_with_numbers123' in symbols)
 
+	def test_parseMacroInsideInclude(self):
+		line = "<include '{@path_to_file}'>"
+		symbols = self.macroParser.getSymbols(line)
+
+		self.assertTrue('@path_to_file' in symbols)
+
+	def test_parseMacroInsideIncludeWithDirSeparator(self):
+		line = "<include '{@parent_folder}/{@folder}/{@file_name}'>"
+		symbols = self.macroParser.getSymbols(line)
+
+		self.assertTrue('@parent_folder' in symbols)
+		self.assertTrue('@folder' in symbols)
+		self.assertTrue('@file_name' in symbols)
+
 	def test_getName(self):
 		line = '{@macro_name}'
 		name = self.macroParser.getMacroName(line)
