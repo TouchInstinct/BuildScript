@@ -1,6 +1,9 @@
-class BuildConfigProvider:
+from Core.BuildConfigProviderBase import BuildConfigProviderBase
+
+
+class BuildConfigProvider(BuildConfigProviderBase):
 	def __init__(self):
-		pass
+		BuildConfigProviderBase.__init__(self)
 
 	def getConfigs(self, rootConfig):
 		buildReadyConfigNames = self.fetchBuildReadyConfigNames(rootConfig)
