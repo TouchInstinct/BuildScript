@@ -25,10 +25,12 @@ from Core.StepsRunner import StepsRunner
 
 
 class TaskRunner:
-	def __init__(self, settingsProvider):
+	def __init__(self, settingsProvider, fileContentProvider):
 		assert settingsProvider is not None
+		assert fileContentProvider is not None
 
 		self.settingsProvider = settingsProvider
+		self.fileContentProvider = fileContentProvider
 		self.configsProvider = BuildConfigProvider()
 
 		lineStripper = Stripper()
@@ -39,12 +41,14 @@ class TaskRunner:
 		macroResolver = MacroResolver(macroProcessor, self.valueProvider)
 
 		includeProcessor = IncludeProcessor()
-		self.fileContentProvider = FileContentProvider()
 		textInclude = TextInclude(includeProcessor, self.fileContentProvider)
 
+		# последовательность важна!
+		# Сначала резолвим макросы, потом делаем включение файлов
+		# Это позволяет использовать макросы в include выражениях
 		self.textPreprocessor = TextConveyorPreprocessor()
-		self.textPreprocessor.addProcessor(textInclude)
 		self.textPreprocessor.addProcessor(macroResolver)
+		self.textPreprocessor.addProcessor(textInclude)
 
 		self.linePreprocessor = TextConveyorPreprocessor()
 		self.linePreprocessor.addProcessor(commentRemover)
@@ -72,12 +76,16 @@ class TaskRunner:
 
 		return content
 
-parser = argparse.ArgumentParser()
-overrideArgs = parser.parse_known_args()[1]
+if __name__ == "__main__":
 
-# TODO:  перенести в корень комапановки
-fromFileSettingsProvider = FromFileSettingsProvider()
-overrideWithCmdSetProvider = CmdArgsOverriderSettingsProvider(fromFileSettingsProvider, overrideArgs)
+	parser = argparse.ArgumentParser()
+	overrideArgs = parser.parse_known_args()[1]
 
-runner = TaskRunner(overrideWithCmdSetProvider)
-runner.run()
+	# TODO:  перенести в корень комапановки
+	fromFileSettingsProvider = FromFileSettingsProvider()
+	overrideWithCmdSetProvider = CmdArgsOverriderSettingsProvider(fromFileSettingsProvider, overrideArgs)
+
+	fContentProvider = FileContentProvider()
+
+	runner = TaskRunner(overrideWithCmdSetProvider, fContentProvider)
+	runner.run()

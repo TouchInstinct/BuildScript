@@ -1,8 +1,10 @@
+from Core.SettingsProviderBase import SettingsProviderBase
 from parsers.SettingsParser.SettingsParser import SettingsParser
 
 
-class CmdArgsOverriderSettingsProvider:
+class CmdArgsOverriderSettingsProvider(SettingsProviderBase):
 	def __init__(self, settingsProvider, settingLines):
+		SettingsProviderBase.__init__(self)
 		assert settingsProvider is not None
 
 		self.inner = settingsProvider

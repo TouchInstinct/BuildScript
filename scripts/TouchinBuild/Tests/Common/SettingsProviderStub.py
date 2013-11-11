@@ -2,15 +2,15 @@ from Core.SettingsProviderBase import SettingsProviderBase
 from parsers.SettingsParser.SettingsParser import SettingsParser
 
 
-class FromFileSettingsProvider(SettingsProviderBase):
-	def __init__(self):
+class SettingsProviderStub(SettingsProviderBase):
+	def __init__(self, settingsText):
+		assert settingsText is not None
+
 		SettingsProviderBase.__init__(self)
+		self.settingsText = settingsText
 
 	def fetchSettings(self):
-		settingsFile = open('scripts/settings.txt')
-		content = settingsFile.read()
-
 		parser = SettingsParser()
-		parser.parse(content)
+		parser.parse(self.settingsText)
 
 		return parser.settings
