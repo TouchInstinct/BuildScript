@@ -1,5 +1,5 @@
 import unittest
-from utils.BuildConfigProvider import BuildConfigProvider
+from utils.BuildConfigProvider.BuildConfigProvider import BuildConfigProvider
 
 
 class TestBuildConfigProvider(unittest.TestCase):
