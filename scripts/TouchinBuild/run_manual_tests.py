@@ -20,5 +20,6 @@ os.chdir(baseDir)
 #import ManualTests.clean_test
 #import Tests.ManualTests.testflight_test
 #import Tests.ManualTests.install_profile
+#import Tests.ManualTests.macros_include_test
 
-import Tests.ManualTests.macros_include_test
+import Tests.ManualTests.resolve_settings

@@ -16,6 +16,11 @@ class MacroProcessor:
 
 		return macro[1:-1]
 
+	def getNameByMacroName(self, macroName):
+		assert macroName.startswith('@')
+
+		return macroName[1:]
+
 	def getSymbols(self, line):
 		assert line is not None
 

@@ -8,7 +8,8 @@ from Core.LineConveyor.MacroResolver import MacroResolver
 from Core.LineConveyor.Stripper import Stripper
 from Core.LineConveyor.TextInclude import TextInclude
 from commands.ValueProvider import ValueProvider
-from utils.BuildConfigProvider import BuildConfigProvider
+from utils.BuildConfigProvider.BuildConfigProvider import BuildConfigProvider
+from utils.BuildConfigProvider.ResolvedBuildConfigProvider import ResolvedBuildConfigProvider
 from utils.IncludeProcessor import IncludeProcessor
 from utils.MacroProcessor import MacroProcessor
 from utils.SettingsProvider.CmdArgsOverriderSettingsProvider import CmdArgsOverriderSettingsProvider
@@ -23,15 +24,15 @@ from Core.StepsRunner import StepsRunner
 #os.chdir(baseDir)
 
 
-
 class TaskRunner:
-	def __init__(self, settingsProvider, fileContentProvider):
+	def __init__(self, settingsProvider, fileContentProvider, buildConfigProvider):
 		assert settingsProvider is not None
 		assert fileContentProvider is not None
+		assert buildConfigProvider is not None
 
 		self.settingsProvider = settingsProvider
 		self.fileContentProvider = fileContentProvider
-		self.configsProvider = BuildConfigProvider()
+		self.configsProvider = buildConfigProvider
 
 		lineStripper = Stripper()
 		commentRemover = CommentRemover()
@@ -84,8 +85,12 @@ if __name__ == "__main__":
 	# TODO:  перенести в корень комапановки
 	fromFileSettingsProvider = FromFileSettingsProvider()
 	overrideWithCmdSetProvider = CmdArgsOverriderSettingsProvider(fromFileSettingsProvider, overrideArgs)
+	#resolvedSettingsProvider = ResolvedSettingsProvider(CmdArgsOverriderSettingsProvider)
 
 	fContentProvider = FileContentProvider()
 
-	runner = TaskRunner(overrideWithCmdSetProvider, fContentProvider)
+	buildConfigProvider = BuildConfigProvider()
+	resolvedBuildConfigProvider = ResolvedBuildConfigProvider(buildConfigProvider)
+
+	runner = TaskRunner(overrideWithCmdSetProvider, fContentProvider, resolvedBuildConfigProvider)
 	runner.run()
