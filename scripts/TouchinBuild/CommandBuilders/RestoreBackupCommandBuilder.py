@@ -1,4 +1,4 @@
-from commands.RestoreBackupCommand import RestoreBackupCommand
+from commands.BaseBackupCommand.RestoreBackupCommand import RestoreBackupCommand
 from parsers.ParserBackup.RestoreBackupParser import RestoreBackupParser
 
 
@@ -18,7 +18,7 @@ class RestoreBackupCommandBuilder:
 		assert line is not None
 
 		parser = RestoreBackupParser()
-		parser.parseLine(line)
+		backupArguments = parser.parseLine(line)
 
-		command = RestoreBackupCommand()
+		command = RestoreBackupCommand(backupArguments)
 		return command

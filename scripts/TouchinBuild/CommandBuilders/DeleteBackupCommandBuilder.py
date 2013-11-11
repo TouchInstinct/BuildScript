@@ -1,4 +1,4 @@
-from commands.DeleteBackupCommand import DeleteBackupCommand
+from commands.BaseBackupCommand.DeleteBackupCommand import DeleteBackupCommand
 from parsers.ParserBackup.DeleteBackupParser import DeleteBackupParser
 
 
@@ -18,7 +18,7 @@ class DeleteBackupCommandBuilder:
 		assert line is not None
 
 		parser = DeleteBackupParser()
-		parser.parseLine(line)
+		backupArguments = parser.parseLine(line)
 
-		command = DeleteBackupCommand()
+		command = DeleteBackupCommand(backupArguments)
 		return command

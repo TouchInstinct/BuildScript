@@ -1,4 +1,4 @@
-from commands.CreateBackupCommand import CreateBackupCommand
+from commands.BaseBackupCommand.CreateBackupCommand import CreateBackupCommand
 from parsers.ParserBackup.CreateBackupParser import CreateBackupParser
 
 
