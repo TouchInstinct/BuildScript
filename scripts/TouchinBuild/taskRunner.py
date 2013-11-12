@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
 import argparse
 from Core.FileContentProvider import FileContentProvider
 from Core.LineConveyor.CommentRemover import CommentRemover
@@ -9,6 +10,7 @@ from Core.LineConveyor.Stripper import Stripper
 from Core.LineConveyor.TextInclude import TextInclude
 from commands.ValueProvider import ValueProvider
 from utils.BuildConfigProvider.BuildConfigProvider import BuildConfigProvider
+from utils.BuildConfigProvider.PredefinedMacrosBuildConfigProvider import PredefinedMacrosBuildConfigProvider
 from utils.BuildConfigProvider.ResolvedBuildConfigProvider import ResolvedBuildConfigProvider
 from utils.IncludeProcessor import IncludeProcessor
 from utils.MacroProcessor import MacroProcessor
@@ -16,11 +18,10 @@ from utils.SettingsProvider.CmdArgsOverriderSettingsProvider import CmdArgsOverr
 from utils.SettingsProvider.FromFileSettingsProvider import FromFileSettingsProvider
 from Core.StepsRunner import StepsRunner
 
-#scriptFilePath = os.path.abspath(__file__)
-#
-#scriptDir = os.path.dirname(scriptFilePath)
+scriptFilePath = os.path.abspath(__file__)
+scriptDir = os.path.dirname(scriptFilePath)
+
 #baseDir = os.path.join(scriptDir, os.pardir)
-#
 #os.chdir(baseDir)
 
 
@@ -85,12 +86,15 @@ if __name__ == "__main__":
 	# TODO:  перенести в корень комапановки
 	fromFileSettingsProvider = FromFileSettingsProvider()
 	overrideWithCmdSetProvider = CmdArgsOverriderSettingsProvider(fromFileSettingsProvider, overrideArgs)
-	#resolvedSettingsProvider = ResolvedSettingsProvider(CmdArgsOverriderSettingsProvider)
 
 	fContentProvider = FileContentProvider()
 
 	buildConfigProvider = BuildConfigProvider()
-	resolvedBuildConfigProvider = ResolvedBuildConfigProvider(buildConfigProvider)
+	predefineBuildConfigProvider = PredefinedMacrosBuildConfigProvider(buildConfigProvider)
+	predefineBuildConfigProvider.addPredefineMacro('builder_path', scriptDir)
+
+	resolvedBuildConfigProvider = ResolvedBuildConfigProvider(predefineBuildConfigProvider)
+
 
 	runner = TaskRunner(overrideWithCmdSetProvider, fContentProvider, resolvedBuildConfigProvider)
 	runner.run()
