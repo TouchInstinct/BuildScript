@@ -1,7 +1,7 @@
+<include 'scripts/{@setup_steps}'>
+
 sh echo hello from '{@author}'
 sh echo version: '{@version}'
-
-<include 'scripts/IosSetupSteps.txt'>
 
 clean 'BuildSample/BuildSample.sln' for '{@sln_config}'
 build 'BuildSample/BuildSample.sln' for '{@sln_config}'

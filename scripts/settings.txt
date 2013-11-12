@@ -15,6 +15,7 @@ ios.tf_team_token = 'c5c3cf7a6dae2bea4382dfbd181a2075_Mjc4ODkwMjAxMy0wOS0yOSAxND
 # config settings
 ios.appstore.app_name = 'CoolApp'
 ios.appstore.author = 'Rustam'
+ios.appstore.setup_steps = 'IosSetupSteps.txt'
 
 ios.staging.app_name = 'CoolApp staging'
 ios.staging.steps = 'scripts/StagingSteps.txt'
