@@ -35,6 +35,7 @@ class RestoreBackupCommand(BaseBackupCommand):
 		srcAbsPath = os.path.join(self.srcAbsDirPath, fileOrDirName)
 		fileInBackupFolderAbsPath = os.path.join(self.backupDirAbsPath, fileOrDirName)
 
+		print fileInBackupFolderAbsPath, srcAbsPath
 		if os.path.isdir(srcAbsPath):
 			shutil.copytree(fileInBackupFolderAbsPath, srcAbsPath)
 		else:
