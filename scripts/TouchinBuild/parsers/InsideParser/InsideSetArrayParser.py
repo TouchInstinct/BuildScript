@@ -2,7 +2,7 @@ import re
 from parsers.InsideParser.InsideParserBase import InsideParserBase
 
 
-class InsideSetParser(InsideParserBase):
+class InsideSetArrayParser(InsideParserBase):
 	def __init__(self, fileExt):
 		InsideParserBase.__init__(self, fileExt)
 
