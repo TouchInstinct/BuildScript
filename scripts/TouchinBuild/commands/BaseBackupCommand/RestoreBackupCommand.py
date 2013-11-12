@@ -4,10 +4,10 @@ from commands.BaseBackupCommand.BaseBackupCommand import BaseBackupCommand
 
 
 class RestoreBackupCommand(BaseBackupCommand):
-	def __init__(self, folderPath):
-		BaseBackupCommand.__init__(self, folderPath)
+	def __init__(self):
+		BaseBackupCommand.__init__(self)
 
 	def execute(self):
-		if os.path.exists(self.backupAbsPath):
-			shutil.rmtree(self.srcAbsPath, ignore_errors=True)
-			shutil.copytree(self.backupAbsPath, self.srcAbsPath, symlinks=False)
+		if os.path.exists(self.backupDirAbsPath):
+			shutil.rmtree(self.srcAbsDirPath, ignore_errors=True)
+			shutil.copytree(self.backupDirAbsPath, self.srcAbsDirPath, symlinks=False)

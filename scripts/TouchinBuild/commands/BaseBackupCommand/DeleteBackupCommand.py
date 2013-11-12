@@ -3,8 +3,8 @@ from commands.BaseBackupCommand.BaseBackupCommand import BaseBackupCommand
 
 
 class DeleteBackupCommand(BaseBackupCommand):
-	def __init__(self, backupArguments):
-		BaseBackupCommand.__init__(self, backupArguments)
+	def __init__(self):
+		BaseBackupCommand.__init__(self)
 
 	def execute(self):
-		shutil.rmtree(self.backupAbsPath, ignore_errors=True)
+		shutil.rmtree(self.backupDirAbsPath, ignore_errors=True)

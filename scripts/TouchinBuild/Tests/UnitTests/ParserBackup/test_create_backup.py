@@ -6,20 +6,14 @@ class TestCreateBackup(unittest.TestCase):
 	def setUp(self):
 		self.parser = CreateBackupParser()
 
-	def test_parseCurrentDir(self):
-		line = "create   backup  for    '.'"
-		folderPath = self.parser.parseLine(line)
+	def test_isValid(self):
+		line = "create   backup"
+		isValid = self.parser.isValidLine(line)
 
-		self.assertEqual('.', folderPath)
+		self.assertEqual(True, isValid)
 
-	def test_parseRelativePath(self):
-		line = "create backup for '../Some/Path'"
-		folderPath = self.parser.parseLine(line)
+	def test_isNotValid(self):
+		line = "create backup bla bla"
+		isValid = self.parser.isValidLine(line)
 
-		self.assertEqual('../Some/Path', folderPath)
-
-	def test_parseAbsPath(self):
-		line = "create backup for '/Some/Abs/Path'"
-		folderPath = self.parser.parseLine(line)
-
-		self.assertEqual('/Some/Abs/Path', folderPath)
+		self.assertEqual(False, isValid)

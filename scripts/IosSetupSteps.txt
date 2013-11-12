@@ -1,5 +1,5 @@
-restore from backup '.'					# восстанавливаем из бэкапа (исходники от сборки предыдущей конфигурации могут быть модифицированными)
-create backup for '.'
+restore from backup					# восстанавливаем из бэкапа (исходники от сборки предыдущей конфигурации могут быть модифицированными)
+create backup
 
 inside 'BuildSample/BuildSample.sln' remove NotCompileApp project
 
