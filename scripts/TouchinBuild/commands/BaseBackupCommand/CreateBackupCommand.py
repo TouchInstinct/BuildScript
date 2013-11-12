@@ -11,9 +11,9 @@ class CreateBackupCommand(BaseBackupCommand):
 		if os.path.exists(self.backupDirAbsPath):
 			raise Exception('folder: {0} already exists'.format(self.backupDirAbsPath))
 
-		os.mkdir(self.backupDirAbsPath)
-
 		dirContent = os.listdir(self.srcAbsDirPath)
+
+		os.mkdir(self.backupDirAbsPath)
 
 		for fileOrDir in dirContent:
 			if fileOrDir not in self.backupIgnore:

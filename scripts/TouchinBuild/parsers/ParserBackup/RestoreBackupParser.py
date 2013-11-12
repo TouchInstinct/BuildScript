@@ -10,8 +10,7 @@ class RestoreBackupParser(ParserBackupBase):
 	def getMatchInfo(self, line):
 		assert line is not None
 
-		folderNameRegexp = r"'(?P<folder>[^']+)'$"
-		regexpSource = self.startsWith('restore') + self.than('from') + self.than('backup') + folderNameRegexp
+		regexpSource = self.startsWith('restore') + self.than('from') + self.endsWith('backup')
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)

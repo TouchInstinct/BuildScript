@@ -12,16 +12,15 @@ class BaseBackupCommand:
 		self.srcAbsDirPath = self.getAbsSrc()
 		self.backupDirAbsPath = self.getAbsDst()
 
-		self.backupIgnore = ['.git', '.gitignore', '.DS_Store']
+		self.backupIgnore = ['.git', '.gitignore', '.DS_Store', 'backup']
 
 	def getAbsSrc(self):
 		return self.getAbs(self.folderPath)
 
 	def getAbsDst(self):
 		absFolderPath = self.getAbs(self.folderPath)
-		absParentDir = os.path.dirname(absFolderPath)
 
-		backupAbsPath = os.path.join(absParentDir, 'backup')
+		backupAbsPath = os.path.join(absFolderPath, 'backup')
 
 		return backupAbsPath
 

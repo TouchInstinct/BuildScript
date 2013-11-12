@@ -10,7 +10,7 @@ class CreateBackupParser(ParserBackupBase):
 	def getMatchInfo(self, line):
 		assert line is not None
 
-		regexpSource = self.startsWith('create') + self.spaceEndsWith('backup')
+		regexpSource = self.startsWith('create') + self.endsWith('backup')
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)

@@ -4,7 +4,6 @@ from parsers.LineParser import LineParser
 class ParserBackupBase(LineParser):
 	def __init__(self):
 		LineParser.__init__(self)
-		self.folderName = None
 
 	def parseLine(self, line):
 		assert line is not None
@@ -14,11 +13,6 @@ class ParserBackupBase(LineParser):
 		regexpSource = mathInfo[1]
 
 		self._guardMatch(match, line, regexpSource)
-
-		folderName = match.group('folder')
-		self.folderName = folderName
-
-		return self.folderName
 
 	def getMatchInfo(self, line):
 		return None, None
