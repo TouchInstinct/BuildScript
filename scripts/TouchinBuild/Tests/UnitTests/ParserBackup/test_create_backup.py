@@ -1,19 +1,15 @@
-import unittest
+from Tests.UnitTests.LineParserTestCaseBase import LineParserTestCaseBase
 from parsers.ParserBackup.CreateBackupParser import CreateBackupParser
 
 
-class TestCreateBackup(unittest.TestCase):
+class TestCreateBackup(LineParserTestCaseBase):
 	def setUp(self):
-		self.parser = CreateBackupParser()
+		self.textParser = CreateBackupParser()
 
 	def test_isValid(self):
-		line = "create   backup"
-		isValid = self.parser.isValidLine(line)
-
-		self.assertEqual(True, isValid)
+		self.isValidText('create backup')
+		self.isValidText('create   backup')
 
 	def test_isNotValid(self):
-		line = "create backup bla bla"
-		isValid = self.parser.isValidLine(line)
-
-		self.assertEqual(False, isValid)
+		self.isNotValidText('create backup  ')
+		self.isNotValidText('create backup bla bla')

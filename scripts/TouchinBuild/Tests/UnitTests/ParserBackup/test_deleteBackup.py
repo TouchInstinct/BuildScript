@@ -1,25 +1,15 @@
-import unittest
+from Tests.UnitTests.LineParserTestCaseBase import LineParserTestCaseBase
 from parsers.ParserBackup.DeleteBackupParser import DeleteBackupParser
 
 
-class TestDeleteBackup(unittest.TestCase):
+class TestDeleteBackup(LineParserTestCaseBase):
 	def setUp(self):
-		self.parser = DeleteBackupParser()
+		self.textParser = DeleteBackupParser()
 
-	def test_parseCurrentDir(self):
-		line = "delete  backup '.'"
-		folderPath = self.parser.parseLine(line)
+	def test_isValid(self):
+		self.isValidText('delete backup')
+		self.isValidText('delete   backup')
 
-		self.assertEqual('.', folderPath)
-
-	def test_parseRelativePath(self):
-		line = "delete backup '../Some/Path'"
-		folderPath = self.parser.parseLine(line)
-
-		self.assertEqual('../Some/Path', folderPath)
-
-	def test_parseAbsPath(self):
-		line = "delete backup '/Some/Abs/Path'"
-		folderPath = self.parser.parseLine(line)
-
-		self.assertEqual('/Some/Abs/Path', folderPath)
+	def test_isNotValid(self):
+		self.isNotValidText('delete backup   ')
+		self.isNotValidText('delete backup bla bla')
