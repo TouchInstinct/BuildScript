@@ -1,13 +1,10 @@
-import re
-
 from parsers.LineParser import LineParser
-from parsers.ParserBackup.BackupArguments import BackupArguments
 
 
 class ParserBackupBase(LineParser):
 	def __init__(self):
 		LineParser.__init__(self)
-		self.__backupArguments = BackupArguments()
+		self.folderName = None
 
 	def parseLine(self, line):
 		assert line is not None
@@ -19,9 +16,9 @@ class ParserBackupBase(LineParser):
 		self._guardMatch(match, line, regexpSource)
 
 		folderName = match.group('folder')
-		self.__backupArguments.folderPath = folderName
+		self.folderName = folderName
 
-		return self.__backupArguments
+		return self.folderName
 
 	def getMatchInfo(self, line):
 		return None, None

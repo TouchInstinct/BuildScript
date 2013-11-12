@@ -8,18 +8,18 @@ class TestCreateBackup(unittest.TestCase):
 
 	def test_parseCurrentDir(self):
 		line = "create   backup  for    '.'"
-		backupArg = self.parser.parseLine(line)
+		folderPath = self.parser.parseLine(line)
 
-		self.assertEqual('.', backupArg.folderPath)
+		self.assertEqual('.', folderPath)
 
 	def test_parseRelativePath(self):
 		line = "create backup for '../Some/Path'"
-		backupArg = self.parser.parseLine(line)
+		folderPath = self.parser.parseLine(line)
 
-		self.assertEqual('../Some/Path', backupArg.folderPath)
+		self.assertEqual('../Some/Path', folderPath)
 
 	def test_parseAbsPath(self):
 		line = "create backup for '/Some/Abs/Path'"
-		backupArg = self.parser.parseLine(line)
+		folderPath = self.parser.parseLine(line)
 
-		self.assertEqual('/Some/Abs/Path', backupArg.folderPath)
+		self.assertEqual('/Some/Abs/Path', folderPath)

@@ -16,7 +16,7 @@ class CreateBackupCommandBuilder:
 		assert line is not None
 
 		parser = CreateBackupParser()
-		backupArguments = parser.parseLine(line)
+		folderPath = parser.parseLine(line)
 
-		command = CreateBackupCommand(backupArguments)
+		command = CreateBackupCommand(folderPath)
 		return command

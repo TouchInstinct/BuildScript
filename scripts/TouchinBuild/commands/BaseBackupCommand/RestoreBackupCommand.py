@@ -3,8 +3,8 @@ from commands.BaseBackupCommand.BaseBackupCommand import BaseBackupCommand
 
 
 class RestoreBackupCommand(BaseBackupCommand):
-	def __init__(self, backupArguments):
-		BaseBackupCommand.__init__(self, backupArguments)
+	def __init__(self, folderPath):
+		BaseBackupCommand.__init__(self, folderPath)
 
 	def execute(self):
 		src = self.getAbsSrc()

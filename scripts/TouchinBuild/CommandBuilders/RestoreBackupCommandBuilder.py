@@ -18,7 +18,7 @@ class RestoreBackupCommandBuilder:
 		assert line is not None
 
 		parser = RestoreBackupParser()
-		backupArguments = parser.parseLine(line)
+		folderPath = parser.parseLine(line)
 
-		command = RestoreBackupCommand(backupArguments)
+		command = RestoreBackupCommand(folderPath)
 		return command
