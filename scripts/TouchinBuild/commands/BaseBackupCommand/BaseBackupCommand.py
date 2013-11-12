@@ -7,6 +7,11 @@ class BaseBackupCommand:
 
 		self.folderPath = folderPath
 
+		# вычислять абсолютные пути надо на этапе создания комманды
+		# поскольку на этапе выполнения текущая директория может быть удалена
+		self.srcAbsPath = self.getAbsSrc()
+		self.backupAbsPath = self.getAbsDst()
+
 	def getAbsSrc(self):
 		return self.getAbs(self.folderPath)
 

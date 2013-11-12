@@ -7,6 +7,4 @@ class DeleteBackupCommand(BaseBackupCommand):
 		BaseBackupCommand.__init__(self, backupArguments)
 
 	def execute(self):
-		backupDir = self.getAbsDst()
-
-		shutil.rmtree(backupDir, ignore_errors=True)
+		shutil.rmtree(self.backupAbsPath, ignore_errors=True)

@@ -7,10 +7,5 @@ class CreateBackupCommand(BaseBackupCommand):
 		BaseBackupCommand.__init__(self, folderPath)
 
 	def execute(self):
-		src = self.getAbsSrc()
-		backupDir = self.getAbsDst()
-
-		print src, backupDir
-
-		shutil.rmtree(backupDir, ignore_errors=True)
-		shutil.copytree(src, backupDir, symlinks=False)
+		shutil.rmtree(self.backupAbsPath, ignore_errors=True)
+		shutil.copytree(self.srcAbsPath, self.backupAbsPath, symlinks=False)

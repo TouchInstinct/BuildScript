@@ -8,9 +8,6 @@ class RestoreBackupCommand(BaseBackupCommand):
 		BaseBackupCommand.__init__(self, folderPath)
 
 	def execute(self):
-		src = self.getAbsSrc()
-		backupDir = self.getAbsDst()
-
-		if os.path.exists(backupDir):
-			shutil.rmtree(src, ignore_errors=True)
-			shutil.copytree(backupDir, src, symlinks=False)
+		if os.path.exists(self.backupAbsPath):
+			shutil.rmtree(self.srcAbsPath, ignore_errors=True)
+			shutil.copytree(self.backupAbsPath, self.srcAbsPath, symlinks=False)
