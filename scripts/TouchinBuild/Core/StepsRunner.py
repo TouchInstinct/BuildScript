@@ -80,4 +80,6 @@ class StepsRunner:
 			msg = "unrecognised step. Line: '{0}'".format(line)
 			raise Exception(msg)
 
+		print 'start: {0}'.format(line)
 		cmd.execute()
+		print 'finish: {0}'.format(line)
