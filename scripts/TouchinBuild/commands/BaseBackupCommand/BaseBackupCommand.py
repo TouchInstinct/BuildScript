@@ -11,8 +11,12 @@ class BaseBackupCommand:
 		return self.getAbs(self.folderPath)
 
 	def getAbsDst(self):
-		srcDirName = os.path.dirname(self.folderPath)
-		return self.getAbs('backup'.format(srcDirName))
+		absFolderPath = self.getAbs(self.folderPath)
+		srcDirName = os.path.basename(absFolderPath)
+		absParentDir = os.path.dirname(absFolderPath)
+		dstAbs = self.getAbs(os.path.join(absParentDir, 'backup.{0}'.format(srcDirName)))
+
+		return dstAbs
 
 	def getAbs(self, path):
 		return os.path.abspath(path)
