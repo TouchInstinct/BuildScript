@@ -10,8 +10,7 @@ class DeleteBackupParser(ParserBackupBase):
 	def getMatchInfo(self, line):
 		assert line is not None
 
-		folderNameRegexp = r"'(?P<folder>[^']+)'$"
-		regexpSource = self.startsWith('delete') + self.than('backup') + folderNameRegexp
+		regexpSource = self.startsWith('delete') + self.endsWith('backup')
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)

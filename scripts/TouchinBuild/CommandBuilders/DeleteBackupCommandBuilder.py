@@ -18,7 +18,7 @@ class DeleteBackupCommandBuilder:
 		assert line is not None
 
 		parser = DeleteBackupParser()
-		folderPath = parser.parseLine(line)
+		parser.parseLine(line)
 
-		command = DeleteBackupCommand(folderPath)
+		command = DeleteBackupCommand()
 		return command
