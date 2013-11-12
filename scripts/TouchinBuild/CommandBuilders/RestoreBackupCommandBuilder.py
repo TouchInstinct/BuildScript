@@ -1,4 +1,4 @@
-from commands.RestoreBackupCommand import RestoreBackupCommand
+from commands.BaseBackupCommand.RestoreBackupCommand import RestoreBackupCommand
 from parsers.ParserBackup.RestoreBackupParser import RestoreBackupParser
 
 

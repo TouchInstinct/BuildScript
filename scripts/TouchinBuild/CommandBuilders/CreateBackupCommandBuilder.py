@@ -1,4 +1,4 @@
-from commands.CreateBackupCommand import CreateBackupCommand
+from commands.BaseBackupCommand.CreateBackupCommand import CreateBackupCommand
 from parsers.ParserBackup.CreateBackupParser import CreateBackupParser
 
 
@@ -16,7 +16,7 @@ class CreateBackupCommandBuilder:
 		assert line is not None
 
 		parser = CreateBackupParser()
-		backupArguments = parser.parseLine(line)
+		parser.parseLine(line)
 
-		command = CreateBackupCommand(backupArguments)
+		command = CreateBackupCommand()
 		return command

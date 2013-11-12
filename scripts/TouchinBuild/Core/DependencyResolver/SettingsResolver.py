@@ -55,6 +55,6 @@ class SettingsResolver:
 
 		for node in resolvedDependencies:
 			unresolvedSettingValue = self.settings[node.name]
-			resolvedSettingValue = macroResolver.processText(unresolvedSettingValue)
+			resolvedSettingValue = macroResolver.processText(unresolvedSettingValue, None)
 
 			self.settings[node.name] = resolvedSettingValue

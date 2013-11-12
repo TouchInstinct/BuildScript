@@ -73,7 +73,7 @@ class TaskRunner:
 		pathToSteps = config['steps']
 
 		content = self.fileContentProvider.fetchContent(pathToSteps)
-		content = self.textPreprocessor.processText(content)
+		content = self.textPreprocessor.processText(content, self.textPreprocessor)
 
 		return content
 

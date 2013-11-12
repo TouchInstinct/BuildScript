@@ -1,4 +1,4 @@
-from commands.DeleteBackupCommand import DeleteBackupCommand
+from commands.BaseBackupCommand.DeleteBackupCommand import DeleteBackupCommand
 from parsers.ParserBackup.DeleteBackupParser import DeleteBackupParser
 
 
