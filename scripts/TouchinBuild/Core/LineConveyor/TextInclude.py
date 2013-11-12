@@ -6,7 +6,7 @@ class TextInclude:
 		self.includeProcessor = includeProcessor
 		self.contentProvider = contentProvider
 
-	def processText(self, text):
+	def processText(self, text, conveyorProcessor):
 		assert text is not None
 		includesInfo = self.includeProcessor.getIncludesInfo(text)
 
@@ -15,6 +15,8 @@ class TextInclude:
 			path = info[1]
 
 			content = self.contentProvider.fetchContent(path)
+			content = conveyorProcessor.processText(content, conveyorProcessor)
+
 			text = text.replace(includeStatement, content)
 
 		return text
