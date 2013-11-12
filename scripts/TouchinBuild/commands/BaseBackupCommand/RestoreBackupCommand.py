@@ -1,3 +1,4 @@
+import os
 import shutil
 from commands.BaseBackupCommand.BaseBackupCommand import BaseBackupCommand
 
@@ -10,5 +11,6 @@ class RestoreBackupCommand(BaseBackupCommand):
 		src = self.getAbsSrc()
 		backupDir = self.getAbsDst()
 
-		shutil.rmtree(src, ignore_errors=True)
-		shutil.copytree(backupDir, src, symlinks=False)
+		if os.path.exists(backupDir):
+			shutil.rmtree(src, ignore_errors=True)
+			shutil.copytree(backupDir, src, symlinks=False)
