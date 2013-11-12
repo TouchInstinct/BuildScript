@@ -4,14 +4,16 @@ scriptFilePath = os.path.abspath(__file__)
 scriptDir = os.path.dirname(scriptFilePath)
 baseDir = os.path.join(scriptDir, os.pardir, os.pardir)
 
-os.chdir(baseDir)
+baseDirAbsPath = os.path.abspath(baseDir)
+os.chdir(baseDirAbsPath)
+print 'current working dir: {0}'.format(baseDirAbsPath)
 
 #import Tests.ManualTests.csproj_test
 #import ManualTests.info_plist_test
 #import ManualTests.copy_test
 #import Tests.ManualTests.create_backup_test
-import Tests.ManualTests.delete_backup_test
-#import Tests.ManualTests.restore_backup_test
+#import Tests.ManualTests.delete_backup_test
+import Tests.ManualTests.restore_backup_test
 #import ManualTests.csproj_test
 #import ManualTests.run_sh_command
 #import ManualTests.make_dirs
