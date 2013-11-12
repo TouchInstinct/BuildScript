@@ -1,3 +1,5 @@
+sh echo '{@builder_path}'
+
 <include 'scripts/{@setup_steps}'>
 
 sh echo hello from '{@author}'
