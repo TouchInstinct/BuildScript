@@ -9,7 +9,7 @@ class RestoreBackupCommand(BaseBackupCommand):
 
 	def execute(self):
 		if not os.path.exists(self.backupDirAbsPath):
-			raise Exception('backup folder: {0} not exists'.format(self.backupDirAbsPath))
+			return
 
 		srcDirContent = os.listdir(self.srcAbsDirPath)
 		for fileOrDir in srcDirContent:
