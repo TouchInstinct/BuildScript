@@ -8,10 +8,13 @@ class CreateBackupCommand(BaseBackupCommand):
 		BaseBackupCommand.__init__(self)
 
 	def execute(self):
-		if os.path.exists(self.backupDirAbsPath):
-			raise Exception('folder: {0} already exists'.format(self.backupDirAbsPath))
+		#if os.path.exists(self.backupDirAbsPath):
+		#	raise Exception('folder: {0} already exists'.format(self.backupDirAbsPath))
 
 		dirContent = os.listdir(self.srcAbsDirPath)
+
+		if os.path.exists(self.backupDirAbsPath):
+			shutil.rmtree(self.backupDirAbsPath)
 
 		os.mkdir(self.backupDirAbsPath)
 
