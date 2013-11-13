@@ -1,25 +1,15 @@
-import unittest
+from Tests.UnitTests.LineParserTestCaseBase import LineParserTestCaseBase
 from parsers.ParserBackup.RestoreBackupParser import RestoreBackupParser
 
 
-class TestRestoreBackup(unittest.TestCase):
+class TestRestoreBackup(LineParserTestCaseBase):
 	def setUp(self):
-		self.parser = RestoreBackupParser()
+		self.textParser = RestoreBackupParser()
 
-	def test_parseCurrentDir(self):
-		line = "restore   from  backup '.'"
-		folderPath = self.parser.parseLine(line)
+	def test_isValid(self):
+		self.isValidText('restore from backup')
+		self.isValidText('restore   from  backup')
 
-		self.assertEqual('.', folderPath)
-
-	def test_parseRelativePath(self):
-		line = "restore from backup '../Some/Path'"
-		folderPath = self.parser.parseLine(line)
-
-		self.assertEqual('../Some/Path', folderPath)
-
-	def test_parseAbsPath(self):
-		line = "restore from backup '/Some/Abs/Path'"
-		folderPath = self.parser.parseLine(line)
-
-		self.assertEqual('/Some/Abs/Path', folderPath)
+	def test_isNotValid(self):
+		self.isNotValidText('restore from backup   ')
+		self.isNotValidText('restore from backup bla bla')

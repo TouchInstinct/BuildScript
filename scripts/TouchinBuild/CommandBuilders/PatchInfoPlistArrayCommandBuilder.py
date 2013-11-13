@@ -1,12 +1,10 @@
 from commands.PatchInfoPlistCommand import PatchInfoPlistCommand
-from parsers.InsideParser.InsideSetParser import InsideSetParser
+from parsers.InsideParser.InsideSetArrayParser import InsideSetArrayParser
 
 
-class PatchInfoplistCommandBuilder:
-	def __init__(self, valueProvider):
-		assert valueProvider is not None
-
-		self.__valueProvider = valueProvider
+class PatchInfoPlistArrayCommandBuilder:
+	def __init__(self):
+		pass
 
 	def isPatchInfoPlist(self, line):
 		assert line is not None
@@ -22,12 +20,12 @@ class PatchInfoplistCommandBuilder:
 
 		path = result[0]
 		key = result[1]
-		value = result[2]
+		value = parser.values
 
 		command = PatchInfoPlistCommand(path, key, value)
 		return command
 
 	def createParser(self):
-		parser = InsideSetParser('plist')
+		parser = InsideSetArrayParser('plist')
 		return parser
 

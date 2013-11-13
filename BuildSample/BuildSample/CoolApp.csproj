@@ -71,9 +71,6 @@
     <Reference Include="monotouch" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
@@ -87,5 +84,14 @@
       <Project>{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Content\Icons\icon-iphone-staging.png" />
+    <BundleResource Include="Content\Icons\icon-iphone-staging%402x.png" />
+    <BundleResource Include="Content\Icons\icon-iphone.png" />
+    <BundleResource Include="Content\Icons\icon-iphone%402x.png" />
   </ItemGroup>
 </Project>

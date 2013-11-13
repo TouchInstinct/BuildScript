@@ -16,5 +16,10 @@
 	<string>com.touchin.buildscript</string>
 	<key>CFBundleVersion</key>
 	<string>0.0.0</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Content/Icons/icon-iphone@2x</string>
+		<string>Content/Icons/icon-iphone</string>
+	</array>
 </dict>
 </plist>

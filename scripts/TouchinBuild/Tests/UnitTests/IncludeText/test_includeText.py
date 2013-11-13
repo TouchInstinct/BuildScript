@@ -27,7 +27,7 @@ another bla
 <include 'paht2'>
 yet another bla"""
 
-		processedText = self.includeText.processText(text)
+		processedText = self.includeText.processText(text, self.includeText)
 
 		expected = """
 bla bla
