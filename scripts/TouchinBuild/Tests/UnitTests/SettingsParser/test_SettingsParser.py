@@ -8,7 +8,7 @@ from parsers.SettingsParser.SettingsParser import SettingsParser
 class TestSettingsParser(unittest.TestCase):
 	def setUp(self):
 		self.preprocessor = NullPreprocessor()
-		self.parser = SettingsParser(self.preprocessor)
+		self.parser = SettingsParser(self.preprocessor, None)
 
 	def test_processLine(self):
 		line1 = "x.y.name1 = 'value1'"
@@ -44,7 +44,7 @@ class TestSettingsParser(unittest.TestCase):
 
 		class PartialSettingsParser(SettingsParser):
 			def __init__(self, textPreprocessor):
-				SettingsParser.__init__(self, textPreprocessor)
+				SettingsParser.__init__(self, textPreprocessor, None)
 				self.processLineCall = 0
 
 			def processLine(self, line):
