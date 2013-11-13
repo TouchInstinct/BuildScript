@@ -45,3 +45,32 @@ class TestSettingsMerger(unittest.TestCase):
 		self.assertEqual('new_value3', self.globalSettings['child1']['sub_key1'])
 		self.assertEqual('value4', self.globalSettings['child1']['sub_key2'])
 
+	def test_getPropertyName(self):
+		self.checkName(['one', 'two', 'three'], 'three')
+		self.checkName(['one', 'two'], 'two')
+		self.checkName(['one'], 'one')
+
+	def checkName(self, segments, expectedName):
+		name = self.merger.getPropertyName(segments)
+		self.assertEqual(name, expectedName)
+
+	def test_checkPath(self):
+		self.checkPath(['one', 'two', 'three'], ['one', 'two'])
+		self.checkPath(['one', 'two'], ['one'])
+		self.checkPath(['one'], [])
+
+	def checkPath(self, segments, expectedPath):
+		path = self.merger.getPath(segments)
+
+		self.assertListEqual(expectedPath, path)
+
+	def test_mergeNotExistSetting(self):
+		description = {
+			'segments': ['new_key'],
+			'value': 'new_value'
+		}
+
+		print self.globalSettings
+		self.assertEqual('new_value', self.globalSettings['new_key'])
+
+

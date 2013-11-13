@@ -6,8 +6,8 @@ class SettingsMerger:
 		value = settingDescription['value']
 		segments = settingDescription['segments']
 
-		propPath = segments[0:-1]
-		propName = segments[-1]
+		propPath = self.getPath(segments)
+		propName = self.getPropertyName(segments)
 
 		settingsDict = self.getSettingsDictByPath(globalSettings, propPath)
 		settingsDict[propName] = value
@@ -23,3 +23,11 @@ class SettingsMerger:
 			settingsDict = settingsDict[segment]
 
 		return settingsDict
+
+	def getPath(self, segments):
+		assert segments is not None
+		return segments[0:-1]
+
+	def getPropertyName(self, segments):
+		assert segments is not None
+		return segments[-1]
