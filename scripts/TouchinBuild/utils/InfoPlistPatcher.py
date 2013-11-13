@@ -61,7 +61,8 @@ class InfoPlistPatcher():
 		arrayElement = dict_element[valuesIndex]
 
 		children = arrayElement.findall('string')
-		arrayElement.remove(children)
+		for ch in children:
+			arrayElement.remove(ch)
 
 		self.fillArrayElementWithValues(arrayElement, valueArr)
 

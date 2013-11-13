@@ -20,7 +20,7 @@ class PatchInfoPlistArrayCommandBuilder:
 
 		path = result[0]
 		key = result[1]
-		value = result[2]
+		value = parser.values
 
 		command = PatchInfoPlistCommand(path, key, value)
 		return command
