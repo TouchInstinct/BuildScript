@@ -78,7 +78,11 @@ class TaskRunner:
 if __name__ == "__main__":
 
 	parser = argparse.ArgumentParser()
-	overrideArgs = parser.parse_known_args()[1]
+	parser.add_argument('--settings', required=False)
+	allArgs = parser.parse_known_args()
+
+	knownArgs = allArgs[0]
+	overrideArgs = allArgs[1]
 
 	# компоную препроцессор для индивидуальной обработки строк (удаление комментариев и ведущих пробельных символов)
 	lineStripper = Stripper()
@@ -88,7 +92,7 @@ if __name__ == "__main__":
 	linePreprocessor.addProcessor(lineStripper)
 
 	# TODO:  перенести в корень комапановки
-	settingsPath = 'scripts/settings.txt'
+	settingsPath = knownArgs.settings or 'settings.txt'
 	fromFileSettingsProvider = FromFileSettingsProvider(settingsPath, linePreprocessor)
 	overrideWithCmdSetProvider = CmdArgsOverriderSettingsProvider(fromFileSettingsProvider, overrideArgs, linePreprocessor)
 
