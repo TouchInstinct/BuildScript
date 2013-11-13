@@ -16,7 +16,9 @@ ios.tf_team_token = 'c5c3cf7a6dae2bea4382dfbd181a2075_Mjc4ODkwMjAxMy0wOS0yOSAxND
 ios.appstore.app_name = 'CoolApp'
 ios.appstore.author = 'Rustam'
 ios.appstore.setup_steps = 'IosSetupSteps.txt'
+ios.appstore.icons = 'Content/Icons/icon-iphone@2x:Content/Icons/icon-iphone'
 
 ios.staging.app_name = 'CoolApp staging'
-ios.staging.steps = 'scripts/StagingSteps.txt'
 ios.staging.author = 'Fedor'
+ios.staging.steps = 'IosSetupSteps.txt'
+ios.appstore.icons = 'Content/Icons/icon-iphone-staging@2x.png:Content/Icons/icon-iphone-staging.png'
