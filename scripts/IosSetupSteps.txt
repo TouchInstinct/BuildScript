@@ -1,11 +1,13 @@
-restore from backup					# восстанавливаем из бэкапа (исходники от сборки предыдущей конфигурации могут быть модифицированными)
-create backup
+# restore from backup					# восстанавливаем из бэкапа (исходники от сборки предыдущей конфигурации могут быть модифицированными)
+# create backup
 
 sh echo '{@sln_config}'
 
 inside 'BuildSample/BuildSample.sln' remove NotCompileApp project
 
 inside 'BuildSample/BuildSample/CoolApp.csproj' set OutputPath to 'Output' for '{@sln_config}'
+inside 'BuildSample/BuildSample/CoolApp.csproj' set AssemblyName to 'CoolApp' for ''
+
 inside 'BuildSample/BuildSample/Info.plist' set CFBundleVersion to '{@version}'
 inside 'BuildSample/BuildSample/Info.plist' set CFBundleDisplayName to 'CoolApp'
 
