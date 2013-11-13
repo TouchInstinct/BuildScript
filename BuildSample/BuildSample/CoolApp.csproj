@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Resources\Icons\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -87,5 +88,9 @@
       <Project>{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Icon%402x.png" />
+    <BundleResource Include="Resources\Icon.png" />
   </ItemGroup>
 </Project>
