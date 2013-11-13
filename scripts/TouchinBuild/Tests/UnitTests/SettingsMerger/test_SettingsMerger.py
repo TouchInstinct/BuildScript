@@ -20,11 +20,6 @@ class TestSettingsMerger(unittest.TestCase):
 				}
 		}
 
-		settingDescr2 = {
-			'segments': ['child1', 'sub_key1'],
-			'value': 'new_value3'
-		}
-
 	def test_mergeTopLevelSettings(self):
 		description = {
 			'segments': ['top_level_key1'],
@@ -35,3 +30,18 @@ class TestSettingsMerger(unittest.TestCase):
 
 		self.assertEqual('new_value1', self.globalSettings['top_level_key1'])
 		self.assertEqual('value2', self.globalSettings['top_level_key2'])
+
+	def test_mergeSubElement(self):
+		description = {
+			'segments': ['child1', 'sub_key1'],
+			'value': 'new_value3'
+		}
+
+		self.merger.merge(self.globalSettings, description)
+
+		self.assertEqual('value1', self.globalSettings['top_level_key1'])
+		self.assertEqual('value2', self.globalSettings['top_level_key2'])
+
+		self.assertEqual('new_value3', self.globalSettings['child1']['sub_key1'])
+		self.assertEqual('value4', self.globalSettings['child1']['sub_key2'])
+
