@@ -6,6 +6,8 @@ configs = 'appstore, staging'
 # ios platform settings
 ios.sln_config = 'Release|iPhone'
 ios.steps = 'scripts/IosSteps.txt'
+ios.setup_steps = 'IosSetupSteps.txt'
+
 ios.tf_api_token = '0e6925075d4fc10fed0e7bbf43fa6894_NjQ0OTI2MjAxMi0wOS0yNSAxMTo0MDozNi40OTY5MjU'
 ios.tf_team_token = 'c5c3cf7a6dae2bea4382dfbd181a2075_Mjc4ODkwMjAxMy0wOS0yOSAxNDowOTo1OC40Mzg5MTY'
 
@@ -15,10 +17,8 @@ ios.tf_team_token = 'c5c3cf7a6dae2bea4382dfbd181a2075_Mjc4ODkwMjAxMy0wOS0yOSAxND
 # config settings
 ios.appstore.app_name = 'CoolApp'
 ios.appstore.author = 'Rustam'
-ios.appstore.setup_steps = 'IosSetupSteps.txt'
 ios.appstore.icons = 'Content/Icons/icon-iphone@2x:Content/Icons/icon-iphone'
 
 ios.staging.app_name = 'CoolApp staging'
 ios.staging.author = 'Fedor'
-ios.staging.steps = 'IosSetupSteps.txt'
 ios.staging.icons = 'Content/Icons/icon-iphone-staging@2x.png:Content/Icons/icon-iphone-staging.png'
