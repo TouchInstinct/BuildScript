@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import unittest
 from Core.LineConveyor.NullPreprocessor import NullPreprocessor
 from parsers.SettingsParser.SettingsParser import SettingsParser
@@ -48,7 +49,6 @@ class TestSettingsParser(unittest.TestCase):
 
 			def processLine(self, line):
 				self.processLineCall += 1
-				print '{0} {1}'.format(self.processLineCall, line)
 
 		self.parser = PartialSettingsParser(self.preprocessor)
 		content = """
@@ -62,7 +62,7 @@ valid.line.with.setting = 'some value'
 
 		# всего 6 строк, 2 из которых пустые
 		# NullPreprocessor не уберет комментарии, поэтому будет 4 вызова processLine
-		self.assertEqual(2, self.parser.processLineCall)
+		self.assertEqual(4, self.parser.processLineCall)
 
 
 

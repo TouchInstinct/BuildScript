@@ -1,16 +1,18 @@
+sh echo 'IosSetupSteps.txt'
+
 # restore from backup					# восстанавливаем из бэкапа (исходники от сборки предыдущей конфигурации могут быть модифицированными)
 # create backup
 
-sh echo '{@sln_config}'
+#sh echo '{@sln_config}'
 
-inside 'BuildSample/BuildSample.sln' remove NotCompileApp project
+#inside 'BuildSample/BuildSample.sln' remove NotCompileApp project
 
-inside 'BuildSample/BuildSample/CoolApp.csproj' set OutputPath to 'Output' for '{@sln_config}'
-inside 'BuildSample/BuildSample/CoolApp.csproj' set AssemblyName to 'CoolApp' for ''
+#inside 'BuildSample/BuildSample/CoolApp.csproj' set OutputPath to 'Output' for '{@sln_config}'
+#inside 'BuildSample/BuildSample/CoolApp.csproj' set AssemblyName to 'CoolApp' for ''
 
-inside 'BuildSample/BuildSample/Info.plist' set CFBundleVersion to '{@version}'
-inside 'BuildSample/BuildSample/Info.plist' set CFBundleDisplayName to 'CoolApp'
+#inside 'BuildSample/BuildSample/Info.plist' set CFBundleVersion to '{@version}'
+#inside 'BuildSample/BuildSample/Info.plist' set CFBundleDisplayName to 'CoolApp'
 
-inside 'BuildSample/BuildSample/Info.plist' set CFBundleIconFiles with values '{@icons}'
+#inside 'BuildSample/BuildSample/Info.plist' set CFBundleIconFiles with values '{@icons}'
 
-install profile 'BuildSample/BuildSample/Profiles/8F606DAE-F9C9-4A19-8EFF-34B990D76C28.mobileprovision'
+#install profile 'BuildSample/BuildSample/Profiles/8F606DAE-F9C9-4A19-8EFF-34B990D76C28.mobileprovision'

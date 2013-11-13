@@ -7,9 +7,9 @@ class SettingsParser:
 		assert compositeLineProcessor is not None
 
 		self.compositeLineProcessor = compositeLineProcessor
-		self.settings = settings
 
-		if not self.settings:
+		self.settings = settings
+		if self.settings is None:
 			self.settings = {}
 
 	def parse(self, content):
