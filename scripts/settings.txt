@@ -1,6 +1,6 @@
 # global settings
-build_tool = '/Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool'
-version = '0.0.0' # комментарий в тойже строке
+build_tool='/Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool'
+version=0.0.0 # комментарий в тойже строке
 configs = 'appstore, staging'
 
 # ios platform settings

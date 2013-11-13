@@ -27,17 +27,35 @@ class SettingsLineParser(LineParser):
 		return result
 
 	def splitToPathAndValue(self, line):
+		# some.path = some_value
+		result = line.split('=')
 
-		propPathRegexp = r"^(?P<prop_path>[\w.]+)"
-		valueRegexp = "'(?P<value>.*)'"
-
-		regexpSource = propPathRegexp + r'\s*=\s*' + valueRegexp
-		regexp = re.compile(regexpSource, re.UNICODE)
-
-		match = regexp.match(line)
-		self._guardMatch(match, line, regexpSource)
-
-		propPath = match.group('prop_path')
-		value = match.group('value')
+		propPath = self.getPropertyPath(result[0])
+		value = self.getValue(result[1])
 
 		return propPath, value
+
+	def getPropertyPath(self, rawPropertyPath):
+		assert rawPropertyPath is not None
+		stripped = rawPropertyPath.strip()
+
+		propPathRegexp = r"^(?P<prop_path>[\w.]+)$"
+		regexp = re.compile(propPathRegexp, re.UNICODE)
+
+		match = regexp.match(stripped)
+		self._guardMatch(match, stripped, propPathRegexp)
+
+		propPath = match.group('prop_path')
+		return propPath
+
+	def getValue(self, rawValue):
+		assert rawValue is not None
+		stripped = rawValue.strip()
+
+		old = stripped
+		stripped = stripped.strip("'")
+
+		if old == stripped:
+			stripped = stripped.strip('"')
+
+		return stripped
