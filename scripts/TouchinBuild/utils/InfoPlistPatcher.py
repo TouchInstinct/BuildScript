@@ -9,8 +9,12 @@ class InfoPlistPatcher():
 		tree = eT.parse(self.__infoPlistPath)
 		plist_dict = tree.getroot().find('dict')
 
-		for key_name in key_value_dict:
-			self.AppendOrReplaceValueByKey(key_name, key_value_dict[key_name], plist_dict)
+		for keyName in key_value_dict:
+			value = key_value_dict[keyName]
+			if type(value) is str:
+				self.AppendOrReplaceValueByKey(keyName, value, plist_dict)
+			else:
+				self.AppendOrReplaceValuesByKey(keyName, value, plist_dict)
 
 		tree.write(self.__infoPlistPath, xml_declaration=True, encoding='UTF-8', method="xml")
 
@@ -22,6 +26,15 @@ class InfoPlistPatcher():
 			self.ReplaceValueByKeyIndex(key_index, value, dict_element)
 		else:
 			self.AppendKeyValue(key_name, value, dict_element)
+
+	def AppendOrReplaceValuesByKey(self, keyName, valuesArr, dictElement):
+		keyIndex = self.FindIndexByKey(keyName, dictElement)
+		elementExists = keyIndex >= 0
+
+		if elementExists:
+			self.ReplaceValuesByKeyIndex(keyIndex, valuesArr, dictElement)
+		else:
+			self.AppendValues(keyName, valuesArr, dictElement)
 
 	def FindIndexByKey(self, key_name, dict_element):
 		all_keys_elements = dict_element.findall('key')
@@ -43,15 +56,49 @@ class InfoPlistPatcher():
 		value_element = dict_element[value_index]
 		value_element.text = value
 
-	def AppendKeyValue(self, key_name, value, dict_element):
-		key_element = eT.Element('key')
-		key_element.text = key_name
+	def ReplaceValuesByKeyIndex(self, keyIndex, valueArr, dict_element):
+		valuesIndex = keyIndex + 1
+		arrayElement = dict_element[valuesIndex]
 
-		value_element = eT.Element('string')
-		value_element.text = value
+		children = arrayElement.findall('string')
+		arrayElement.remove(children)
+
+		self.fillArrayElementWithValues(arrayElement, valueArr)
+
+	def AppendKeyValue(self, keyName, value, dict_element):
+		key_element = self.createKeyElement(keyName)
+		value_element = self.createValueElement(value)
 
 		dict_element.append(key_element)
 		dict_element.append(value_element)
+
+	def AppendValues(self, keyName, valuesArr, parentElement):
+		keyElement = self.createKeyElement(keyName)
+
+		arrayElement = eT.Element('array')
+		self.fillArrayElementWithValues(arrayElement, valuesArr)
+
+		parentElement.append(keyElement)
+		parentElement.append(arrayElement)
+
+	def createKeyElement(self, keyName):
+		keyElement = eT.Element('key')
+		keyElement.text = keyName
+
+		return keyElement
+
+	def createValueElement(self, value):
+		valueElement = eT.Element('string')
+		valueElement.text = value
+
+		return valueElement
+
+	def fillArrayElementWithValues(self, arrayElement, values):
+		for value in values:
+			valueElement = self.createValueElement(value)
+			arrayElement.append(valueElement)
+
+
 
 
 
