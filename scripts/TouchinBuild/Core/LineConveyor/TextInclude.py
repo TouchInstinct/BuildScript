@@ -1,5 +1,10 @@
-class TextInclude:
+from Core.LineConveyor.PreprocessorBase import PreprocessorBase
+
+
+class TextInclude(PreprocessorBase):
 	def __init__(self, includeProcessor, contentProvider):
+		PreprocessorBase.__init__(self)
+
 		assert includeProcessor is not None
 		assert contentProvider is not None
 

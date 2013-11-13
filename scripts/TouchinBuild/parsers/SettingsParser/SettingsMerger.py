@@ -6,12 +6,10 @@ class SettingsMerger:
 		value = settingDescription['value']
 		segments = settingDescription['segments']
 
-		propPath = segments[0:-1]
-		propName = segments[-1]
+		propPath = self.getPath(segments)
+		propName = self.getPropertyName(segments)
 
 		settingsDict = self.getSettingsDictByPath(globalSettings, propPath)
-		#self.overrideGuard(settingsDict, propName, propPath)
-
 		settingsDict[propName] = value
 
 	def getSettingsDictByPath(self, globalSettings, pathToSettingsDict):
@@ -26,10 +24,10 @@ class SettingsMerger:
 
 		return settingsDict
 
-	#def overrideGuard(self, dictionary, key, path):
-	#	if key in dictionary:
-	#		pathStr = '.'.join(path)
-	#		msg = 'settings with name {0} by path {1} already exists with value {3}'.format(key, dictionary[key], pathStr)
-	#		raise Exception(msg)
+	def getPath(self, segments):
+		assert segments is not None
+		return segments[0:-1]
 
-
+	def getPropertyName(self, segments):
+		assert segments is not None
+		return segments[-1]

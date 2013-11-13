@@ -3,10 +3,14 @@ from parsers.SettingsParser.SettingsMerger import SettingsMerger
 
 
 class SettingsParser:
-	def __init__(self, settings=None):
-		self.settings = settings
+	def __init__(self, compositeLineProcessor, settings):
+		assert compositeLineProcessor is not None
+		assert settings is None or type(settings) == dict
 
-		if not self.settings:
+		self.compositeLineProcessor = compositeLineProcessor
+
+		self.settings = settings
+		if self.settings is None:
 			self.settings = {}
 
 	def parse(self, content):
@@ -14,14 +18,12 @@ class SettingsParser:
 
 		lines = content.splitlines()
 		for line in lines:
-			stripped = line.strip(' \t\n\r')
+			processedLine = self.compositeLineProcessor.processText(line, None)
 
-			if len(stripped) == 0:
+			if len(processedLine) == 0:
 				continue
-			if stripped.startswith("#"):
-				continue
-
-			self.processLine(stripped)
+			else:
+				self.processLine(processedLine)
 
 	def processLine(self, line):
 		assert line is not None

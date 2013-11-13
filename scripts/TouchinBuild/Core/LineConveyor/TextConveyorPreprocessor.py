@@ -1,5 +1,9 @@
-class TextConveyorPreprocessor:
+from Core.LineConveyor.PreprocessorBase import PreprocessorBase
+
+
+class TextConveyorPreprocessor(PreprocessorBase):
 	def __init__(self):
+		PreprocessorBase.__init__(self)
 		self.processors = []
 
 	def addProcessor(self, processor):

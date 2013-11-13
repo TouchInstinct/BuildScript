@@ -26,17 +26,17 @@ scriptDir = os.path.dirname(scriptFilePath)
 
 
 class TaskRunner:
-	def __init__(self, settingsProvider, fileContentProvider, buildConfigProvider):
+	def __init__(self, settingsProvider, fileContentProvider, buildConfigProvider, linePreprocessor):
 		assert settingsProvider is not None
 		assert fileContentProvider is not None
 		assert buildConfigProvider is not None
+		assert linePreprocessor is not None
 
 		self.settingsProvider = settingsProvider
 		self.fileContentProvider = fileContentProvider
 		self.configsProvider = buildConfigProvider
+		self.linePreprocessor = linePreprocessor
 
-		lineStripper = Stripper()
-		commentRemover = CommentRemover()
 
 		macroProcessor = MacroProcessor()
 		self.valueProvider = ValueProvider()
@@ -52,9 +52,6 @@ class TaskRunner:
 		self.textPreprocessor.addProcessor(macroResolver)
 		self.textPreprocessor.addProcessor(textInclude)
 
-		self.linePreprocessor = TextConveyorPreprocessor()
-		self.linePreprocessor.addProcessor(commentRemover)
-		self.linePreprocessor.addProcessor(lineStripper)
 
 	def run(self):
 		rawSettings = self.settingsProvider.fetchSettings()
@@ -83,9 +80,17 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 	overrideArgs = parser.parse_known_args()[1]
 
+	# компоную препроцессор для индивидуальной обработки строк (удаление комментариев и ведущих пробельных символов)
+	lineStripper = Stripper()
+	commentRemover = CommentRemover()
+	linePreprocessor = TextConveyorPreprocessor()
+	linePreprocessor.addProcessor(commentRemover)
+	linePreprocessor.addProcessor(lineStripper)
+
 	# TODO:  перенести в корень комапановки
-	fromFileSettingsProvider = FromFileSettingsProvider()
-	overrideWithCmdSetProvider = CmdArgsOverriderSettingsProvider(fromFileSettingsProvider, overrideArgs)
+	settingsPath = 'scripts/settings.txt'
+	fromFileSettingsProvider = FromFileSettingsProvider(settingsPath, linePreprocessor)
+	overrideWithCmdSetProvider = CmdArgsOverriderSettingsProvider(fromFileSettingsProvider, overrideArgs, linePreprocessor)
 
 	fContentProvider = FileContentProvider()
 
@@ -96,5 +101,5 @@ if __name__ == "__main__":
 	resolvedBuildConfigProvider = ResolvedBuildConfigProvider(predefineBuildConfigProvider)
 
 
-	runner = TaskRunner(overrideWithCmdSetProvider, fContentProvider, resolvedBuildConfigProvider)
+	runner = TaskRunner(overrideWithCmdSetProvider, fContentProvider, resolvedBuildConfigProvider, linePreprocessor)
 	runner.run()

@@ -1,12 +1,13 @@
 # global settings
 build_tool = '/Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool'
-version = '0.0.0'
+version = '0.0.0' # комментарий в тойже строке
 configs = 'appstore, staging'
 
 # ios platform settings
 ios.sln_config = 'Release|iPhone'
 ios.steps = 'scripts/IosSteps.txt'
 ios.setup_steps = 'IosSetupSteps.txt'
+ios.assembly_name = 'CoolApp'
 
 ios.tf_api_token = '0e6925075d4fc10fed0e7bbf43fa6894_NjQ0OTI2MjAxMi0wOS0yNSAxMTo0MDozNi40OTY5MjU'
 ios.tf_team_token = 'c5c3cf7a6dae2bea4382dfbd181a2075_Mjc4ODkwMjAxMy0wOS0yOSAxNDowOTo1OC40Mzg5MTY'

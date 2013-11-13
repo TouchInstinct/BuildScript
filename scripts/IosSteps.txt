@@ -1,3 +1,4 @@
+sh echo 'IosSteps.txt'
 sh echo '{@builder_path}'
 
 <include 'scripts/{@setup_steps}'>
@@ -9,10 +10,10 @@ clean 'BuildSample/BuildSample.sln' for '{@sln_config}'
 build 'BuildSample/BuildSample.sln' for '{@sln_config}'
 
 create dirs 'Output/Appstore/Artifacts'
-copy 'BuildSample/BuildSample/Output/BuildSample-{@version}.ipa' to 'Output/Appstore/Artifacts'
+copy 'BuildSample/BuildSample/Output/{@assembly_name}-{@version}.ipa' to 'Output/Appstore/Artifacts'
 sh cp -a BuildSample/BuildSample/Output/ Output/Appstore/
 
-publish 'Output/Appstore/Artifacts/BuildSample-{@version}.ipa' to testflight notes = 'Hello' api_token = '{@tf_api_token}' team_token = '{@tf_team_token}'
+publish 'Output/Appstore/Artifacts/{@assembly_name}-{@version}.ipa' to testflight notes = 'Hello' api_token = '{@tf_api_token}' team_token = '{@tf_team_token}'
 
-restore from backup
-delete backup
+#restore from backup
+#delete backup
