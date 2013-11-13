@@ -58,8 +58,8 @@ class CsprojPatcher:
 
 
 	def IsValueFitFor(self, config_name, condition_attr_value):
-		if condition_attr_value is None and config_name == '':
-			result = True
+		if condition_attr_value is None:
+			result = config_name == '' or config_name is None
 		else:
 			# '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator'
 			configValue = condition_attr_value.split('==')[1]
