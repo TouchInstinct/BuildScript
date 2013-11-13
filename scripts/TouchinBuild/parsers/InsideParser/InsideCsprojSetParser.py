@@ -21,7 +21,7 @@ class InsideCsprojSetParser(InsideParserBase):
 
 		keyRegexp = r'(?P<key>[a-zA-Z]+)'
 		valueRegexp = r"'(?P<value>[^']+)'"
-		slnConfigRegexp = r"'(?P<config>[a-zA-Z|]+)'$"
+		slnConfigRegexp = r"'(?P<config>[a-zA-Z|]*)'$"
 
 		regexpSource = self.startsWith('inside') + self.filePathRegexp + self.keywordToken('set') + keyRegexp + \
 					   self.keywordToken('to') + valueRegexp + self.keywordToken('for') + slnConfigRegexp
