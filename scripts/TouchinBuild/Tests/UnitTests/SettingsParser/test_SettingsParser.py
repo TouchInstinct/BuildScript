@@ -1,11 +1,13 @@
 import unittest
+from Core.LineConveyor.NullPreprocessor import NullPreprocessor
 from parsers.SettingsParser.SettingsParser import SettingsParser
 
 
 
 class TestSettingsParser(unittest.TestCase):
 	def setUp(self):
-		self.parser = SettingsParser()
+		self.preprocessor = NullPreprocessor()
+		self.parser = SettingsParser(self.preprocessor)
 
 	def test_processLine(self):
 		line1 = "x.y.name1 = 'value1'"
@@ -38,15 +40,17 @@ class TestSettingsParser(unittest.TestCase):
 		self.assertEqual('value8', self.parser.settings['a']['z']['name2'])
 
 	def test_emptyLinesAndComments(self):
+
 		class PartialSettingsParser(SettingsParser):
-			def __init__(self):
-				SettingsParser.__init__(self)
+			def __init__(self, textPreprocessor):
+				SettingsParser.__init__(self, textPreprocessor)
 				self.processLineCall = 0
 
 			def processLine(self, line):
 				self.processLineCall += 1
+				print '{0} {1}'.format(self.processLineCall, line)
 
-		self.parser = PartialSettingsParser()
+		self.parser = PartialSettingsParser(self.preprocessor)
 		content = """
 valid.line.with.setting = 'some value'
 # this is comment
@@ -56,6 +60,8 @@ valid.line.with.setting = 'some value'
 
 		self.parser.parse(content)
 
+		# всего 6 строк, 2 из которых пустые
+		# NullPreprocessor не уберет комментарии, поэтому будет 4 вызова processLine
 		self.assertEqual(2, self.parser.processLineCall)
 
 

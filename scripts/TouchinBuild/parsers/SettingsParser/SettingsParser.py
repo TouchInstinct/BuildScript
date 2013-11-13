@@ -24,8 +24,6 @@ class SettingsParser:
 			else:
 				self.processLine(processedLine)
 
-			self.processLine(processedLine)
-
 	def processLine(self, line):
 		assert line is not None
 

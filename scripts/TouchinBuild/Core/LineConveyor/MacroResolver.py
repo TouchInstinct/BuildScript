@@ -1,5 +1,10 @@
-class MacroResolver:
+from Core.LineConveyor.PreprocessorBase import PreprocessorBase
+
+
+class MacroResolver(PreprocessorBase):
 	def __init__(self, macroProcessor, valueProvider):
+		PreprocessorBase.__init__(self)
+
 		assert macroProcessor is not None
 		assert valueProvider is not None
 

@@ -1,6 +1,9 @@
-class CommentRemover:
+from Core.LineConveyor.PreprocessorBase import PreprocessorBase
+
+
+class CommentRemover(PreprocessorBase):
 	def __init__(self):
-		pass
+		PreprocessorBase.__init__(self)
 
 	def processText(self, line, conveyorProcessor):
 		assert line is not None

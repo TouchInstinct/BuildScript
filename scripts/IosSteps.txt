@@ -5,14 +5,14 @@ sh echo '{@builder_path}'
 sh echo hello from '{@author}'
 sh echo version: '{@version}'
 
-clean 'BuildSample/BuildSample.sln' for '{@sln_config}'
-build 'BuildSample/BuildSample.sln' for '{@sln_config}'
+#clean 'BuildSample/BuildSample.sln' for '{@sln_config}'
+#build 'BuildSample/BuildSample.sln' for '{@sln_config}'
 
-create dirs 'Output/Appstore/Artifacts'
-copy 'BuildSample/BuildSample/Output/BuildSample-{@version}.ipa' to 'Output/Appstore/Artifacts'
-sh cp -a BuildSample/BuildSample/Output/ Output/Appstore/
+#create dirs 'Output/Appstore/Artifacts'
+#copy 'BuildSample/BuildSample/Output/BuildSample-{@version}.ipa' to 'Output/Appstore/Artifacts'
+#sh cp -a BuildSample/BuildSample/Output/ Output/Appstore/
 
-publish 'Output/Appstore/Artifacts/BuildSample-{@version}.ipa' to testflight notes = 'Hello' api_token = '{@tf_api_token}' team_token = '{@tf_team_token}'
+#publish 'Output/Appstore/Artifacts/BuildSample-{@version}.ipa' to testflight notes = 'Hello' api_token = '{@tf_api_token}' team_token = '{@tf_team_token}'
 
-restore from backup
-delete backup
+#restore from backup
+#delete backup
