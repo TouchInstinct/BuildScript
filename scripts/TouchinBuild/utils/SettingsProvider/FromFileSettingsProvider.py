@@ -16,7 +16,7 @@ class FromFileSettingsProvider(SettingsProviderBase):
 		settingsFile = open(self.pathToSettings)
 		content = settingsFile.read()
 
-		parser = SettingsParser(self.compositeLineProcessor)
+		parser = SettingsParser(self.compositeLineProcessor, None)
 		parser.parse(content)
 
 		return parser.settings

@@ -3,8 +3,9 @@ from parsers.SettingsParser.SettingsMerger import SettingsMerger
 
 
 class SettingsParser:
-	def __init__(self, compositeLineProcessor, settings=None):
+	def __init__(self, compositeLineProcessor, settings):
 		assert compositeLineProcessor is not None
+		assert settings is None or type(settings) == dict
 
 		self.compositeLineProcessor = compositeLineProcessor
 

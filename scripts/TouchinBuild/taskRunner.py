@@ -90,7 +90,7 @@ if __name__ == "__main__":
 	# TODO:  перенести в корень комапановки
 	settingsPath = 'scripts/settings.txt'
 	fromFileSettingsProvider = FromFileSettingsProvider(settingsPath, linePreprocessor)
-	overrideWithCmdSetProvider = CmdArgsOverriderSettingsProvider(fromFileSettingsProvider, overrideArgs)
+	overrideWithCmdSetProvider = CmdArgsOverriderSettingsProvider(fromFileSettingsProvider, overrideArgs, linePreprocessor)
 
 	fContentProvider = FileContentProvider()
 
