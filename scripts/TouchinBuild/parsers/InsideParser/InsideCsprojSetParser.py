@@ -1,5 +1,6 @@
 import re
 from parsers.InsideParser.InsideParserBase import InsideParserBase
+from parsers.RegexpBuilder import RegexpBuilder
 
 
 class InsideCsprojSetParser(InsideParserBase):
@@ -23,8 +24,9 @@ class InsideCsprojSetParser(InsideParserBase):
 		valueRegexp = r"'(?P<value>[^']+)'"
 		slnConfigRegexp = r"'(?P<config>[a-zA-Z|]*)'$"
 
-		regexpSource = self.startsWith('inside') + self.filePathRegexp + self.keywordToken('set') + keyRegexp + \
-					   self.keywordToken('to') + valueRegexp + self.keywordToken('for') + slnConfigRegexp
+		rb = RegexpBuilder()
+		regexpSource = rb.startsWith('inside') + self.filePathRegexp + rb.keywordToken('set') + keyRegexp + \
+					   rb.keywordToken('to') + valueRegexp + rb.keywordToken('for') + slnConfigRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)

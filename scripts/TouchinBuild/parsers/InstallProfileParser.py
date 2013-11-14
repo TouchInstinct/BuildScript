@@ -1,5 +1,6 @@
 import re
 from parsers.LineParser import LineParser
+from parsers.RegexpBuilder import RegexpBuilder
 
 
 class InstallProfileParser(LineParser):
@@ -9,8 +10,9 @@ class InstallProfileParser(LineParser):
 	def parseLine(self, line):
 		assert line is not None
 
+		rb = RegexpBuilder()
 		profilePathRegexp = r"'(?P<path>[^']+)'$"
-		regexpSource = self.startsWith('install') + self.than('profile') + profilePathRegexp
+		regexpSource = rb.startsWith('install') + rb.than('profile') + profilePathRegexp
 
 		regexp = re.compile(regexpSource, re.UNICODE)
 
@@ -19,3 +21,12 @@ class InstallProfileParser(LineParser):
 
 		srcPath = match.group('path')
 		return srcPath
+
+	def isValidLine(self, line):
+		rb = RegexpBuilder()
+
+		regexpSource = rb.startsWith('install') + rb.than('profile')
+		regexp = re.compile(regexpSource, re.UNICODE)
+
+		match = regexp.match(line)
+		return match is not None

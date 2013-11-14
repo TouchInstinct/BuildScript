@@ -3,9 +3,9 @@ from parsers.LineParser import LineParser
 from parsers.RegexpBuilder import RegexpBuilder
 
 
-class IncludeProcessor(LineParser):
+class IncludeProcessor:
 	def __init__(self):
-		LineParser.__init__(self)
+		pass
 
 	def getIncludesInfo(self, text):
 		assert text is not None

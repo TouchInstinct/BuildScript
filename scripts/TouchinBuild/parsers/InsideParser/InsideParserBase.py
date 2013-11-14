@@ -2,9 +2,7 @@ import abc
 from parsers.LineParser import LineParser
 
 
-class InsideParserBase(object, LineParser):
-	__metaclass__ = abc.ABCMeta
-
+class InsideParserBase(LineParser):
 	def __init__(self, fileExt):
 		LineParser.__init__(self)
 
