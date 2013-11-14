@@ -19,7 +19,7 @@ class InsideSetParser(InsideParserBase):
 	def getMatchInfo(self, line):
 		assert line is not None
 
-		keyRegexp = r'(?P<key>[a-zA-Z]+)'
+		keyRegexp = r'(?P<key>\S+)'
 		valueRegexp = r"'(?P<value>[^']+)'$"
 
 		rb = RegexpBuilder()

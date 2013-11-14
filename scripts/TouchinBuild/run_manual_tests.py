@@ -24,5 +24,6 @@ print 'current working dir: {0}'.format(baseDirAbsPath)
 #import Tests.ManualTests.install_profile
 #import Tests.ManualTests.macros_include_test
 #import Tests.ManualTests.resolve_settings
+#import Tests.ManualTests.infoPlistMultipleValues_test
 
-import Tests.ManualTests.infoPlistMultipleValues_test
+import Tests.ManualTests.manifest_test
