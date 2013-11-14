@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-
 import os
+from commands.CommandBase import CommandBase
 
 
-class BaseBackupCommand:
+class BaseBackupCommand(CommandBase):
 	def __init__(self):
+		CommandBase.__init__(self)
 		self.folderPath = '.'
 
 		# вычислять абсолютные пути надо на этапе создания комманды

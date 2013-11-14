@@ -1,4 +1,4 @@
-from commands.ShCommand import ShCommand
+from commands.ShTextCommand import ShTextCommand
 from parsers.ShParser import ShParser
 
 
@@ -19,5 +19,5 @@ class ShCommandBuilder:
 
 		cmdText = parser.parseLine(line)
 
-		command = ShCommand(cmdText)
+		command = ShTextCommand(cmdText)
 		return command

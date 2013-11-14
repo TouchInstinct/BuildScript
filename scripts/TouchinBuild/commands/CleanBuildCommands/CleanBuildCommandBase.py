@@ -1,8 +1,10 @@
-from subprocess import call
+from commands.ShellCommandBase import ShellCommandBase
 
 
-class CleanBuildCommandBase:
+class CleanBuildCommandBase(ShellCommandBase):
 	def __init__(self, commandPattern, pathToBuildUtil, slnPath, slnConfig):
+		ShellCommandBase.__init__(self)
+
 		assert commandPattern is not None
 		assert pathToBuildUtil is not None
 		assert slnPath is not None
@@ -15,4 +17,5 @@ class CleanBuildCommandBase:
 
 	def execute(self):
 		cmdText = self.__commandPattern.format(self.__pathToBuildUtil, self.__slnConfig, self.__slnPath)
-		call(cmdText, shell=True)
+
+		self.executeShell(cmdText)
