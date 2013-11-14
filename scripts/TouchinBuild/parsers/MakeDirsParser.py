@@ -1,6 +1,7 @@
 import re
 
 from parsers.LineParser import LineParser
+from parsers.RegexpBuilder import RegexpBuilder
 
 
 class MakeDirsParser(LineParser):
@@ -10,7 +11,8 @@ class MakeDirsParser(LineParser):
 	def parseLine(self, line):
 		pathRegexp = r"'(?P<path>[^']+)'$"
 
-		regexpSource = self.startsWith('create dirs') + pathRegexp
+		rb = RegexpBuilder()
+		regexpSource = rb.startsWith('create dirs') + pathRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)

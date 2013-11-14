@@ -1,5 +1,6 @@
 import re
 from parsers.InsideParser.InsideParserBase import InsideParserBase
+from parsers.RegexpBuilder import RegexpBuilder
 
 
 class InsideSetParser(InsideParserBase):
@@ -21,8 +22,9 @@ class InsideSetParser(InsideParserBase):
 		keyRegexp = r'(?P<key>[a-zA-Z]+)'
 		valueRegexp = r"'(?P<value>[^']+)'$"
 
-		regexpSource = self.startsWith('inside') + self.filePathRegexp + self.keywordToken('set') + keyRegexp + \
-					   self.keywordToken('to') + valueRegexp
+		rb = RegexpBuilder()
+		regexpSource = rb.startsWith('inside') + self.filePathRegexp + rb.keywordToken('set') + keyRegexp + \
+					   rb.keywordToken('to') + valueRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)

@@ -8,7 +8,6 @@ class TestInstallProfile(unittest.TestCase):
 
 	def test_parse(self):
 		line = "install profile 'Path/To/Profile.mobileprovision'"
-		copyArgs = self.parser.parseLine(line)
+		src = self.parser.parseLine(line)
 
-		self.assertEqual('Path/To/Profile.mobileprovision', copyArgs.source)
-		self.assertEqual('~/Library/MobileDevice/Provisioning Profiles/Profile.mobileprovision', copyArgs.target)
+		self.assertEqual('Path/To/Profile.mobileprovision', src)

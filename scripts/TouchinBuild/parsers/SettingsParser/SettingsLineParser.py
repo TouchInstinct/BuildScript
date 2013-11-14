@@ -26,6 +26,11 @@ class SettingsLineParser(LineParser):
 
 		return result
 
+	def isValidLine(self, line):
+		assert line is not None
+
+		return '=' in line
+
 	def splitToPathAndValue(self, line):
 		# some.path = some_value
 		result = line.split('=')

@@ -2,6 +2,7 @@
 build_tool='/Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool'
 version=0.0.0 # комментарий в тойже строке
 configs = 'appstore, staging'
+project_name = CoolApp
 
 # ios platform settings
 ios.sln_config = Release|iPhone
@@ -16,10 +17,10 @@ ios.tf_team_token = 'c5c3cf7a6dae2bea4382dfbd181a2075_Mjc4ODkwMjAxMy0wOS0yOSAxND
 # android.steps = 'scripts/AndroidSteps.txt'
 
 # config settings
-ios.appstore.app_name = 'CoolApp'
+ios.appstore.app_name = {@project_name}
 ios.appstore.author = 'Rustam'
 ios.appstore.icons = 'Content/Icons/icon-iphone@2x:Content/Icons/icon-iphone'
 
-ios.staging.app_name = 'CoolApp staging'
+ios.staging.app_name = '{@project_name} staging'
 ios.staging.author = 'Fedor'
 ios.staging.icons = 'Content/Icons/icon-iphone-staging@2x.png:Content/Icons/icon-iphone-staging.png'

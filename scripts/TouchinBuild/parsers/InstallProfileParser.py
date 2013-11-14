@@ -1,20 +1,18 @@
 import re
-import os
-from parsers.CopyParser.CopyArguments import CopyArguments
 from parsers.LineParser import LineParser
+from parsers.RegexpBuilder import RegexpBuilder
 
 
 class InstallProfileParser(LineParser):
 	def __init__(self):
 		LineParser.__init__(self)
-		self.__copyArguments = CopyArguments()
-		self.__profileStorageDir = '~/Library/MobileDevice/Provisioning Profiles/'
 
 	def parseLine(self, line):
 		assert line is not None
 
+		rb = RegexpBuilder()
 		profilePathRegexp = r"'(?P<path>[^']+)'$"
-		regexpSource = self.startsWith('install') + self.than('profile') + profilePathRegexp
+		regexpSource = rb.startsWith('install') + rb.than('profile') + profilePathRegexp
 
 		regexp = re.compile(regexpSource, re.UNICODE)
 
@@ -22,13 +20,13 @@ class InstallProfileParser(LineParser):
 		self._guardMatch(match, line, regexpSource)
 
 		srcPath = match.group('path')
-		dstPath = self.getDestinationPath(srcPath)
+		return srcPath
 
-		self.__copyArguments.setArguments(srcPath, dstPath)
-		return self.__copyArguments
+	def isValidLine(self, line):
+		rb = RegexpBuilder()
 
-	def getDestinationPath(self, sourcePath):
-		profileFileName = os.path.basename(sourcePath)
-		destination = os.path.join(self.__profileStorageDir, profileFileName)
+		regexpSource = rb.startsWith('install') + rb.than('profile')
+		regexp = re.compile(regexpSource, re.UNICODE)
 
-		return destination
+		match = regexp.match(line)
+		return match is not None

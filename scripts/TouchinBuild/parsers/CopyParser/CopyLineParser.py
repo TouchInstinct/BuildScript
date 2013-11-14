@@ -2,6 +2,7 @@ import re
 
 from parsers.CopyParser.CopyArguments import CopyArguments
 from parsers.LineParser import LineParser
+from parsers.RegexpBuilder import RegexpBuilder
 
 
 class CopyLineParser(LineParser):
@@ -15,7 +16,8 @@ class CopyLineParser(LineParser):
 		srcFileNameRegexp = r"'(?P<src>[^']+)'"
 		dstFileNameRegexp = r"'(?P<dst>[^']+)'$"
 
-		regexpSource = self.startsWith('copy') + srcFileNameRegexp + self.keywordToken('to') + dstFileNameRegexp
+		rb = RegexpBuilder()
+		regexpSource = rb.startsWith('copy') + srcFileNameRegexp + rb.keywordToken('to') + dstFileNameRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)
