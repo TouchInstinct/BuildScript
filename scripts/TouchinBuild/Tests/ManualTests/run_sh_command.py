@@ -1,4 +1,4 @@
-from commands.ShCommand import ShTextCommand
+from commands.ShTextCommand import ShTextCommand
 
 calendarCommand = ShTextCommand('cal 12 2013')
 calendarCommand.execute()
