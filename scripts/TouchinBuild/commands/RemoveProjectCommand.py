@@ -3,15 +3,15 @@ from utils.SlnPatcher import SlnPatcher
 
 
 class RemoveProjectCommand(CommandBase):
-	def __init__(self, slnPath, projectName):
+	def __init__(self, slnPath, projectNames):
 		CommandBase.__init__(self)
 
 		assert slnPath is not None
-		assert projectName is not None
+		assert projectNames is not None
 
 		self.__slnPath = slnPath
-		self.__projectName = projectName
+		self.projectNames = projectNames
 
 	def execute(self):
 		patcher = SlnPatcher(self.__slnPath)
-		patcher.removeProjects([self.__projectName])
+		patcher.removeProjects(self.projectNames)

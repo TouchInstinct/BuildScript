@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotCompileApp", "NotCompile
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{BD5EC0A1-EDC9-4D90-BACF-AE54F26148C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DroidApp", "DroidApp\DroidApp.csproj", "{10AA179F-818F-4E3F-947E-DE1C0C87BB76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -15,6 +17,14 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10AA179F-818F-4E3F-947E-DE1C0C87BB76}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{10AA179F-818F-4E3F-947E-DE1C0C87BB76}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{10AA179F-818F-4E3F-947E-DE1C0C87BB76}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{10AA179F-818F-4E3F-947E-DE1C0C87BB76}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{10AA179F-818F-4E3F-947E-DE1C0C87BB76}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{10AA179F-818F-4E3F-947E-DE1C0C87BB76}.Release|iPhone.Build.0 = Release|Any CPU
+		{10AA179F-818F-4E3F-947E-DE1C0C87BB76}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{10AA179F-818F-4E3F-947E-DE1C0C87BB76}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{3DE4FDFA-1502-44CF-9B73-78B6D730C59F}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{3DE4FDFA-1502-44CF-9B73-78B6D730C59F}.Debug|iPhone.Build.0 = Debug|iPhone
 		{3DE4FDFA-1502-44CF-9B73-78B6D730C59F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
