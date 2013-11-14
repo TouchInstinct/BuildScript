@@ -1,10 +1,4 @@
-sh echo 'IosSteps.txt'
-sh echo '{@builder_path}'
-
 <include 'scripts/{@setup_steps}'>
-
-sh echo hello from '{@author}'
-sh echo version: '{@version}'
 
 clean 'BuildSample/BuildSample.sln' for '{@sln_config}'
 build 'BuildSample/BuildSample.sln' for '{@sln_config}'

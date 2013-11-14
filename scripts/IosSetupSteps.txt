@@ -1,5 +1,3 @@
-sh echo 'IosSetupSteps.txt'
-
 # restore from backup					# восстанавливаем из бэкапа (исходники от сборки предыдущей конфигурации могут быть модифицированными)
 # create backup
 
@@ -11,7 +9,7 @@ inside 'BuildSample/BuildSample/CoolApp.csproj' set OutputPath to 'Output' for '
 inside 'BuildSample/BuildSample/CoolApp.csproj' set AssemblyName to '{@assembly_name}' for ''
 
 inside 'BuildSample/BuildSample/Info.plist' set CFBundleVersion to '{@version}'
-inside 'BuildSample/BuildSample/Info.plist' set CFBundleDisplayName to 'CoolApp'
+inside 'BuildSample/BuildSample/Info.plist' set CFBundleDisplayName to '{@project_name}'
 
 inside 'BuildSample/BuildSample/Info.plist' set CFBundleIconFiles with values '{@icons}'
 
