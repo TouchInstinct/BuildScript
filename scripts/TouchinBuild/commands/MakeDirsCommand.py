@@ -1,13 +1,10 @@
-from commands.ShCommand import ShCommand
+from commands.ShTextCommand import ShTextCommand
 
 
-class MakeDirsCommand:
+class MakeDirsCommand(ShTextCommand):
 	def __init__(self, path):
 		assert path is not None
+		self.path = path
 
-		self.__path = path
-
-	def execute(self):
-		cmdText = "mkdir -p '{0}'".format(self.__path)
-		innerCommand = ShCommand(cmdText)
-		innerCommand.execute()
+		cmdText = "mkdir -p '{0}'".format(self.path)
+		ShTextCommand.__init__(self, cmdText)

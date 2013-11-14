@@ -1,8 +1,12 @@
 import shutil
 import os
+from commands.CommandBase import CommandBase
 
-class CopyCommand:
+
+class CopyCommand(CommandBase):
 	def __init__(self, copyArguments):
+		CommandBase.__init__(self)
+
 		assert copyArguments is not None
 
 		self.__copyArguments = copyArguments

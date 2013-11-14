@@ -1,6 +1,8 @@
 from Core.ContentProviderBase import ContentProviderBase
+from Core.LineConveyor.NullPreprocessor import NullPreprocessor
 from Tests.Common.SettingsProviderStub import SettingsProviderStub
 from taskRunner import TaskRunner
+from utils.BuildConfigProvider.BuildConfigProvider import BuildConfigProvider
 
 settingsText = """
 build_tool = '/Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool'
@@ -42,6 +44,9 @@ class ContentProviderMock(ContentProviderBase):
 settingsProvider = SettingsProviderStub(settingsText)
 contentProvider = ContentProviderMock()
 
-taskRunner = TaskRunner(settingsProvider, contentProvider)
+buildConfigProvider = BuildConfigProvider()
+preprocessor = NullPreprocessor()
+
+taskRunner = TaskRunner(settingsProvider, contentProvider, buildConfigProvider, preprocessor)
 
 taskRunner.run()

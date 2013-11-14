@@ -1,8 +1,11 @@
+from commands.CommandBase import CommandBase
 from utils.SlnPatcher import SlnPatcher
 
 
-class RemoveProjectCommand:
+class RemoveProjectCommand(CommandBase):
 	def __init__(self, slnPath, projectName):
+		CommandBase.__init__(self)
+
 		assert slnPath is not None
 		assert projectName is not None
 

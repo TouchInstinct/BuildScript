@@ -14,7 +14,7 @@ class InsideParserBase(object, LineParser):
 
 	@abc.abstractmethod
 	def getMatchInfo(self, line):
-		"Not implemented"
+		# "Not implemented"
 		return None, None
 
 	def fetchMatchFor(self, text):

@@ -1,7 +1,10 @@
+from commands.CommandBase import CommandBase
 import utils.CsprojPatcher as csproj
 
-class PatchCsprojCommand():
+class PatchCsprojCommand(CommandBase):
 	def __init__(self, csprojAbsPath, key, value, slnConfig):
+		CommandBase.__init__(self)
+
 		assert csprojAbsPath is not None
 		assert key is not None
 		assert value is not None

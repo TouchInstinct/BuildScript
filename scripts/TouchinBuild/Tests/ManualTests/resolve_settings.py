@@ -1,4 +1,5 @@
 from Core.ContentProviderBase import ContentProviderBase
+from Core.LineConveyor.NullPreprocessor import NullPreprocessor
 from Tests.Common.SettingsProviderStub import SettingsProviderStub
 from taskRunner import TaskRunner
 from utils.BuildConfigProvider.BuildConfigProvider import BuildConfigProvider
@@ -37,8 +38,9 @@ buildConfigProvider = BuildConfigProvider()
 resolvedBuildConfigProvider = ResolvedBuildConfigProvider(buildConfigProvider)
 
 contentProvider = ContentProviderMock()
+preprocessor = NullPreprocessor()
 
-taskRunner = TaskRunner(settingsProvider, contentProvider, resolvedBuildConfigProvider)
+taskRunner = TaskRunner(settingsProvider, contentProvider, resolvedBuildConfigProvider, preprocessor)
 
 taskRunner.run()
 

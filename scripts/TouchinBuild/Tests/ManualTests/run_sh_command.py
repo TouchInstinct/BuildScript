@@ -1,7 +1,7 @@
-from commands.ShCommand import ShCommand
+from commands.ShTextCommand import ShTextCommand
 
-calendarCommand = ShCommand('cal 12 2013')
+calendarCommand = ShTextCommand('cal 12 2013')
 calendarCommand.execute()
 
-touchCommand = ShCommand('touch ../tmp.txt')
+touchCommand = ShTextCommand('touch ../tmp.txt')
 touchCommand.execute()

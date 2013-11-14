@@ -1,12 +1,12 @@
 import abc
 
 
-class PreprocessorBase(object):
+class CommandBase(object):
 	__metaclass__ = abc.ABCMeta
 
 	def __init__(self):
 		pass
 
 	@abc.abstractmethod
-	def processText(self, line, conveyorProcessor):
+	def execute(self):
 		pass

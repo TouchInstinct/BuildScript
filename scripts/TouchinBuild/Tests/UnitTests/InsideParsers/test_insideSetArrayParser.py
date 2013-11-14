@@ -1,4 +1,3 @@
-import unittest
 from Tests.UnitTests.LineParserTestCaseBase import LineParserTestCaseBase
 from parsers.InsideParser.InsideSetArrayParser import InsideSetArrayParser
 
