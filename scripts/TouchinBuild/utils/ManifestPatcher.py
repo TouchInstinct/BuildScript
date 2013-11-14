@@ -35,11 +35,11 @@ class ManifestPatcher(XmlPatcher):
 		"""
 
 		result = rawName.split(':')
-		prefixExists = len(result) > 0
+		prefixExists = len(result) > 1
 
 		atrInfo = {
 			'prefix': result[0] if prefixExists else None,
-			'original_name': result[1]
+			'original_name': result[1] if prefixExists else result[0]
 		}
 
 		return atrInfo
