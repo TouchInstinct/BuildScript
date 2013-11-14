@@ -1,6 +1,7 @@
 import re
 
 from parsers.LineParser import LineParser
+from parsers.RegexpBuilder import RegexpBuilder
 
 
 class CleanBuildParser(LineParser):
@@ -8,7 +9,7 @@ class CleanBuildParser(LineParser):
 		LineParser.__init__(self)
 		assert commandToken is not None
 
-		self.__commandToken = commandToken
+		self.commandToken = commandToken
 
 	def parseLine(self, line):
 		assert line is not None
@@ -16,7 +17,8 @@ class CleanBuildParser(LineParser):
 		filePathRegexp = r"'(?P<path>[./ a-zA-Z]+\.sln)'"
 		slnConfigRegexp = r"'(?P<config>[a-zA-Z|]+)'$"
 
-		regexpSource = self.startsWith(self.__commandToken) + filePathRegexp + self.keywordToken('for') + slnConfigRegexp
+		rb = RegexpBuilder()
+		regexpSource = rb.startsWith(self.commandToken) + filePathRegexp + rb.keywordToken('for') + slnConfigRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)
@@ -30,5 +32,5 @@ class CleanBuildParser(LineParser):
 	def isValidLine(self, line):
 		assert line is not None
 
-		isValid = line.startswith(self.__commandToken)
+		isValid = line.startswith(self.commandToken)
 		return isValid

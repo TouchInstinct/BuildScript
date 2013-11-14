@@ -1,6 +1,7 @@
 import re
 
 from parsers.ParserBackup.ParserBackupBase import ParserBackupBase
+from parsers.RegexpBuilder import RegexpBuilder
 
 
 class DeleteBackupParser(ParserBackupBase):
@@ -10,7 +11,8 @@ class DeleteBackupParser(ParserBackupBase):
 	def getMatchInfo(self, line):
 		assert line is not None
 
-		regexpSource = self.startsWith('delete') + self.endsWith('backup')
+		rb = RegexpBuilder()
+		regexpSource = rb.startsWith('delete') + rb.endsWith('backup')
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)

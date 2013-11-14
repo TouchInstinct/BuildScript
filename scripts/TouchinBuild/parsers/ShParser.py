@@ -1,6 +1,7 @@
 import re
 
 from parsers.LineParser import LineParser
+from parsers.RegexpBuilder import RegexpBuilder
 
 
 class ShParser(LineParser):
@@ -10,9 +11,10 @@ class ShParser(LineParser):
 	def parseLine(self, line):
 		assert line
 
+		rb = RegexpBuilder()
 		cmdTextRegexp = r'(?P<text>.*)'
 
-		regexpSource = self.startsWith('sh') + cmdTextRegexp
+		regexpSource = rb.startsWith('sh') + cmdTextRegexp
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)

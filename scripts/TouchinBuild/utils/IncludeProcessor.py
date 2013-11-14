@@ -1,5 +1,6 @@
 import re
 from parsers.LineParser import LineParser
+from parsers.RegexpBuilder import RegexpBuilder
 
 
 class IncludeProcessor(LineParser):
@@ -9,7 +10,8 @@ class IncludeProcessor(LineParser):
 	def getIncludesInfo(self, text):
 		assert text is not None
 
-		regexpSource = '<\s*' + self.than('include') + r"'[^']+'" + '\s*>'
+		rb = RegexpBuilder()
+		regexpSource = '<\s*' + rb.than('include') + r"'[^']+'" + '\s*>'
 
 		regexp = re.compile(regexpSource, re.UNICODE)
 		results = regexp.findall(text)
