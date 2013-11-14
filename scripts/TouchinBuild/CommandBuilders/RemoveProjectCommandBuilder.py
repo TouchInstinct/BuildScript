@@ -20,8 +20,8 @@ class RemoveProjectCommandBuilder:
 		parser = InsideRemoveParser('sln')
 		result = parser.parseLine(line)
 
-		slnPath = result[0]
-		projectName = result[1]
+		slnPath = result['file_path']
+		projectNames = result['names']
 
-		command = RemoveProjectCommand(slnPath, projectName)
+		command = RemoveProjectCommand(slnPath, projectNames)
 		return command

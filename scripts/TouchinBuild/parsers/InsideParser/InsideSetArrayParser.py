@@ -1,6 +1,7 @@
 import re
 from parsers.InsideParser.InsideParserBase import InsideParserBase
 from parsers.RegexpBuilder import RegexpBuilder
+from parsers.ValuesStriper import ValuesStripper
 
 
 class InsideSetArrayParser(InsideParserBase):
@@ -39,5 +40,7 @@ class InsideSetArrayParser(InsideParserBase):
 		assert valuesStr is not None
 		assert len(valuesStr) > 0
 
-		values = valuesStr.split(':')
+		vs = ValuesStripper()
+		values = vs.strip(valuesStr)
+
 		return values
