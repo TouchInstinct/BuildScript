@@ -1,0 +1,7 @@
+inside 'BuildSample/BuildSample.sln' remove 'CoolApp:NotCompileApp:Domain' project
+
+inside 'BuildSample/DroidApp/Properties/AndroidManifest.xml' set android:versionCode to '17'
+inside 'BuildSample/DroidApp/Properties/AndroidManifest.xml' set android:versionName to '1.2.3'
+
+clean 'BuildSample/BuildSample.sln' for '{@sln_config}'
+build 'BuildSample/BuildSample.sln' for '{@sln_config}'

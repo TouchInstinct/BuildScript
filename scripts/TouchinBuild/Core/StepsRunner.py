@@ -7,6 +7,7 @@ from CommandBuilders.MakeDirsCommandBuilder import MakeDirsCommandBuilder
 from CommandBuilders.PatchCsprojCommandBuilder import PatchCsprojCommandBuilder
 from CommandBuilders.PatchInfoPlistArrayCommandBuilder import PatchInfoPlistArrayCommandBuilder
 from CommandBuilders.PatchInfoplistCommandBuilder import PatchInfoplistCommandBuilder
+from CommandBuilders.PatchManifestCommandBuilder import PatchManifestCommandBuilder
 from CommandBuilders.RemoveProjectCommandBuilder import RemoveProjectCommandBuilder
 from CommandBuilders.RestoreBackupCommandBuilder import RestoreBackupCommandBuilder
 from CommandBuilders.ShCommandBuilder import ShCommandBuilder
@@ -31,6 +32,7 @@ class StepsRunner:
 		self.patchCsproj = PatchCsprojCommandBuilder()
 		self.patchInfoPlist = PatchInfoplistCommandBuilder(self.valueProvider)
 		self.patchInfoPlistArray = PatchInfoPlistArrayCommandBuilder()
+		self.patchManifest = PatchManifestCommandBuilder()
 		self.copyBuilder = CopyCommandBuilder()
 		self.testflightBuilder = TestflightCommandBuilder()
 
@@ -72,6 +74,8 @@ class StepsRunner:
 			cmd = self.patchInfoPlist.getCommandFor(line)
 		elif self.patchInfoPlistArray.isPatchInfoPlist(line):
 			cmd = self.patchInfoPlistArray.getCommandFor(line)
+		elif self.patchManifest.isManifestCommand(line):
+			cmd = self.patchManifest.getCommandFor(line)
 		elif self.copyBuilder.isCopy(line):
 			cmd =self.copyBuilder.getCommandFor(line)
 		elif self.restoreFromBackupBuilder.isRestoreBackup(line):
