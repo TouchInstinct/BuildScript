@@ -6,7 +6,6 @@ project_name = CoolApp
 
 # ios platform settings
 ios.sln_config = Release|iPhone
-ios.steps = 'scripts/IosSteps.txt'
 ios.setup_steps = 'IosSetupSteps.txt'
 ios.assembly_name = 'CoolApp'
 

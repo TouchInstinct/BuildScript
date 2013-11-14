@@ -26,17 +26,18 @@ scriptDir = os.path.dirname(scriptFilePath)
 
 
 class TaskRunner:
-	def __init__(self, settingsProvider, fileContentProvider, buildConfigProvider, linePreprocessor):
+	def __init__(self, settingsProvider, fileContentProvider, buildConfigProvider, linePreprocessor, defaults):
 		assert settingsProvider is not None
 		assert fileContentProvider is not None
 		assert buildConfigProvider is not None
 		assert linePreprocessor is not None
+		assert defaults is not None
 
 		self.settingsProvider = settingsProvider
 		self.fileContentProvider = fileContentProvider
 		self.configsProvider = buildConfigProvider
 		self.linePreprocessor = linePreprocessor
-
+		self.defaults = defaults
 
 		macroProcessor = MacroProcessor()
 		self.valueProvider = ValueProvider()
@@ -68,7 +69,7 @@ class TaskRunner:
 		stepsRunner.run(content)
 
 	def getStepsContent(self, config):
-		pathToSteps = config['steps']
+		pathToSteps = config.get('steps', self.defaults['steps'])
 
 		content = self.fileContentProvider.fetchContent(pathToSteps)
 		content = self.textPreprocessor.processText(content, self.textPreprocessor)
@@ -76,6 +77,12 @@ class TaskRunner:
 		return content
 
 if __name__ == "__main__":
+
+	defaults = {
+		'settings': 'settings.txt',
+		'builder_path': scriptDir,
+		'steps': os.path.join(scriptDir, 'steps.txt')
+	}
 
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--settings', required=False)
@@ -92,7 +99,7 @@ if __name__ == "__main__":
 	linePreprocessor.addProcessor(lineStripper)
 
 	# TODO:  перенести в корень комапановки
-	settingsPath = knownArgs.settings or 'settings.txt'
+	settingsPath = knownArgs.settings or defaults['settings']
 	fromFileSettingsProvider = FromFileSettingsProvider(settingsPath, linePreprocessor)
 	overrideWithCmdSetProvider = CmdArgsOverriderSettingsProvider(fromFileSettingsProvider, overrideArgs, linePreprocessor)
 
@@ -100,10 +107,10 @@ if __name__ == "__main__":
 
 	buildConfigProvider = BuildConfigProvider()
 	predefineBuildConfigProvider = PredefinedMacrosBuildConfigProvider(buildConfigProvider)
-	predefineBuildConfigProvider.addPredefineMacro('builder_path', scriptDir)
+	predefineBuildConfigProvider.addPredefineMacro('builder_path', defaults['builder_path'])
 
 	resolvedBuildConfigProvider = ResolvedBuildConfigProvider(predefineBuildConfigProvider)
 
 
-	runner = TaskRunner(overrideWithCmdSetProvider, fContentProvider, resolvedBuildConfigProvider, linePreprocessor)
+	runner = TaskRunner(overrideWithCmdSetProvider, fContentProvider, resolvedBuildConfigProvider, linePreprocessor, defaults)
 	runner.run()
