@@ -40,7 +40,7 @@ resolvedBuildConfigProvider = ResolvedBuildConfigProvider(buildConfigProvider)
 contentProvider = ContentProviderMock()
 preprocessor = NullPreprocessor()
 
-taskRunner = TaskRunner(settingsProvider, contentProvider, resolvedBuildConfigProvider, preprocessor)
+taskRunner = TaskRunner(settingsProvider, contentProvider, resolvedBuildConfigProvider, preprocessor, {})
 
 taskRunner.run()
 
