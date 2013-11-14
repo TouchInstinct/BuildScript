@@ -5,7 +5,10 @@ from parsers.InstallProfileParser import InstallProfileParser
 
 
 class InstallProfileCommandBuilder:
-	def __init__(self):
+	def __init__(self, profileFilePrefix):
+		assert profileFilePrefix is not None
+
+		self.profileFilePrefix = profileFilePrefix
 		self.profileStorageDir = '~/Library/MobileDevice/Provisioning Profiles/'
 
 	def isInstallProfile(self, line):
@@ -31,7 +34,13 @@ class InstallProfileCommandBuilder:
 		return command
 
 	def getDestinationPath(self, sourcePath):
-		profileFileName = os.path.basename(sourcePath)
-		destination = os.path.join(self.profileStorageDir, profileFileName)
+		dstProfileFileName = self.fetchDstFileName(sourcePath)
+		dstProfilePath = os.path.join(self.profileStorageDir, dstProfileFileName)
 
-		return destination
+		return dstProfilePath
+
+	def fetchDstFileName(self, srcFilePath):
+		profileFileName = os.path.basename(srcFilePath)
+		profileFileName = '{0}.{1}'.format(self.profileFilePrefix, profileFileName)
+
+		return profileFileName
