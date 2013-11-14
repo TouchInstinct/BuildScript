@@ -37,12 +37,12 @@ class ManifestPatcher(XmlPatcher):
 		result = rawName.split(':')
 		prefixExists = len(result) > 1
 
-		atrInfo = {
+		nameInfo = {
 			'prefix': result[0] if prefixExists else None,
 			'original_name': result[1] if prefixExists else result[0]
 		}
 
-		return atrInfo
+		return nameInfo
 
 	def fetchName(self, nameInfo):
 		assert nameInfo is not None

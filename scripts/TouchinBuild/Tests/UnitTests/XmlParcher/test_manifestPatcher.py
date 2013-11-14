@@ -14,3 +14,12 @@ class TestManifestPatcher(unittest.TestCase):
 		nameInfo2 = self.patcher.parseRawName('prefix:originalName')
 		self.assertEqual('prefix', nameInfo2['prefix'])
 		self.assertEqual('originalName', nameInfo2['original_name'])
+
+	def test_fetchName(self):
+		nameInfo = {
+			'prefix': 'android',
+			'original_name': 'MyName'
+		}
+
+		name = self.patcher.fetchName(nameInfo)
+		self.assertEqual('{http://schemas.android.com/apk/res/android}MyName', name)
