@@ -1,5 +1,6 @@
 import re
 from parsers.InsideParser.InsideParserBase import InsideParserBase
+from parsers.RegexpBuilder import RegexpBuilder
 
 
 class InsideRemoveParser(InsideParserBase):
@@ -20,7 +21,9 @@ class InsideRemoveParser(InsideParserBase):
 		filePathRegexp = r"'(?P<file>[./ a-zA-Z]+\.{0})'".format(self.fileExt)
 		projectNameRegexp = r'(?P<project>[.a-zA-Z]+)'
 
-		regexpSource = self.startsWith('inside') + filePathRegexp + self.keywordToken('remove') + projectNameRegexp + self.spaceEndsWith('project')
+		rb = RegexpBuilder()
+		regexpSource = rb.startsWith('inside') + filePathRegexp + rb.keywordToken('remove') + projectNameRegexp + \
+					   rb.spaceEndsWith('project')
 		regexp = re.compile(regexpSource, re.UNICODE)
 
 		match = regexp.match(line)

@@ -1,4 +1,7 @@
 class RegexpBuilder:
+	def __init__(self):
+		pass
+
 	def keywordToken(self, keyword):
 		assert keyword is not None
 		return r'\s+' + keyword + r'\s+'

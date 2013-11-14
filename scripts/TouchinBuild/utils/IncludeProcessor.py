@@ -1,5 +1,4 @@
 import re
-from parsers.LineParser import LineParser
 from parsers.RegexpBuilder import RegexpBuilder
 
 

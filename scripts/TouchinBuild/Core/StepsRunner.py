@@ -33,7 +33,9 @@ class StepsRunner:
 		self.patchInfoPlistArray = PatchInfoPlistArrayCommandBuilder()
 		self.copyBuilder = CopyCommandBuilder()
 		self.testflightBuilder = TestflightCommandBuilder()
-		self.installProfileBuilder = InstallProfileCommandBuilder()
+
+		profilePrefix = config['project_name']
+		self.installProfileBuilder = InstallProfileCommandBuilder(profilePrefix)
 
 		buildUtilPath = config['build_tool']
 		self.cleanBuilder = CleanBuildCommandBuilder(buildUtilPath, 'clean')
