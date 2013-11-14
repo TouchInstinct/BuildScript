@@ -3,7 +3,7 @@
 
 sh echo '{@sln_config}'
 
-inside 'BuildSample/BuildSample.sln' remove NotCompileApp project
+inside 'BuildSample/BuildSample.sln' remove 'NotCompileApp:DroidApp' project
 
 inside 'BuildSample/BuildSample/CoolApp.csproj' set OutputPath to 'Output' for '{@sln_config}'
 inside 'BuildSample/BuildSample/CoolApp.csproj' set AssemblyName to '{@assembly_name}' for ''
