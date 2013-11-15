@@ -11,6 +11,7 @@ from CommandBuilders.PatchManifestCommandBuilder import PatchManifestCommandBuil
 from CommandBuilders.RemoveProjectCommandBuilder import RemoveProjectCommandBuilder
 from CommandBuilders.RestoreBackupCommandBuilder import RestoreBackupCommandBuilder
 from CommandBuilders.ShCommandBuilder import ShCommandBuilder
+from CommandBuilders.SignApkBuilder import SignApkCommandBuilder
 from CommandBuilders.TestflightCommandBuilder import TestflightCommandBuilder
 
 
@@ -42,6 +43,7 @@ class StepsRunner:
 		buildUtilPath = config['build_tool']
 		self.cleanBuilder = CleanBuildCommandBuilder(buildUtilPath, 'clean')
 		self.buildBuilder = CleanBuildCommandBuilder(buildUtilPath, 'build')
+		self.signAndroid = SignApkCommandBuilder(buildUtilPath)
 
 	def run(self, content):
 		assert content is not None
@@ -64,6 +66,8 @@ class StepsRunner:
 			cmd = self.cleanBuilder.getCommandFor(line)
 		elif self.buildBuilder.isCleanBuild(line):
 			cmd = self.buildBuilder.getCommandFor(line)
+		elif self.signAndroid.isSignApk(line):
+			cmd = self.signAndroid.getCommandFor(line)
 		elif self.createBackupBuilder.isCreateBackup(line):
 			cmd = self.createBackupBuilder.getCommandFor(line)
 		elif self.createDirs.isMakeDirsCommand(line):
