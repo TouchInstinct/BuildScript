@@ -1,11 +1,12 @@
 # global settings
 build_tool='/Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool'
 version=0.0.0 # комментарий в тойже строке
-configs = 'appstore, staging, android'
+configs = 'appstore'
 project_name = CoolApp
 backup_ignore = .git, .gitignore, .DS_Store, backup, Output, scripts
 
 # ios platform settings
+ios.steps = scripts/IosSteps.txt
 ios.sln_config = Release|iPhone
 ios.setup_steps = 'IosSetupSteps.txt'
 ios.assembly_name = 'CoolApp'
