@@ -12,7 +12,7 @@ class SignApkParser(LineParser):
 
 		filePathRegexp = r"'(?P<path>[./ a-zA-Z]+\.sln)'"
 		slnConfigRegexp = r"'(?P<config>[a-zA-Z|]+)'"
-		projectRegexp = r"(?P<project>[.a-zA-Z]+)$"
+		projectRegexp = r"'(?P<project>[.a-zA-Z]+)'$"
 
 		rb = RegexpBuilder()
 		rSrc = rb.startsWith('sign') + rb.than('android') + filePathRegexp + rb.keywordToken('for') + slnConfigRegexp +\

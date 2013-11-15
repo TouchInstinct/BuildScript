@@ -15,14 +15,8 @@ class SignApkCommand(ShellCommandBase):
 		self.slnConfig = slnConfig
 		self.projectName = projectName
 
-		self.commandPattern = '%(mdtool) -v build "--configuration:%(config)" "--project:%(project)" /t:SignAndroidPackage "%(slnPath)"'
+		self.commandPattern = '{0} -v build "--configuration:{1}" "--project:{2}" /t:SignAndroidPackage "{3}"'
 
 	def execute(self):
-		cmdText = self.commandPattern % {
-		'mdtool': self.pathToBuildUtil,
-		'config': self.slnConfig,
-		'project': self.projectName,
-		'slnPath': self.slnPath
-		}
-
+		cmdText = self.commandPattern.format(self.pathToBuildUtil, self.slnConfig, self.projectName, self.slnPath)
 		self.executeShell(cmdText)
