@@ -3,7 +3,7 @@ create backup
 
 inside 'BuildSample/BuildSample.sln' remove 'CoolApp:NotCompileApp:Domain' project
 
-inside 'BuildSample/BuildSample/CoolApp.csproj' set OutputPath to 'Output' for '{@sln_config}'
+inside 'BuildSample/DroidApp/DroidApp.csproj' set OutputPath to 'Output' for '{@sln_config}'
 
 inside 'BuildSample/DroidApp/Properties/AndroidManifest.xml' set android:versionCode to '17'
 inside 'BuildSample/DroidApp/Properties/AndroidManifest.xml' set android:versionName to '1.2.3'
