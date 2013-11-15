@@ -1,7 +1,9 @@
+from CommandBuilders.BuilderBackupCommands.CreateBackupCommandBuilder import CreateBackupCommandBuilder
+from CommandBuilders.BuilderBackupCommands.DeleteBackupCommandBuilder import DeleteBackupCommandBuilder
+from CommandBuilders.BuilderBackupCommands.RestoreBackupCommandBuilder import RestoreBackupCommandBuilder
+
 from CommandBuilders.CleanBuildCommandBuilder import CleanBuildCommandBuilder
 from CommandBuilders.CopyCommandBuilder import CopyCommandBuilder
-from CommandBuilders.CreateBackupCommandBuilder import CreateBackupCommandBuilder
-from CommandBuilders.DeleteBackupCommandBuilder import DeleteBackupCommandBuilder
 from CommandBuilders.InstallProfileCommandBuilder import InstallProfileCommandBuilder
 from CommandBuilders.MakeDirsCommandBuilder import MakeDirsCommandBuilder
 from CommandBuilders.PatchCsprojCommandBuilder import PatchCsprojCommandBuilder
@@ -9,7 +11,6 @@ from CommandBuilders.PatchInfoPlistArrayCommandBuilder import PatchInfoPlistArra
 from CommandBuilders.PatchInfoplistCommandBuilder import PatchInfoplistCommandBuilder
 from CommandBuilders.PatchManifestCommandBuilder import PatchManifestCommandBuilder
 from CommandBuilders.RemoveProjectCommandBuilder import RemoveProjectCommandBuilder
-from CommandBuilders.RestoreBackupCommandBuilder import RestoreBackupCommandBuilder
 from CommandBuilders.ShCommandBuilder import ShCommandBuilder
 from CommandBuilders.SignApkBuilder import SignApkCommandBuilder
 from CommandBuilders.TestflightCommandBuilder import TestflightCommandBuilder
@@ -26,9 +27,6 @@ class StepsRunner:
 
 		self.shCommandBuilder = ShCommandBuilder()
 		self.removeProjectBuilder = RemoveProjectCommandBuilder()
-		self.createBackupBuilder = CreateBackupCommandBuilder()
-		self.restoreFromBackupBuilder = RestoreBackupCommandBuilder()
-		self.deleteBackupBuilder = DeleteBackupCommandBuilder()
 		self.createDirs = MakeDirsCommandBuilder()
 		self.patchCsproj = PatchCsprojCommandBuilder()
 		self.patchInfoPlist = PatchInfoplistCommandBuilder(self.valueProvider)
@@ -36,6 +34,12 @@ class StepsRunner:
 		self.patchManifest = PatchManifestCommandBuilder()
 		self.copyBuilder = CopyCommandBuilder()
 		self.testflightBuilder = TestflightCommandBuilder()
+
+		ignoreBackup = config.get('ignore_backup', None)
+		self.createBackupBuilder = CreateBackupCommandBuilder(ignoreBackup)
+		self.restoreFromBackupBuilder = RestoreBackupCommandBuilder(ignoreBackup)
+		self.deleteBackupBuilder = DeleteBackupCommandBuilder(ignoreBackup)
+
 
 		profilePrefix = config['project_name']
 		self.installProfileBuilder = InstallProfileCommandBuilder(profilePrefix)

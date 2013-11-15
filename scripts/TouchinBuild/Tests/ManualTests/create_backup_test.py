@@ -1,8 +1,8 @@
-from CommandBuilders.CreateBackupCommandBuilder import CreateBackupCommandBuilder
+from CommandBuilders.BuilderBackupCommands.CreateBackupCommandBuilder import CreateBackupCommandBuilder
 
 line = "create backup"
 
-cmdBuilder = CreateBackupCommandBuilder()
+cmdBuilder = CreateBackupCommandBuilder(None)
 command = cmdBuilder.getCommandFor(line)
 
 command.execute()

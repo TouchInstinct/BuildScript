@@ -4,8 +4,14 @@ from commands.CommandBase import CommandBase
 
 
 class BaseBackupCommand(CommandBase):
-	def __init__(self):
+	def __init__(self, ignoreBackup):
 		CommandBase.__init__(self)
+
+		assert ignoreBackup is not None
+
+		self.backupIgnore = ['.git', '.gitignore', '.DS_Store', 'backup']
+		self.backupIgnore.extend(ignoreBackup)
+
 		self.folderPath = '.'
 
 		# вычислять абсолютные пути надо на этапе создания комманды
@@ -13,7 +19,6 @@ class BaseBackupCommand(CommandBase):
 		self.srcAbsDirPath = self.getAbsSrc()
 		self.backupDirAbsPath = self.getAbsDst()
 
-		self.backupIgnore = ['.git', '.gitignore', '.DS_Store', 'backup']
 
 	def getAbsSrc(self):
 		return self.getAbs(self.folderPath)

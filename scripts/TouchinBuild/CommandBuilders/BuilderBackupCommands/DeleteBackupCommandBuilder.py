@@ -1,10 +1,11 @@
+from CommandBuilders.BuilderBackupCommands.BaseBackupCommandBuilder import BaseBackupCommandBuilder
 from commands.BaseBackupCommand.DeleteBackupCommand import DeleteBackupCommand
 from parsers.ParserBackup.DeleteBackupParser import DeleteBackupParser
 
 
-class DeleteBackupCommandBuilder:
-	def __init__(self):
-		pass
+class DeleteBackupCommandBuilder(BaseBackupCommandBuilder):
+	def __init__(self, ignoreBackupStr):
+		BaseBackupCommandBuilder.__init__(self, ignoreBackupStr)
 
 	def isDeleteBackup(self, line):
 		assert line is not None
@@ -20,5 +21,5 @@ class DeleteBackupCommandBuilder:
 		parser = DeleteBackupParser()
 		parser.parseLine(line)
 
-		command = DeleteBackupCommand()
+		command = DeleteBackupCommand(self.ignoreBackup)
 		return command

@@ -4,6 +4,7 @@ version=0.0.0 # комментарий в тойже строке
 configs = 'appstore, staging, android'
 project_name = CoolApp
 sln_config = Release|iPhone
+backup_ignore = .git, .gitignore, .DS_Store, backup, artifacts
 
 # ios platform settings
 #ios.steps = 'scripts/IosSteps.txt'

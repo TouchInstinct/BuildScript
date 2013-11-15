@@ -1,10 +1,11 @@
+from CommandBuilders.BuilderBackupCommands.BaseBackupCommandBuilder import BaseBackupCommandBuilder
 from commands.BaseBackupCommand.RestoreBackupCommand import RestoreBackupCommand
 from parsers.ParserBackup.RestoreBackupParser import RestoreBackupParser
 
 
-class RestoreBackupCommandBuilder:
-	def __init__(self):
-		pass
+class RestoreBackupCommandBuilder(BaseBackupCommandBuilder):
+	def __init__(self, ignoreBackupStr):
+		BaseBackupCommandBuilder.__init__(self, ignoreBackupStr)
 
 	def isRestoreBackup(self, line):
 		assert line is not None
@@ -20,5 +21,5 @@ class RestoreBackupCommandBuilder:
 		parser = RestoreBackupParser()
 		parser.parseLine(line)
 
-		command = RestoreBackupCommand()
+		command = RestoreBackupCommand(self.ignoreBackup)
 		return command
