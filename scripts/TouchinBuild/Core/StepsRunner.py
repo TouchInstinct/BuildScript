@@ -35,7 +35,7 @@ class StepsRunner:
 		self.copyBuilder = CopyCommandBuilder()
 		self.testflightBuilder = TestflightCommandBuilder()
 
-		ignoreBackup = config.get('ignore_backup', None)
+		ignoreBackup = config.get('backup_ignore', None)
 		self.createBackupBuilder = CreateBackupCommandBuilder(ignoreBackup)
 		self.restoreFromBackupBuilder = RestoreBackupCommandBuilder(ignoreBackup)
 		self.deleteBackupBuilder = DeleteBackupCommandBuilder(ignoreBackup)

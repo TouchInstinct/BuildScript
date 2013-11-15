@@ -10,5 +10,3 @@ class BaseBackupCommandBuilder:
 			self.ignoreBackup = values
 		else:
 			self.ignoreBackup = []
-
-		print self.ignoreBackup
