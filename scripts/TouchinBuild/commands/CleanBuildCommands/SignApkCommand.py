@@ -19,4 +19,5 @@ class SignApkCommand(ShellCommandBase):
 
 	def execute(self):
 		cmdText = self.commandPattern.format(self.pathToBuildUtil, self.slnConfig, self.projectName, self.slnPath)
+		print cmdText
 		self.executeShell(cmdText)
