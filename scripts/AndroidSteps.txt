@@ -9,11 +9,10 @@ inside 'BuildSample/DroidApp/Properties/AndroidManifest.xml' set android:version
 inside 'BuildSample/DroidApp/Properties/AndroidManifest.xml' set android:versionName to '1.2.3'
 
 clean 'BuildSample/BuildSample.sln' for '{@sln_config}'
-build 'BuildSample/BuildSample.sln' for '{@sln_config}'
-sign    android 'BuildSample/BuildSample.sln' for '{@sln_config}' project 'DroidApp'
+sign    android 'BuildSample/BuildSample.sln' for '{@sln_config_build}' project 'DroidApp'
 
 create dirs 'Output/GooglePlay/Artifacts'
-copy 'BuildSample/DroidApp/Output/*.apk' to 'Output/GooglePlay/Artifacts'
+sh cp BuildSample/DroidApp/Output/*.apk Output/GooglePlay/Artifacts
 sh cp -a BuildSample/DroidApp/Output/ Output/GooglePlay/
 
 restore from backup

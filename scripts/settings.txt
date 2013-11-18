@@ -16,6 +16,7 @@ ios.tf_team_token = 'c5c3cf7a6dae2bea4382dfbd181a2075_Mjc4ODkwMjAxMy0wOS0yOSAxND
 
 # android platform settings
 android.sln_config = Release|AnyCPU
+android.sln_config_build = Release
 android.steps = 'scripts/AndroidSteps.txt'
 
 # config settings
