@@ -1,8 +1,8 @@
-from CommandBuilders.RestoreBackupCommandBuilder import RestoreBackupCommandBuilder
+from CommandBuilders.BuilderBackupCommands.RestoreBackupCommandBuilder import RestoreBackupCommandBuilder
 
 line = "restore from backup"
 
-builder = RestoreBackupCommandBuilder()
+builder = RestoreBackupCommandBuilder(None)
 command = builder.getCommandFor(line)
 
 command.execute()

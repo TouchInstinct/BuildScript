@@ -1,8 +1,8 @@
-from CommandBuilders.DeleteBackupCommandBuilder import DeleteBackupCommandBuilder
+from CommandBuilders.BuilderBackupCommands.DeleteBackupCommandBuilder import DeleteBackupCommandBuilder
 
 line = "delete backup"
 
-cmdBuilder = DeleteBackupCommandBuilder()
+cmdBuilder = DeleteBackupCommandBuilder(None)
 command = cmdBuilder.getCommandFor(line)
 
 command.execute()

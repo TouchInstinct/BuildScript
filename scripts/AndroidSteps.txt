@@ -1,7 +1,19 @@
+restore from backup
+create backup
+
 inside 'BuildSample/BuildSample.sln' remove 'CoolApp:NotCompileApp:Domain' project
+
+inside 'BuildSample/DroidApp/DroidApp.csproj' set OutputPath to 'Output' for '{@sln_config}'
 
 inside 'BuildSample/DroidApp/Properties/AndroidManifest.xml' set android:versionCode to '17'
 inside 'BuildSample/DroidApp/Properties/AndroidManifest.xml' set android:versionName to '1.2.3'
 
 clean 'BuildSample/BuildSample.sln' for '{@sln_config}'
-sign    android 'BuildSample/BuildSample.sln' for '{@sln_config}' project 'DroidApp'
+sign    android 'BuildSample/BuildSample.sln' for '{@sln_config_build}' project 'DroidApp'
+
+create dirs 'Output/GooglePlay/Artifacts'
+sh cp BuildSample/DroidApp/Output/*.apk Output/GooglePlay/Artifacts
+sh cp -a BuildSample/DroidApp/Output/ Output/GooglePlay/
+
+restore from backup
+delete backup

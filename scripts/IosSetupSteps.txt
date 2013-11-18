@@ -1,7 +1,7 @@
-# restore from backup					# восстанавливаем из бэкапа (исходники от сборки предыдущей конфигурации могут быть модифицированными)
-# create backup
+restore from backup					# восстанавливаем из бэкапа (исходники от сборки предыдущей конфигурации могут быть модифицированными)
+create backup
 
-sh echo '{@sln_config}'
+sh echo 'Hello from setup.txt'
 
 inside 'BuildSample/BuildSample.sln' remove 'NotCompileApp:DroidApp' project
 

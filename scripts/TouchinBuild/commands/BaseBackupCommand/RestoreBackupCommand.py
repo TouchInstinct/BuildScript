@@ -4,8 +4,8 @@ from commands.BaseBackupCommand.BaseBackupCommand import BaseBackupCommand
 
 
 class RestoreBackupCommand(BaseBackupCommand):
-	def __init__(self):
-		BaseBackupCommand.__init__(self)
+	def __init__(self, ignoreBackup):
+		BaseBackupCommand.__init__(self, ignoreBackup)
 
 	def execute(self):
 		if not os.path.exists(self.backupDirAbsPath):
