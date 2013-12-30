@@ -1,13 +1,13 @@
 #restore from backup
 #create backup for '.'
 
-<include '{@builder_path}/common/android prepare.txt'>
-<include '{@builder_path}/common/android build.txt'>
+<include '{@builder_path}/scripts/common/android prepare.txt'>
+<include '{@builder_path}/scripts/common/android build.txt'>
 
 #if {@teamcity_build_id}
 create dirs '{@publish_path}'
 sh echo '{@teamcity_build_id}' > '{@publish_path}/../{@build}.build_id'
-<include '{@builder_path}/common/android publish.txt'>
+<include '{@builder_path}/scripts/common/android publish.txt'>
 #endif
 
 #restore from backup
