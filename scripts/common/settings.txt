@@ -20,10 +20,12 @@ configs = 'default_ios, appstore, default_android, googleplay'
 # следует перенести в ios и android конфигурации
 sln_path = ''
 
+csproj_file_name = '{@csproj_name}.csproj' # dont change
+
 # required
 ios.provisioning_uudid = '' # Можно использовать пробел для режима Automatic
 ios.csproj_dir = ''
-ios.csproj_name = ''
+ios.csproj_name = '' # только имя проекта, обычно имя файла без расширения
 ios.remove_project = '' #оставить пустым если не надо удалять проекты. Чаще всего указывают проект Android (если он в том же солюшене)
 # dont change
 ios.sln_config = 'Release|iPhone'
@@ -37,7 +39,7 @@ ios.appstore.provisioning_profile = 'distribution'   # dont change
 
 # required
 android.csproj_dir = ''
-android.csproj_name = ''
+android.csproj_name = '' # только имя проекта, обычно имя файла без расширения
 android.remove_project = '' #оставить пустым если не надо удалять проекты. Чаще всего указывают проект Android (если он в том же солюшене)
 # dont change
 android.sln_config = 'Release'  # Нельзя указывать платформу(Release|AnyCPU). Иначе приложение не будет подписано 

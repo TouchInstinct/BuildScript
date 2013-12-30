@@ -1,5 +1,5 @@
-inside '{@csproj_dir}/{@csproj_name}' set OutputPath to '{@output_path}' for '{@sln_config}|AnyCPU'
-inside '{@csproj_dir}/{@csproj_name}' set AssemblyName to '{@project_name}' for ''
+inside '{@csproj_dir}/{@csproj_file_name}' set OutputPath to '{@output_path}' for '{@sln_config}|AnyCPU'
+inside '{@csproj_dir}/{@csproj_file_name}' set AssemblyName to '{@project_name}' for ''
 
 inside '{@csproj_dir}/Properties/AndroidManifest.xml' set package to '{@package_name}'
 inside '{@csproj_dir}/Properties/AndroidManifest.xml' set android:versionName to '{@version}.{@build}'
