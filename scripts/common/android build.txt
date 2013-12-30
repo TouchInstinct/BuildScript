@@ -1,0 +1,2 @@
+build '{@sln_path}' for '{@sln_config}'
+sign android '{@sln_path}' for '{@sln_config}' project '{@csproj_name}'

@@ -1,0 +1,1 @@
+copy '{@csproj_dir}/{@output_path}/{@project_name}-{@version}.{@build}.ipa' to '{@publish_path}/{@project_name}-{@version}-{@build}-Default.ipa'
