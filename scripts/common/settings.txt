@@ -1,0 +1,41 @@
+# global settings
+teamcity_build_id = '0'
+build = '0.0' # Будет переопределено teamcity
+
+build_tool = '/Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool'
+project_name = '' # required
+
+# укажите через запятую конфигурации которые необходимо собрать
+configs = 'default_ios, appstore, default_android, googleplay'
+
+sln_path = '' # required
+publish_path = '/BuildServer/{@project_name}/builds/{@publish_name}'
+
+# required
+ios.provisioning_uudid = ''
+ios.csproj_dir = ''
+ios.csproj_path = ''
+ios.remove_project = '' #оставить пустым если не надо удалять проекты. Чаще всего указывают проект Android (если он в том же солюшене)
+# dont change
+ios.sln_config = 'Release|iPhone'
+ios.steps = '{@builder_path}/common/ios.txt'
+ios.output_path = 'bin'
+ios.publish_name = 'iPhone'
+ios.provisioning_account = 'iPhone Developer: Build Server (GZRT3GYURD)' #Билд сервер собирает с помощью разработчика Build Server
+
+ios.default_ios.provisioning_profile = 'development' # dont change
+ios.appstore.provisioning_profile = 'distribution'   # dont change
+
+# required
+android.csproj_dir = ''
+android.csproj_path = ''
+android.remove_project = '' #оставить пустым если не надо удалять проекты. Чаще всего указывают проект Android (если он в том же солюшене)
+# dont change
+android.sln_config = 'Release|AnyCPU'
+android.steps = '{@builder_path}/common/android.txt'
+android.output_path = 'bin'
+android.publish_name = 'Android'
+
+android.version_code = '{@build}' # Возможно стоит переопределить значения в конкректных конфигурациях
+android.default_android.package_name = '' #required
+android.googleplay.package_name = ''      #required
