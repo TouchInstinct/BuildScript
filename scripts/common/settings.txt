@@ -21,7 +21,7 @@ configs = 'default_ios, appstore, default_android, googleplay'
 sln_path = ''
 
 # required
-ios.provisioning_uudid = ''
+ios.provisioning_uudid = '' # Можно использовать пробел для режима Automatic
 ios.csproj_dir = ''
 ios.csproj_name = ''
 ios.remove_project = '' #оставить пустым если не надо удалять проекты. Чаще всего указывают проект Android (если он в том же солюшене)
