@@ -40,7 +40,7 @@ android.csproj_dir = ''
 android.csproj_name = ''
 android.remove_project = '' #оставить пустым если не надо удалять проекты. Чаще всего указывают проект Android (если он в том же солюшене)
 # dont change
-android.sln_config = 'Release|AnyCPU'
+android.sln_config = 'Release'  # Нельзя указывать платформу(Release|AnyCPU). Иначе приложение не будет подписано 
 android.steps = '{@builder_path}/scripts/common/android.txt'
 android.output_path = 'bin'
 android.publish_name = 'Android'
