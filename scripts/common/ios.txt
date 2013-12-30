@@ -1,13 +1,13 @@
 #restore from backup
 #create backup for '.'
 
-<include '{@builder_path}/common/ios prepare.txt'>
-<include '{@builder_path}/common/ios build.txt'>
+<include '{@builder_path}/scripts/common/ios prepare.txt'>
+<include '{@builder_path}/scripts/common/ios build.txt'>
 
 #if {@teamcity_build_id}
 create dirs '{@publish_path}'
 sh echo '{@teamcity_build_id}' > '{@publish_path}/../{@build}.build_id'
-<include '{@builder_path}/common/ios publish {@provisioning_profile}.txt'>
+<include '{@builder_path}/scripts/common/ios publish {@provisioning_profile}.txt'>
 #endif
 
 #restore from backup

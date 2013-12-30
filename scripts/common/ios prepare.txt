@@ -1,9 +1,9 @@
 install profile 'scripts/{@provisioning_profile}.mobileprovision'
 
-inside '{@csproj_dir}/{@csproj_path}' set CodesignKey to '{@provisioning_account}' for '{@sln_config}'
-inside '{@csproj_dir}/{@csproj_path}' set CodesignProvision to '{@provisioning_profile}' for '{@sln_config}'
-inside '{@csproj_dir}/{@csproj_path}' set OutputPath to '{@output_path}' for '{@sln_config}'
-inside '{@csproj_dir}/{@csproj_path}' set AssemblyName to '{@project_name}' for ''
+inside '{@csproj_dir}/{@csproj_name}' set CodesignKey to '{@provisioning_account}' for '{@sln_config}'
+inside '{@csproj_dir}/{@csproj_name}' set CodesignProvision to '{@provisioning_profile}' for '{@sln_config}'
+inside '{@csproj_dir}/{@csproj_name}' set OutputPath to '{@output_path}' for '{@sln_config}'
+inside '{@csproj_dir}/{@csproj_name}' set AssemblyName to '{@project_name}' for ''
 
 inside '{@csproj_dir}/Info.plist' set CFBundleVersion to '{@version}.{@build}'
 inside '{@csproj_dir}/Info.plist' set CFShortBundleVersion to '{@version}'

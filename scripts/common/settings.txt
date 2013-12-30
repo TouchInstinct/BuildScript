@@ -1,24 +1,33 @@
 # global settings
 teamcity_build_id = '0'
-build = '0.0' # Будет переопределено teamcity
+
+# Будет переопределено teamcity
+version = '0.0'
+build = '0'
 
 build_tool = '/Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool'
-project_name = '' # required
+project_name = '' # required for build server infastructure
+publish_path = '/BuildServer/{@project_name}/builds/{@publish_name}'
+
+# добавьте названия папок или файлов которые не надо бэкапить перед сборкой конфигурации
+# это может быть папка куда складываются артефакты или служебная папка системы контроля версий
+backup_ignore = .git, .gitignore, .DS_Store, backup, Artifacts, scripts, settings.txt, ios.txt
 
 # укажите через запятую конфигурации которые необходимо собрать
 configs = 'default_ios, appstore, default_android, googleplay'
 
-sln_path = '' # required
-publish_path = '/BuildServer/{@project_name}/builds/{@publish_name}'
+# required. Возможно для IOs и Android созданы разные sln файлы, тогда эту настройку
+# следует перенести в ios и android конфигурации
+sln_path = ''
 
 # required
 ios.provisioning_uudid = ''
 ios.csproj_dir = ''
-ios.csproj_path = ''
+ios.csproj_name = ''
 ios.remove_project = '' #оставить пустым если не надо удалять проекты. Чаще всего указывают проект Android (если он в том же солюшене)
 # dont change
 ios.sln_config = 'Release|iPhone'
-ios.steps = '{@builder_path}/common/ios.txt'
+ios.steps = '{@builder_path}/scripts/common/ios.txt'
 ios.output_path = 'bin'
 ios.publish_name = 'iPhone'
 ios.provisioning_account = 'iPhone Developer: Build Server (GZRT3GYURD)' #Билд сервер собирает с помощью разработчика Build Server
@@ -28,11 +37,11 @@ ios.appstore.provisioning_profile = 'distribution'   # dont change
 
 # required
 android.csproj_dir = ''
-android.csproj_path = ''
+android.csproj_name = ''
 android.remove_project = '' #оставить пустым если не надо удалять проекты. Чаще всего указывают проект Android (если он в том же солюшене)
 # dont change
 android.sln_config = 'Release|AnyCPU'
-android.steps = '{@builder_path}/common/android.txt'
+android.steps = '{@builder_path}/scripts/common/android.txt'
 android.output_path = 'bin'
 android.publish_name = 'Android'
 
