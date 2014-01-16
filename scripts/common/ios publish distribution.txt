@@ -1,2 +1,2 @@
-sh rm -f '{@publish_path}/{@project_name}-{@version}-{@build}-AppStore.zip'
-sh cd '{@csproj_dir}/{@output_path}' && zip -y -r '{@publish_path}/{@project_name}-{@version}-{@build}-AppStore.zip' '{@csproj_name}.app' 
+sh rm -f '{@publish_path}/{@output_file_format}-AppStore.zip'
+sh cd '{@csproj_dir}/{@output_path}' && zip -y -r '{@publish_path}/{@output_file_format}-AppStore.zip' '{@csproj_name}.app' 
