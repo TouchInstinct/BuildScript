@@ -1,5 +1,5 @@
 Добавить символьную ссылку на скрипт сборки. Заменить <builder_path> на абсолютный путь к корню репозитория билд скрипта
-sudo ln -s <builder_path>/scripts/TouchinBuild/taskRunner.py /user/local/bin/tibuild
+sudo ln -s <builder_path>/scripts/TouchinBuild/taskRunner.py /usr/local/bin/tibuild
 
 
 
@@ -9,24 +9,24 @@ sudo ln -s <builder_path>/scripts/TouchinBuild/taskRunner.py /user/local/bin/tib
 
 1. Убедиться что в названии проекта нет пробелов.
 
-1. В корне репозитория создать папку scripts
+2. В корне репозитория создать папку scripts
 mkdir scripts
 
-2. Положить в папку scripts профили обеспечения со следующими названиями
+3. Положить в папку scripts профили обеспечения со следующими названиями
 development.mobileprovision
 distribution.mobileprovision 
 
-2. В папке scripts создать папку settings.txt
+4. В папке scripts создать папку settings.txt
 touch scripts/settings.txt
 
-3. Скопировать содержимое примера scripts/common/setting.txt в свой файл settings.txt и переопределить все необходимые настройки
+5. Скопировать содержимое примера scripts/common/setting.txt в свой файл settings.txt и переопределить все необходимые настройки
 Стоит обратить внимание на комментации 
 # required – эти настройки необходимо задать, иначе ничего не будет работать
 # dont change – это можно менять если есть четкое осознание того что происходит
 
-4. вызвать скрипт, заменив параметры
-на сервере
-tibuild --settings=scripts/settings.txt build="0.0" builder_path=<builder_path>
+6. вызвать скрипт, заменив параметры
+на сервере. <builder_path> скорее всего это /BuildServer/Scripts
+tibuild --settings=scripts/settings.txt build=%build.number% builder_path=<builder_path>
 
-локально. path_to_local_direcotry – путь к папке вне репозитория проекта (чтобы ничего не потерлось) или добавить папку в настройку
-tibuild --settings=scripts/settings.txt build="0.0" builder_path=<builder_path> publish_path=<path_to_local_direcotry>
+локально. path_to_local_direcotry – путь к папке вне репозитория проекта (чтобы ничего не потерлось) или добавить папку в настройку backup_ignore
+tibuild --settings=scripts/settings.txt build=777 builder_path=<builder_path> publish_path=<path_to_local_direcotry>
