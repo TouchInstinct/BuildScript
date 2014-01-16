@@ -1,12 +1,14 @@
 # global settings
 teamcity_build_id = '0'
 
-# Будет переопределено teamcity
+# Обновляйте это поле руками, когда выходит новая версия приложения
 version = '0.0'
+# Будет переопределено teamcity. например так build=%build.number%
 build = '0'
 
 build_tool = '/Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool'
 project_name = '' # required for build server infastructure
+# required!!! обратите внимание на регистр папки builds – на некоторых проектах название с большой буквы, а на некоторых с маленькой
 publish_path = '/BuildServer/{@project_name}/builds/{@publish_name}'
 
 # добавьте названия папок или файлов которые не надо бэкапить перед сборкой конфигурации
@@ -20,10 +22,11 @@ configs = 'default_ios, appstore, default_android, googleplay'
 # следует перенести в ios и android конфигурации
 sln_path = ''
 
-csproj_file_name = '{@csproj_name}.csproj' # dont change
+ # dont change
+csproj_file_name = '{@csproj_name}.csproj'
+output_file_format = '{@project_name}-{@version}.{@build}'
 
 # required
-ios.provisioning_uudid = '' # Можно использовать пробел для режима Automatic
 ios.csproj_dir = ''
 ios.csproj_name = '' # только имя проекта, обычно имя файла без расширения
 ios.remove_project = '' #оставить пустым если не надо удалять проекты. Чаще всего указывают проект Android (если он в том же солюшене)
@@ -32,10 +35,14 @@ ios.sln_config = 'Release|iPhone'
 ios.steps = '{@builder_path}/scripts/common/ios.txt'
 ios.output_path = 'bin'
 ios.publish_name = 'iPhone'
-ios.provisioning_account = 'iPhone Developer: Build Server (GZRT3GYURD)' #Билд сервер собирает с помощью разработчика Build Server
 
 ios.default_ios.provisioning_profile = 'development' # dont change
+ios.default_ios.provisioning_account = 'iPhone Developer: Build Server (GZRT3GYURD)' #Билд сервер собирает с помощью разработчика Build Server
+ios.default_ios.provisioning_uudid = '' # Можно использовать пробел для режима Automatic
+
 ios.appstore.provisioning_profile = 'distribution'   # dont change
+ios.appstore.provisioning_account = 'iPhone Distribution' # dont change. На билд сервере всего один distribution сертификат Ltd Touchinstinct он и будет выбран
+ios.appstore.provisioning_uudid = '' # Можно использовать пробел для режима Automatic
 
 # required
 android.csproj_dir = ''
