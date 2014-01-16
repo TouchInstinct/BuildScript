@@ -1,1 +1,1 @@
-copy '{@csproj_dir}/{@output_path}/{@output_file_format}.ipa' to '{@publish_path}/{@output_file_format}-Default.ipa'
+copy '{@csproj_dir}/{@output_path}/{@output_file_format}.ipa' to '{@publish_path}/{@output_file_name}'

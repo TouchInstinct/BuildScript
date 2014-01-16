@@ -24,6 +24,7 @@ sln_path = ''
 
  # dont change
 csproj_file_name = '{@csproj_name}.csproj'
+# эта настройка нужна для единообразия названий билдов
 output_file_format = '{@project_name}-{@version}.{@build}'
 
 # required
@@ -38,16 +39,19 @@ ios.publish_name = 'iPhone'
 
 ios.default_ios.provisioning_profile = 'development' # dont change
 ios.default_ios.provisioning_account = 'iPhone Developer: Build Server (GZRT3GYURD)' #Билд сервер собирает с помощью разработчика Build Server
-ios.default_ios.provisioning_uudid = '' # Можно использовать пробел для режима Automatic
+ios.default_ios.provisioning_uudid = '' # required. Можно использовать пробел для режима Automatic
+ios.default_ios.output_file_name = '{@output_file_format}-Default.ipa'
 
 ios.appstore.provisioning_profile = 'distribution'   # dont change
 ios.appstore.provisioning_account = 'iPhone Distribution' # dont change. На билд сервере всего один distribution сертификат Ltd Touchinstinct он и будет выбран
-ios.appstore.provisioning_uudid = '' # Можно использовать пробел для режима Automatic
+ios.appstore.provisioning_uudid = '' # required. Можно использовать пробел для режима Automatic
+ios.appstore.output_file_name = '{@output_file_format}-AppStore.zip'
 
 # required
 android.csproj_dir = ''
 android.csproj_name = '' # только имя проекта, обычно имя файла без расширения
 android.remove_project = '' #оставить пустым если не надо удалять проекты. Чаще всего указывают проект Android (если он в том же солюшене)
+android.output_file_name = '{@output_file_format}-Default.apk'
 # dont change
 android.sln_config = 'Release'  # Нельзя указывать платформу(Release|AnyCPU). Иначе приложение не будет подписано 
 android.steps = '{@builder_path}/scripts/common/android.txt'

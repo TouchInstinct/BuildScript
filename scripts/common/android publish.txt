@@ -1,1 +1,1 @@
-copy '{@csproj_dir}/{@output_path}/{@package_name}-Signed.apk' to '{@publish_path}/{@project_name}-{@version}-{@build}-Default.apk'
+copy '{@csproj_dir}/{@output_path}/{@package_name}-Signed.apk' to '{@publish_path}/{@output_file_name}'
