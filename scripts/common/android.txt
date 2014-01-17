@@ -1,5 +1,5 @@
-#restore from backup
-#create backup for '.'
+restore from backup
+create backup for '.'
 
 <include '{@builder_path}/scripts/common/android prepare.txt'>
 <include '{@builder_path}/scripts/common/android build.txt'>
@@ -10,5 +10,5 @@ sh echo '{@teamcity_build_id}' > '{@publish_path}/../{@build}.build_id'
 <include '{@builder_path}/scripts/common/android publish.txt'>
 #endif
 
-#restore from backup
-#delete backup
+restore from backup
+delete backup
