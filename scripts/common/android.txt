@@ -1,5 +1,5 @@
 restore from backup
-create backup for '.'
+create backup
 
 <include '{@builder_path}/scripts/common/android prepare.txt'>
 <include '{@builder_path}/scripts/common/android build.txt'>
