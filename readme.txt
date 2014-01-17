@@ -16,7 +16,7 @@ mkdir scripts
 development.mobileprovision
 distribution.mobileprovision 
 
-4. В папке scripts создать папку settings.txt
+4. В папке scripts создать файл settings.txt
 touch scripts/settings.txt
 
 5. Скопировать содержимое примера scripts/common/setting.txt в свой файл settings.txt и переопределить все необходимые настройки
