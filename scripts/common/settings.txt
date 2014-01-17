@@ -25,7 +25,7 @@ sln_path = ''
  # dont change
 csproj_file_name = '{@csproj_name}.csproj'
 # эта настройка нужна для единообразия названий билдов
-output_file_format = '{@project_name}-{@version}.{@build}'
+output_file_format = '{@project_name}-{@version}-{@build}'
 
 # required
 ios.csproj_dir = ''
