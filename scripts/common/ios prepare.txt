@@ -4,6 +4,7 @@ inside '{@csproj_dir}/{@csproj_file_name}' set CodesignKey to '{@provisioning_ac
 inside '{@csproj_dir}/{@csproj_file_name}' set CodesignProvision to '{@provisioning_uudid}' for '{@sln_config}'
 inside '{@csproj_dir}/{@csproj_file_name}' set OutputPath to '{@output_path}' for '{@sln_config}'
 inside '{@csproj_dir}/{@csproj_file_name}' set IpaPackageName to '{@output_file_format}' for '{@sln_config}'
+inside '{@csproj_dir}/{@csproj_file_name}' set BuildIpa to 'true' for '{@sln_config}'
 inside '{@csproj_dir}/{@csproj_file_name}' set AssemblyName to '{@project_name}' for ''
 
 inside '{@csproj_dir}/Info.plist' set CFBundleVersion to '{@version}.{@build}'
