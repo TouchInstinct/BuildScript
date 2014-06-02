@@ -7,6 +7,7 @@ inside '{@csproj_dir}/{@csproj_file_name}' set IpaPackageName to '{@output_file_
 inside '{@csproj_dir}/{@csproj_file_name}' set BuildIpa to 'true' for '{@sln_config}'
 inside '{@csproj_dir}/{@csproj_file_name}' set AssemblyName to '{@project_name}' for ''
 
+inside '{@csproj_dir}/Info.plist' set CFBundleIdentifier to '{@bundle_id}'
 inside '{@csproj_dir}/Info.plist' set CFBundleVersion to '{@version}.{@build}'
 inside '{@csproj_dir}/Info.plist' set CFBundleShortVersionString to '{@version}'
 

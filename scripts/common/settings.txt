@@ -39,12 +39,14 @@ ios.publish_name = 'iPhone'
 
 ios.default_ios.provisioning_profile = 'development' # required. Имя файла профиля обеспечения без разширерия (development.mobileprovision)
 ios.default_ios.publish_step_type = 'development' # required. Enum (appstore|distribution)
+ios.default_ios.bundle_id = '' # required. Обычно это com.touchin.projectname
 ios.default_ios.provisioning_account = 'iPhone Developer: Build Server (GZRT3GYURD)' #Билд сервер собирает с помощью разработчика Build Server
 ios.default_ios.provisioning_uudid = '' # required. Можно использовать пробел для режима Automatic
 ios.default_ios.output_file_name = '{@output_file_format}-Default.ipa'
 
 ios.appstore.provisioning_profile = 'distribution' # required. Имя файла профиля обеспечения без разширерия (distribution.mobileprovision)
 ios.appstore.publish_step_type = 'distribution' # required. Enum (appstore|distribution)
+ios.appstore.bundle_id = '' # required. Обычно это com.touchin.projectname
 ios.appstore.provisioning_account = 'iPhone Distribution' # dont change. На билд сервере всего один distribution сертификат Ltd Touchinstinct он и будет выбран
 ios.appstore.provisioning_uudid = '' # required. Можно использовать пробел для режима Automatic
 ios.appstore.output_file_name = '{@output_file_format}-AppStore.zip'
