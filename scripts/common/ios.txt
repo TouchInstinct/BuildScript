@@ -7,7 +7,7 @@ create backup
 #if {@teamcity_build_id}
 create dirs '{@publish_path}'
 sh echo '{@teamcity_build_id}' > '{@publish_path}/../{@build}.build_id'
-<include '{@builder_path}/scripts/common/ios publish {@provisioning_profile}.txt'>
+<include '{@builder_path}/scripts/common/ios publish {@publish_step_type}.txt'>
 #endif
 
 restore from backup
