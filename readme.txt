@@ -32,7 +32,7 @@ tibuild --settings=scripts/settings.txt build=%build.number% builder_path=<build
 tibuild --settings=scripts/settings.txt build=777 builder_path=<builder_path> publish_path=<path_to_local_direcotry>
 
 Пояснение значения некоторых настроек:
-publish_step_type – enum(development|distribution) – в зависимости от этого значения будет вызван один из следующих шагов
+*publish_step_type* – enum(development|distribution) – в зависимости от этого значения будет вызван один из следующих шагов
 'ios publish development.txt' – копирование файла ipa в папку @publish_path/
 'ios publish distribution.txt' - создание zip архива (app файла) и копирование его в папку @publish_path/
 Это значение было введено чтобы поддерживать сборку с разными профилями обеспечения.
@@ -43,3 +43,5 @@ distribution.mobileprovision – сборка для апстора [publish_ste
 development.mobileprovision – сборка для наших тестировщиков [publish_step_type=development]
 customer.mobileprovision – сборка для тестировщиков заказчиков [publish_step_type=development]
 distribution.mobileprovision – сборка для апстора [publish_step_type=distribution]
+
+*bundle_id* – BundleId который будет подставлен в Info.Plist файл. Настройка нужна для поддержки сборки с разными профилями обсеспечеиня. Так например в профиле обеспечения предоставляемом заказчиком будет указан другой BunldeId, те не com.touchin.projectname
